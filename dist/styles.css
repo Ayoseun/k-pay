@@ -1,6 +1,6 @@
 .payment-widget {
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #9e2e2e;
     border-radius: 5px;
   }
   
@@ -32,7 +32,7 @@
   
   button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #152c45;
     color: #fff;
     border: none;
     border-radius: 5px;
