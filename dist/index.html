@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Widget</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="payment-widget">
+    <h2>Choose Payment Method</h2>
+    <div class="payment-options">
+      <div class="payment-option">
+        <input type="radio" name="payment-method" id="card-payment" value="card">
+        <label for="card-payment">Pay with Cards</label>
+        <div class="card-icons">
+          <img src="visa.png" alt="Visa">
+          <img src="mastercard.png" alt="Mastercard">
+          <img src="american-express.png" alt="American Express">
+        </div>
+      </div>
+      <div class="payment-option">
+        <input type="radio" name="payment-method" id="crypto-payment" value="crypto">
+        <label for="crypto-payment">Pay with Crypto</label>
+        <select id="cryptocurrency-select">
+          <option value="bitcoin">Bitcoin</option>
+          <option value="ethereum">Ethereum</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="payment-amount">
+      <h3>$45000</h3>
+    </div>
+
+    <button id="connect-wallet-button">Connect Wallet</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

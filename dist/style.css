@@ -1,0 +1,40 @@
+.payment-widget {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  .payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .payment-option {
+    display: flex;
+    align-items: center;
+  }
+  
+  .card-icons {
+    display: flex;
+    gap: 5px;
+    margin-left: 10px;
+  }
+  
+  .payment-amount {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
