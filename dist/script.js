@@ -1,44 +1,53 @@
 // Get elements
-const cardPaymentButton = document.getElementById('card-payment-button');
-const cryptoPaymentButton = document.getElementById('crypto-payment-button');
+const cardPaymentRadio = document.getElementById('card-payment');
+const cryptoPaymentRadio = document.getElementById('crypto-payment');
 const cryptocurrencySelect = document.getElementById('cryptocurrency-select');
 const connectWalletButton = document.getElementById('connect-wallet-button');
-const paymentAmountElement = document.getElementById('payment-amount');
-
+const paymentAmountElement = document.getElementById('payment-amount h3');
+const showWidgetButton = document.getElementById('show-widget-button');
+const paymentWidget = document.getElementById('payment-widget');
 // Payment method selection
-cardPaymentButton.addEventListener('click', () => {
-  // Handle card payment logic (e.g., redirect to payment gateway)
-  console.log('Card payment selected');
+cardPaymentRadio.addEventListener('change', () => {
+  if (cardPaymentRadio.checked) {
+    console.log('Card payment selected');
+    cryptocurrencySelect.disabled = true; // Disable crypto selection
+  }
 });
 
-cryptoPaymentButton.addEventListener('click', () => {
-  // Handle cryptocurrency payment logic (e.g., connect wallet, submit transaction)
-  console.log('Crypto payment selected');
+cryptoPaymentRadio.addEventListener('change', () => {
+  if (cryptoPaymentRadio.checked) {
+    console.log('Crypto payment selected');
+    cryptocurrencySelect.disabled = false; // Enable crypto selection
+  }
 });
 
 // Cryptocurrency selection
 cryptocurrencySelect.addEventListener('change', () => {
-  // Update payment amount based on selected cryptocurrency (if applicable)
   const selectedCrypto = cryptocurrencySelect.value;
-  // Replace with actual conversion logic
   const newAmount = convertToCrypto(selectedCrypto, 45000);
-  paymentAmountElement.textContent = `$${newAmount}`;
+  paymentAmountElement.textContent = `$${newAmount.toFixed(2)}`;
 });
 
 // Wallet connection
 connectWalletButton.addEventListener('click', () => {
-  // Handle wallet connection logic (e.g., using Web3.js)
-  console.log('Connecting wallet...');
-  // Replace with actual wallet connection code
+  if (cryptoPaymentRadio.checked) {
+    console.log('Connecting wallet...');
+    // Replace with actual wallet connection code
+  } else {
+    alert('Please select the "Pay with Crypto" option and choose a cryptocurrency.');
+  }
 });
-
+showWidgetButton.addEventListener('click', () => {
+    paymentWidget.style.display = 'block';
+    showWidgetButton.style.display = 'none';
+  });
 // Helper function for currency conversion (example)
 function convertToCrypto(crypto, amount) {
   // Replace with actual conversion logic based on exchange rates
   if (crypto === 'bitcoin') {
-    return amount * 0.0001; // Example conversion rate
+    return amount * 0.000027; // Example conversion rate
   } else if (crypto === 'ethereum') {
-    return amount * 0.0002; // Example conversion rate
+    return amount * 0.00041; // Example conversion rate
   }
   return amount;
 }
