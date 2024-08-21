@@ -1,6 +1,7 @@
 // Get elements
 const paymentAmountElement = document.querySelector('#payment-amount h3');
 const showWidgetButton = document.getElementById('show-widget-button');
+const initialContainer = document.querySelector('.initial-container');
 const paymentWidget = document.getElementById('payment-widget');
 const cardPaymentRadio = document.getElementById('card-payment');
 const cryptoPaymentRadio = document.getElementById('crypto-payment');
@@ -10,12 +11,18 @@ const cardForm = document.getElementById('card-form');
 const cryptoForm = document.getElementById('crypto-form');
 
 // Payment method selection
+// Get elements
+const paymentOptions = document.querySelectorAll('.payment-option');
+
+// Payment method selection
 cardPaymentRadio.addEventListener('change', () => {
   if (cardPaymentRadio.checked) {
     console.log('Card payment selected');
     cardForm.classList.add('active');
     cryptoForm.classList.remove('active');
     cryptocurrencySelect.disabled = true;
+    paymentOptions[0].classList.add('selected');
+    paymentOptions[1].classList.remove('selected');
   }
 });
 
@@ -25,6 +32,8 @@ cryptoPaymentRadio.addEventListener('change', () => {
     cardForm.classList.remove('active');
     cryptoForm.classList.add('active');
     cryptocurrencySelect.disabled = false;
+    paymentOptions[0].classList.remove('selected');
+    paymentOptions[1].classList.add('selected');
   }
 });
 
@@ -41,8 +50,10 @@ connectWalletButton.addEventListener('click', () => {
 
 // Show widget button click
 showWidgetButton.addEventListener('click', () => {
+    initialContainer.style.display = 'none';
+    showWidgetButton.style.display = 'none';
   paymentWidget.style.display = 'block';
-  showWidgetButton.style.display = 'none';
+
 });
 
 // Helper function for currency conversion (example)
