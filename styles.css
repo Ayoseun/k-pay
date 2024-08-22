@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
 body {
   font-family: 'Inter', sans-serif;
   background-color: #f5f5f5;
@@ -10,67 +11,6 @@ body {
   margin: 0;
 }
 
-.initial-container {
-  text-align: center;
-}
-
-#show-widget-button {
-  display: block;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(90deg, #a3c2e4 50%, #003d72 50%);
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  padding: 12px 24px;
-  cursor: pointer;
-  font-size: 1.2em;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  outline: none;
-}
-
-.show-widget-button {
-  display: block;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(90deg, #a3c2e4 50%, #003d72 50%);
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  padding: 12px 24px;
-  cursor: pointer;
-  font-size: 1.2em;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  outline: none;
-}
-
-show-widget-button:hover {
-  background: linear-gradient(90deg, #a3c2e4 45%, #003d72 45%);
-  transform: scale(1.05);
-}
-
-.button-content {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.button-logo {
-  width: 30px;
-  height: auto;
-}
-
-.button-text {
-  font-weight: 700;
-}
-
-.security-text {
-  color: #98a0ac;
-  font-size: 0.8em;
-  margin-top: 10px;
-}
 
 .payment-widget {
   background-color: #ffffff;
@@ -100,7 +40,8 @@ h2 {
   background-color: #ffffff;
   border-color: #dde6e2;
   border-width: 1px;
-  border-style: solid; /* Ensure the border is visible */
+  border-style: solid;
+  /* Ensure the border is visible */
   border-radius: 6px;
 
   box-shadow: inset 0 0 8px #e0e3e2;
@@ -121,8 +62,10 @@ h2 {
   width: 90%;
   margin-bottom: 8px;
   padding: 8px;
- 
+
 }
+
+
 
 .payment-option.selected {
   background-color: #EAFBF6;
@@ -163,42 +106,31 @@ h2 {
   background-position: center;
 }
 
-.card-icons {
-  display: flex;
-  margin: 8px 16px 0px 8px ;
-  gap: 8px;
-}
 
-.card-icons img {
-  width: 18px;
-  height: auto;
-}
 
 .payment-forms {
   width: 65%;
 }
 
-.card-form {
-  display: block
-}
 
-.crypto-form {
-  display: none;
-}
+
+
 
 .payment-form.active {
   display: block;
 }
-.payment-forms h4{
+
+.payment-forms h4 {
   font-size: 0.7em;
   font-weight: 500;
 }
+
 .payment-form input,
 .payment-form select {
   width: 75%;
   padding: 0px 2px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 0.5px solid #dde1e3;
   border-radius: 4px;
 }
 
@@ -208,21 +140,7 @@ h2 {
   margin: 15px 0;
 }
 
-button {
-  background-color: #003d72;
-  color: #ffffff;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
-}
 
-button:hover {
-  background: linear-gradient(65deg,#003d72  95%, #a3c2e4 5%);
-}
 
 .header-container {
   display: flex;
@@ -237,12 +155,14 @@ button:hover {
   display: flex;
   align-items: center;
 }
+
 .horizontal-item p {
   font: 0.6em;
   color: #000;
 }
+
 .horizontal-item img {
-  width: 20px;
+  width: 16px;
   height: auto;
   margin: 0px 4px 0px 8px;
 }
@@ -265,6 +185,7 @@ button:hover {
   margin-bottom: 2px;
   font: 0.6em sans-serif;
 }
+
 .vertical-item h2 {
   margin: 0;
   font: 0.6em;
@@ -274,48 +195,11 @@ button:hover {
 
 .grey-divider {
   border: none;
-  border-top: 1px solid #D9D9D9; /* Light grey color */
-  margin: 8px 0; /* Adjusts the space around the divider */
+  border-top: 1px solid #D9D9D9;
 }
-.heading{
+
+h6 {
   font-size: 0.7em;
-  margin: 16px 0px 0px 0px;
-}
-
-.card-form .form-group {
-  margin-bottom: 16px;
-
-}
-
-.card-form label {
-  display: block;
-  font-size: 0.6em;
   font-weight: 300;
-  color: #000000;
-  margin: 0px 0px 4px 32px;
-  text-align: left; /* Align the label text to the left */
-}
-
-.card-form input {
-  width: 75%;
-  padding: 8px 12px;
-  border: 0.5px solid #D7DEDF;
-  border-radius: 6px;
-  font-size: 0.6em;
-}
-
-.card-form button {
-  width: 80%;
-  padding: 10px 15px;
-  background-color: #003d72;
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.card-form button:hover {
-  background: linear-gradient(65deg, #003d72 95%, #a3c2e4 5%);
+  margin: 16px 0px 0px 0px;
 }

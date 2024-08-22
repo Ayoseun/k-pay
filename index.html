@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orokii-Pay</title>
+    <title>Orokiipay</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pay-button.css">
+    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="crypto.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
@@ -13,20 +16,19 @@
     <div class="initial-container">
         <button id="show-widget-button">
             <div class="button-content">
-                <img src="https://raw.githubusercontent.com/Ayoseun/k-pay/main/assets/logo.png" alt="Logo"
-                    class="button-logo">
+                <img src="assets/logo.svg" alt="Logo" class="button-logo">
                 <span class="button-text">Pay Now</span>
             </div>
         </button>
-        <p class="security-text">Secure by Orokii</p>
+        <p class="security-text">Powered by Orokii</p>
     </div>
 
     <div class="payment-widget" id="payment-widget">
         <div>
             <div class="header-container">
                 <div class="horizontal-item">
-                    <img src="https://raw.githubusercontent.com/Ayoseun/k-pay/main/assets/logo.png" alt="Logo">
-                    <p>OROKII-PAY</p>
+                    <img src="assets/logoHead.svg" alt="LogoHead">
+                    <p>Orokiipay</p>
                 </div>
                 <div class="vertical-item">
                     <p>Pay</p>
@@ -37,7 +39,7 @@
 
             <div class="payment-container">
                 <div class="payment-options">
-                    <p class="heading">Choose Payment Method</p>
+                    <h6>Choose Payment Method</h6>
                     <hr class="grey-divider">
 
                     <div class="payment-methods">
@@ -46,41 +48,39 @@
                                 <label for="card-payment">Pay with Cards</label>
                                 <input type="radio" name="payment-method" id="card-payment" value="card"
                                     class="custom-radio">
-                                
+
                             </div>
                             <div class="card-icons">
-                                <img src="https://raw.githubusercontent.com/Ayoseun/k-pay/main/assets/visa.svg"
-                                    alt="Visa">
-                                <img src="https://raw.githubusercontent.com/Ayoseun/k-pay/main/assets/mastercard.svg"
-                                    alt="Mastercard">
-                                <img src="https://raw.githubusercontent.com/Ayoseun/k-pay/main/assets/maestro.svg"
-                                    alt="Maestro">
+                                <img src="assets/visa.svg" alt="Visa">
+                                <img src="assets/masterCard.svg" alt="Mastercard">
+                                <img src="assets/maestro.svg" alt="Maestro">
+                                <img src="assets/americanExpress.svg" alt="americanExpress">
+                                <img src="assets/more.svg" alt="More">
                             </div>
                         </div>
-                  
 
-                    <div class="payment-option">
-                        <div class="payment-option-content">
-                            <label for="card-payment">Pay with Crypto</label>
-                            <input type="radio" name="payment-method" id="crypto-payment" value="crypto"
-                                class="custom-radio">
-                            
-                        </div>
-                  
-                        <div class="card-icons">
-                            <img src="https://raw.githubusercontent.com/Ayoseun/k-pay/main/assets/bitcoin.svg"
-                                alt="Bitcoin">
-                            <img src="https://raw.githubusercontent.com/Ayoseun/k-pay/main/assets/ethereum.svg"
-                                alt="Eth">
-                            <img src="https://raw.githubusercontent.com/Ayoseun/k-pay/main/assets/usdc.svg" alt="USDC">
+
+                        <div class="payment-option">
+                            <div class="payment-option-content">
+                                <label for="card-payment">Pay with Crypto</label>
+                                <input type="radio" name="payment-method" id="crypto-payment" value="crypto"
+                                    class="custom-radio">
+
+                            </div>
+
+                            <div class="crypto-icons">
+                                <img src="assets/bitcoin.svg" alt="Bitcoin">
+                                <img src="assets/ethereum.svg" alt="Eth">
+                                <img src="assets/usdc.svg" alt="USDC">
+                            </div>
                         </div>
                     </div>
                 </div>
-                </div>
 
                 <div class="payment-forms">
-                    <h4>Enter your card details to pay</h4>
+
                     <div id="card-form" class="card-form">
+                        <h4>Enter your card details to pay</h4>
                         <div class="form-group">
                             <label for="card-number">Card Number</label>
                             <input type="text" id="card-number" placeholder="Card Number" required>
@@ -97,11 +97,38 @@
                     </div>
 
                     <div id="crypto-form" class="crypto-form">
-                        <select id="cryptocurrency-select">
-                            <option value="bitcoin">Bitcoin</option>
-                            <option value="ethereum">Ethereum</option>
-                        </select>
-                        <button id="connect-wallet-button">Connect Wallet</button>
+                        <h4>Select cryptocurrency</h4>
+
+                        <div class="select-wrapper">
+                            <p>Pay with</p>
+                            <select id="cryptocurrency-select">
+                                <option value="" selected disabled>Select a cryptocurrency</option>
+                                <option data-img_src="assets/bitcoin.svg" value="bitcoin">
+                                    <div>
+                                        Bitcoin <img src="assets/bitcoin.svg" alt="Bitcoin">
+                                    </div>
+                                </option>
+                                <option value="ethereum">Ethereum <img src="assets/ethereum.svg" alt="Ethereum">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="exchange-info">
+                            <p class="exchange-info-p">Exchange rates:</p>
+                            <p class="exchange-info-p2">1 ETH = 3564.9837 USD</p>
+                        </div>
+                        <div class="spacer">
+                            <p class="ref-label">REF</p>
+                            <p class="ref-value">REF23456</p>
+                        </div>
+                        <hr class="grey-divider">
+                        <div class="spacer">
+                            <p class="ref-value">Amount to due</p>
+                            <div class="eth-amount">
+                                <img src="assets/ethereum.svg" alt="Ethereum">
+                                <p>15.7500</p>
+                            </div>
+                        </div>
+                        <button class="connect-wallet" onclick="onInit()" id="connect-wallet-button" disabled>Connect Wallet</button>
                     </div>
                 </div>
             </div>
@@ -110,6 +137,7 @@
         </div>
 
         <script src="script.js"></script>
+
 </body>
 
 </html>
