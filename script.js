@@ -1,7 +1,9 @@
 // Get elements
 const paymentAmountElement = document.querySelector('#payment-amount h3');
 const showWidgetButton = document.getElementById('show-widget-button');
-const goToOTPButton = document.getElementById('go-to-otp-button');
+const goToOTPButton = document.getElementById('gtb');
+const closeButton = document.getElementById('close-button');
+const otpButton = document.getElementById('otp-button');
 const cardOTP = document.getElementById('card-otp');
 const initialContainer = document.querySelector('.initial-container');
 const paymentWidget = document.getElementById('payment-widget');
@@ -13,7 +15,7 @@ const cardForm = document.getElementById('card-form');
 const cryptoForm = document.getElementById('crypto-form');
 const paymentForm = document.getElementById('payment-forms');
 const paymentOptions = document.querySelectorAll('.payment-option');
-
+const paymentCompletedUI=document.getElementById('paymentCompletedUI');
 // Disable the connect wallet button initially
 connectWalletButton.disabled = true;
 // Payment method selection
@@ -44,10 +46,23 @@ cryptoPaymentRadio.addEventListener('change', () => {
     paymentOptions[1].classList.add('selected');
   }
 });
-goToOTPButton.addEventListener('change', () => {
+goToOTPButton.addEventListener('click', () => {
+  console.log("yes")
   paymentForm.style.display = 'none';
   cardOTP.style.display = 'block';
 });
+otpButton.addEventListener('click', () => {
+  cardOTP.style.display = 'none';
+  paymentWidget.style.display = 'none';
+  paymentCompletedUI.style.display='block';
+});
+
+closeButton.addEventListener('click',()=>{
+  initialContainer.style.display = 'block';
+  showWidgetButton.style.display = 'block';
+  paymentCompletedUI.style.display='none';
+  
+})
 // Wallet connection
 // connectWalletButton.addEventListener('click', () => {
 //   if (cryptoPaymentRadio.checked) {
