@@ -1,6 +1,8 @@
 // Get elements
 const paymentAmountElement = document.querySelector('#payment-amount h3');
 const showWidgetButton = document.getElementById('show-widget-button');
+const goToOTPButton = document.getElementById('go-to-otp-button');
+const cardOTP = document.getElementById('card-otp');
 const initialContainer = document.querySelector('.initial-container');
 const paymentWidget = document.getElementById('payment-widget');
 const cardPaymentRadio = document.getElementById('card-payment');
@@ -9,6 +11,7 @@ const cryptocurrencySelect = document.getElementById('cryptocurrency-select');
 const connectWalletButton = document.getElementById('connect-wallet-button');
 const cardForm = document.getElementById('card-form');
 const cryptoForm = document.getElementById('crypto-form');
+const paymentForm = document.getElementById('payment-forms');
 const paymentOptions = document.querySelectorAll('.payment-option');
 
 // Disable the connect wallet button initially
@@ -19,8 +22,8 @@ cardPaymentRadio.addEventListener('change', () => {
     console.log('Card payment selected');
     cardForm.style.display = 'block';
     cryptoForm.style.display = 'none';
-    
-    
+
+
     cryptocurrencySelect.disabled = true;
     paymentOptions[0].classList.add('selected');
     paymentOptions[1].classList.remove('selected');
@@ -41,7 +44,10 @@ cryptoPaymentRadio.addEventListener('change', () => {
     paymentOptions[1].classList.add('selected');
   }
 });
-
+goToOTPButton.addEventListener('change', () => {
+  paymentForm.style.display = 'none';
+  cardOTP.style.display = 'block';
+});
 // Wallet connection
 // connectWalletButton.addEventListener('click', () => {
 //   if (cryptoPaymentRadio.checked) {
@@ -55,8 +61,8 @@ cryptoPaymentRadio.addEventListener('change', () => {
 
 // Show widget button click
 showWidgetButton.addEventListener('click', () => {
-    initialContainer.style.display = 'none';
-    showWidgetButton.style.display = 'none';
+  initialContainer.style.display = 'none';
+  showWidgetButton.style.display = 'none';
   paymentWidget.style.display = 'block';
 
 });

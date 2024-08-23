@@ -71,32 +71,32 @@
                             <div class="crypto-icons">
                                 <img src="assets/bitcoin.svg" alt="Bitcoin">
                                 <img src="assets/ethereum.svg" alt="Eth">
-                                <img  src="assets/usdt.svg" alt="USDT">
-                                <img  src="assets/usdc.svg" alt="USDC">
+                                <img src="assets/usdt.svg" alt="USDT">
+                                <img src="assets/usdc.svg" alt="USDC">
                                 <img src="assets/sol.svg" alt="Solana">
-                                <img  src="assets/more.svg" alt="More">
+                                <img src="assets/more.svg" alt="More">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="payment-forms">
+                <div class="payment-forms" id="payment-forms">
 
                     <div id="card-form" class="card-form">
                         <h4>Enter your card details to pay</h4>
                         <div class="form-group">
-                            <label for="card-number">Card Number</label>
-                            <input type="text" id="card-number" placeholder="Card Number" required>
+                            <label for="card-number">Enter Card Number</label>
+                            <input type="text" id="card-number" placeholder="5078 0000 0000 0000" required>
                         </div>
                         <div class="form-group">
                             <label for="expiry-date">Expiry Date</label>
-                            <input type="text" id="expiry-date" placeholder="Expiry Date" required>
+                            <input type="text" id="expiry-date" placeholder="12/24" required>
                         </div>
                         <div class="form-group">
                             <label for="cvv">CVV</label>
-                            <input type="text" id="cvv" placeholder="CVV" required>
+                            <input type="text" id="cvv" placeholder="722" required>
                         </div>
-                        <button type="submit">Pay Now</button>
+                        <button id="go-to-otp-button" type="submit">Pay Now</button>
                     </div>
 
                     <div id="crypto-form" class="crypto-form">
@@ -131,8 +131,19 @@
                                 <p>15.7500</p>
                             </div>
                         </div>
-                        <button class="connect-wallet" onclick="onInit()" id="connect-wallet-button" disabled>Connect Wallet</button>
+                        <button class="connect-wallet" onclick="onInit()" id="connect-wallet-button" disabled>Connect
+                            Wallet</button>
                     </div>
+                </div>
+
+                <div class="card-otp" id="card-otp" style="display: none;">
+                    <div class="otp-container">
+                        <input type="text" class="otp-input" maxlength="1" />
+                        <input type="text" class="otp-input" maxlength="1" />
+                        <input type="text" class="otp-input" maxlength="1" />
+                        <input type="text" class="otp-input" maxlength="1" />
+                    </div>
+                    <button class="submit-btn">Submit</button>
                 </div>
             </div>
 
