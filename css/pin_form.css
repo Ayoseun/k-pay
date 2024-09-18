@@ -1,0 +1,64 @@
+
+
+.pin-container  {
+    background: #fff;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    
+   
+    
+}
+.pin-container  p{
+    color: #000;
+    width: 70%;
+ 
+    font-size: 12px;
+    text-align: center;
+    font-weight: 400;
+}
+.pin-inputs input {
+    width: 30px;
+    height:30px;
+    margin: 10px;
+    font-size: 24px;
+
+    border-radius: 5px;
+    border: 0.5px solid #4750B2;
+}
+
+.pin-buttons {
+    display: flex;
+   justify-content: center;
+    margin-top: 30px;
+    gap: 5px;
+    margin-bottom: 30px;
+}
+
+.pin-continue {
+    padding: 5px 10px;
+    border: none;
+    background-color: #19624C;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 10px;
+    padding: 5px 50px 5px 50px;
+    font-weight: 300;
+    font-family: 'Poppins', sans-serif;
+}
+
+.pin-back {
+    color: #19624C;
+    font-size: 10px;
+    padding: 5px 50px 5px 50px;
+    font-weight: 300;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    background-color: #CFF1E6;
+}

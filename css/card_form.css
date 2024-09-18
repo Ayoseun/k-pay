@@ -1,0 +1,124 @@
+/* General card details styling */
+.card-details {
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    display: block;
+
+    width: 100%;
+}
+
+.card-details h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 10px 0px 15px 0px;
+}
+
+.card-details p {
+    color: #0D8D67;
+    font-size: 8px;
+    font-weight: 300;
+    margin: 5px 0px 15px 0px;
+
+}
+
+.card-logo {
+    width: 50px;
+    /* Adjust size as needed */
+    height: auto;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+/* Form field and form field group styling */
+.form-field {
+    margin-bottom: 5px;
+    margin-right: 25px;
+
+}
+
+.form-field-group {
+    margin: 0px 35px 10px 5px;
+
+}
+
+.form-field label,
+.form-field-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+/* Wrapper for form inputs and selects */
+.input-wrapper {
+    border: 0.8px solid #E0E5F2;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 6px;
+    display: flex;
+    width: 107%;
+    background-color: white;
+}
+
+.input-wrapper input[type="text"],
+.input-wrapper input[type="number"],
+.input-wrapper select {
+    width: 107%;
+    border: none;
+    /* Remove internal borders */
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 100;
+    color: #253A48;
+    outline: none;
+    /* Remove default focus outline */
+}
+
+.input-wrapper input[type="text"]::placeholder,
+.input-wrapper select option {
+    font-size: 10px;
+    font-weight: 100;
+    color: #9A9AAA;
+    width: 120%;
+}
+
+/* Form field group specific styles */
+.form-field-group {
+    display: flex;
+    width: 107%;
+    justify-content: space-between;
+}
+
+.form-field-group .half {
+    width: 100%;
+}
+
+.form-field-group .half .input-wrapper {
+    width: 100%;
+}
+
+/* Button styling */
+.pay-button {
+    width: 27vw;
+    padding: 10px;
+    background-color: #19624C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: block;
+}
+
+/* Specific styles for state and city selects */
+#state::placeholder,
+#city::placeholder {
+    font-size: 12px;
+    font-weight: 100;
+    color: #253A48;
+}

@@ -1,0 +1,102 @@
+.summary-container {
+    background: #fff;
+    padding: 20px;
+
+display: none;
+    width: auto;
+    text-align: center;
+}
+
+.amount-holder {
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    border: 0.8px solid #E0E5F2;
+    border-radius: 8px;
+   margin: 0px 50px 0px 50px;
+    padding: 12px;
+ 
+}
+
+.amount-holder h1 {
+    font-size: 18px;
+    color: #19624C;
+    margin: 5px 0px 0px 0px;
+}
+
+.amount-holder p {
+    font-size: 10px;
+    color: #677489;
+    margin: 0px;
+}
+
+h4 {
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.summary-details .detail {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 50px 0px 50px;
+}
+.summary-details{
+    margin-bottom: 20px;
+}
+
+.detail.total {
+    font-weight: bold;
+
+}
+
+.detail span {
+    font-size: 10px;
+    color: #000;
+    margin: 0px;
+}
+
+
+.detail p {
+    font-size: 10px;
+    color: #677489;
+    margin: 0px;
+}
+.summary-divider {
+    margin: 30px 50px 0px 50px;
+    border: 0;
+    border-top: 0.5px solid #ddd;
+}
+
+.summary-buttons {
+    display: flex;
+   justify-content: center;
+    margin-top: 30px;
+    gap: 5px;
+    margin-bottom: 30px;
+}
+
+.summary-buttons-confirm {
+    padding: 5px 10px;
+    border: none;
+    background-color: #19624C;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 8px;
+  
+    padding: 5px 40px 5px 40px;
+    font-weight: 300;
+    font-family: 'Poppins', sans-serif;
+}
+
+.summary-buttons-go-back {
+    color: #19624C;
+    font-size: 8px;
+    border: none;
+    cursor: pointer;
+    padding: 5px 40px 5px 40px;
+    font-weight: 300;
+    font-family: 'Poppins', sans-serif;
+    background-color: #CFF1E6;
+}

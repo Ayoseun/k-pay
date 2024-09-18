@@ -1,1 +1,0 @@
-# orokii-pay
