@@ -676,7 +676,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 
        //Cards
-       document.addEventListener('DOMContentLoaded', () => {
+      // document.addEventListener('DOMContentLoaded', () => {
            const cardNumberInput = document.getElementById('card-number');
            const cardHolderNameInput = document.getElementById('cardholder-name');
            const cvcInput = document.getElementById('cvc');
@@ -967,7 +967,7 @@ input[type="number"]::-webkit-inner-spin-button {
                    return;
                }
 
-               if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || !cardNumberInput.value) {
+               if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || cardNumberInput.value) {
                    alert('Please fill in all required fields.');
                    return;
                }
@@ -1040,7 +1040,7 @@ input[type="number"]::-webkit-inner-spin-button {
            };
 
 
-       });
+      // });
    }
 
    // Top Section HTML
@@ -1310,7 +1310,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
        // Append the widget to the body (or any other target container)
        document.body.appendChild(widget);
-       initializeEventListeners();
+      initializeEventListeners();
        return widget
    }
 

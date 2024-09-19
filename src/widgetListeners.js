@@ -19,7 +19,7 @@ export function initializeEventListeners() {
 
 
     //Cards
-    document.addEventListener('DOMContentLoaded', () => {
+   // document.addEventListener('DOMContentLoaded', () => {
         const cardNumberInput = document.getElementById('card-number');
         const cardHolderNameInput = document.getElementById('cardholder-name')
         const cvcInput = document.getElementById('cvc');
@@ -310,7 +310,7 @@ export function initializeEventListeners() {
                 return;
             }
 
-            if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || !cardNumberInput.value) {
+            if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || cardNumberInput.value) {
                 alert('Please fill in all required fields.');
                 return;
             }
@@ -383,5 +383,5 @@ export function initializeEventListeners() {
         };
 
 
-    });
+   // });
 }
