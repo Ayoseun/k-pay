@@ -81,10 +81,10 @@ export function initializeEventListeners() {
             } else if (cardNumber.startsWith('622126') || cardNumber.startsWith('65') || cardNumber.startsWith('60')) {
                 cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/discover.svg'; // Discover
             } else if (cardNumber.startsWith('37')) {
-                
+
                 cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // Maestro
             } else if (cardNumber.startsWith('623')||cardNumber.startsWith('622127')) {
-                cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/unionPay.svg'; // Maestro
+                cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/unionpay.svg'; // Maestro
             }else if (cardNumber.startsWith('36')||cardNumber.startsWith('38')) {
                 cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/diners.svg'; // Maestro
             }  else {
