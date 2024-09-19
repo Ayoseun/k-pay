@@ -192,7 +192,7 @@ const getBottomSection = () => `
                 <div class="dropdown-header">
                     <input type="checkbox" class="dropdown-checkbox">
 
-                    <div class="dropdown-text">Bank account</div>
+                    <div class="dropdown-text">Pay with Bank Account</div>
                     <img src="https://ayoseun.github.io/k-pay/assets/chev.svg" alt="Image 1" class="dropdown-chevron">
                 </div>
                 <div class="dropdown-content"><p class="todo">In progress</p></div>
