@@ -5,11 +5,11 @@ export const homeStyles = `
 
 
 
-
 .card {
 width: 37%;
 background-color: white;
 border-radius: 2%;
+max-width: 65%;
 box-shadow: 0 4px 8px rgba(40, 41, 41, 0.1);
 height: auto; 
 box-sizing: border-box;
