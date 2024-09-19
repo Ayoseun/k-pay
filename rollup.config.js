@@ -3,7 +3,7 @@ import html from 'rollup-plugin-html';
 import postcss from 'rollup-plugin-postcss';
 
 export default {
-  input: 'src/scripts/script.js', // Entry point for your widget
+  input: 'src/scripts/initOrokiipayWidget.js', // Entry point for your widget
   output: {
     file: 'dist/orokii.bundle.js',
     format: 'iife', // Immediately Invoked Function Expression for browser compatibility
