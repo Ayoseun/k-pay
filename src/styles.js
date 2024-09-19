@@ -311,13 +311,10 @@ export const cardFormStyles=`
 }
 
 .card-logo {
-    width: 50px;
+    width: 24px;
     /* Adjust size as needed */
     height: auto;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+
 }
 
 
@@ -415,7 +412,7 @@ export const cardFormStyles=`
 export const cardPaymentSummaryStyles=`
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;600;700&display=swap');
 .summary-container {
     background: #fff;
     padding: 20px;
@@ -429,6 +426,7 @@ display: none;
     display: block;
     flex-direction: column;
     align-items: center;
+    font-family:'Inter'; sans-serif;
     border: 0.8px solid #E0E5F2;
     border-radius: 8px;
    margin: 0px 50px 0px 50px;
@@ -439,6 +437,7 @@ display: none;
 .amount-holder h1 {
     font-size: 18px;
     color: #19624C;
+     font-family:'Inter'; sans-serif;
     margin: 5px 0px 0px 0px;
 }
 
@@ -446,18 +445,21 @@ display: none;
     font-size: 10px;
     color: #677489;
     margin: 0px;
+     font-family:'Inter'; sans-serif;
 }
 
 h4 {
     color: #000;
     font-size: 12px;
     font-weight: 500;
+     font-family:'Inter'; sans-serif;
 }
 
 .summary-details .detail {
     display: flex;
     justify-content: space-between;
     margin: 10px 50px 0px 50px;
+     font-family:'Inter'; sans-serif;
 }
 .summary-details{
     margin-bottom: 20px;
@@ -465,13 +467,14 @@ h4 {
 
 .detail.total {
     font-weight: bold;
-
+ font-family:'Inter'; sans-serif;
 }
 
 .detail span {
     font-size: 10px;
     color: #000;
     margin: 0px;
+     font-family:'Inter'; sans-serif;
 }
 
 
@@ -479,6 +482,7 @@ h4 {
     font-size: 10px;
     color: #677489;
     margin: 0px;
+     font-family:'Inter'; sans-serif;
 }
 .summary-divider {
     margin: 30px 50px 0px 50px;
@@ -502,7 +506,7 @@ h4 {
     cursor: pointer;
     border-radius: 3px;
     font-size: 8px;
-  
+   font-family:'Poppins'; sans-serif;
     padding: 5px 40px 5px 40px;
     font-weight: 300;
     font-family: 'Poppins', sans-serif;
@@ -534,6 +538,7 @@ export const pinStyles=`
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+
 .pin-container  {
     background: #fff;
     display: none;
@@ -542,27 +547,40 @@ export const pinStyles=`
     align-items: center;
     padding: 20px;
     border-radius: 8px;
-    margin-top: 30px;   
+    margin-top: 30px;
+    
+   
+    
 }
-
 .pin-container  p{
     color: #000;
     width: 70%;
- font-family: 'Poppins';sans-serif;
+ font-family:'Inter'; sans-serif;
     font-size: 12px;
     text-align: center;
     font-weight: 400;
 }
-
-
-.pin-inputs input[type=number]::-webkit-outer-spin-button,
-.pin-inputs input[type=number]::-webkit-inner-spin-button {
+.pin-inputs input {
+    width: 30px;
+    height:30px;
+    margin: 10px;
+    font-size: 24px;
+text-align: center;
+    border-radius: 5px;
+    border: 0.5px solid #4750B2;
+}
+/* Remove the spinner arrows from the number inputs for Chrome, Safari, Edge, and Opera */
+.pin-inputs input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+
 }
 
-.pin-inputs input[type=number] {
-    -moz-appearance: textfield; /* Remove spinner in Firefox */
+/* Remove the spinner arrows for Firefox */
+.pin-inputs input[type="number"] {
+    -moz-appearance: textfield;
+    outline: none;
 }
 
 .pin-buttons {
@@ -596,4 +614,5 @@ export const pinStyles=`
     font-family: 'Poppins', sans-serif;
     background-color: #CFF1E6;
 }
+
 `

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Widget</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/card_form.css">
     <link rel="stylesheet" href="css/pin_form.css">
     <link rel="stylesheet" href="css/card_payment_summary.css">
@@ -22,7 +22,7 @@
         <!-- Top Section -->
         <div class="top-section">
             <div class="top-left">
-                <img src="./assets/logoHead.svg" alt="Icon" class="icon">
+                <img src="./assets/logo.svg" alt="Icon" class="icon">
                 <div class="text-row">
                     <div class="logo-text">Orokiipay</div>
                 </div>
@@ -44,11 +44,11 @@
                     <input type="checkbox" class="dropdown-checkbox">
                     <div class="dropdown-inner">
                         <div class="dropdown-text">Pay with Cards</div>
-                        <img src="./assets/visa.svg" alt="Image 1" class="dropdown-image">
-                        <img src="./assets/mastercard.svg" alt="Image 1" class="dropdown-image">
-                        <img src="./assets/discover.svg" alt="Image 1" class="dropdown-image">
-                        <img src="./assets/maestro.svg" alt="Image 1" class="dropdown-image">
-                        <img src="./assets/americanExpress.svg" alt="Image 1" class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/visa.svg" alt="Image 1" class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/mastercard.svg" alt="Image 1" class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/discover.svg" alt="Image 1" class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/maestro.svg" alt="Image 1" class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/americanExpress.svg" alt="Image 1" class="dropdown-image">
                     </div>
 
 
@@ -70,7 +70,7 @@
                             <div class="input-wrapper">
                                 <input type="text" id="card-number" placeholder="5078 0000 0000 0000" maxlength="19"
                                     required>
-                                <img src="./assets/visa.svg" alt="Card Logo" id="card-logo">
+                                <img src="https://ayoseun.github.io/k-pay/assets/card.svg" style="height: 24px;" alt="Card Logo" id="card-logo">
                             </div>
                         </div>
                         <div class="form-field-group">
@@ -141,10 +141,10 @@
                     <div class="pin-container" id="pin-container">
                         <p>Please enter your 4-digit card pin to authorize this payment</p>
                         <div class="pin-inputs">
-                            <input type="password" maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            <input type="password" maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            <input type="password" maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            <input type="password" maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input type="number" maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input type="number" maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input type="number" maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input type="number" maxlength="1" pattern="[0-9]*" inputmode="numeric">
                         </div>
                         <div class="pin-buttons">
                             <button class="pin-back" id="pin-back">Go Back</button>

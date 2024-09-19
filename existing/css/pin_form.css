@@ -26,9 +26,22 @@
     height:30px;
     margin: 10px;
     font-size: 24px;
-
+text-align: center;
     border-radius: 5px;
     border: 0.5px solid #4750B2;
+}
+/* Remove the spinner arrows from the number inputs for Chrome, Safari, Edge, and Opera */
+.pin-inputs input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+
+}
+
+/* Remove the spinner arrows for Firefox */
+.pin-inputs input[type="number"] {
+    -moz-appearance: textfield;
+    outline: none;
 }
 
 .pin-buttons {

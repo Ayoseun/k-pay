@@ -17,6 +17,24 @@ document.querySelectorAll('.dropdown-header').forEach(header => {
   });
 });
 
+//pi9ns
+const inputs = document.querySelectorAll('.pin-inputs input');
+
+inputs.forEach((input, index) => {
+    input.addEventListener('input', () => {
+        if (input.value.length === 1 && index < inputs.length - 1) {
+            // Move to the next input
+            inputs[index + 1].focus();
+        }
+    });
+
+    // Optionally handle the backspace to move to the previous input
+    input.addEventListener('keydown', (e) => {
+        if (e.key === "Backspace" && input.value === "" && index > 0) {
+            inputs[index - 1].focus();
+        }
+    });
+});
 
 
 //Cards
@@ -57,16 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Function to update card logo based on card number
   function updateCardLogo() {
       const cardNumber = cardNumberInput.value.replace(/\s+/g, '');
-      if (cardNumber.startsWith('4')) {
-          cardLogo.src = './assets/visa.svg'; // Visa
-      } else if (cardNumber.startsWith('5')) {
-          cardLogo.src = './assets/mastercard.svg'; // MasterCard
-      } else if (cardNumber.startsWith('6')) {
-          cardLogo.src = './assets/discover.svg'; // Discover
-      } else if (cardNumber.startsWith('3')) {
-          cardLogo.src = './assets/maestro.svg'; // Maestro
+      if (cardNumber.startsWith('47')||cardNumber.startsWith('44')||cardNumber.startsWith('41')||cardNumber.startsWith('40')) {
+          cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/visa.svg'; // Visa
+      } else if (cardNumber.startsWith('51')||cardNumber.startsWith('53')||cardNumber.startsWith('55')||cardNumber.startsWith('22')) {
+          cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/mastercard.svg'; // MasterCard
+      } else if (cardNumber.startsWith('62')||cardNumber.startsWith('65')||cardNumber.startsWith('60')) {
+          cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/discover.svg'; // Discover
+      } else if (cardNumber.startsWith('37')) {
+          cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // Maestro
       } else {
-          cardLogo.src = './assets/visa.svg'; // Default
+          cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
       }
   }
 

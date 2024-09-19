@@ -17,7 +17,24 @@ document.querySelectorAll('.dropdown-header').forEach(header => {
     });
   });
   
-  
+  const inputs = document.querySelectorAll('.pin-inputs input');
+
+inputs.forEach((input, index) => {
+    input.addEventListener('input', () => {
+        if (input.value.length === 1 && index < inputs.length - 1) {
+            // Move to the next input
+            inputs[index + 1].focus();
+        }
+    });
+
+    // Optionally handle the backspace to move to the previous input
+    input.addEventListener('keydown', (e) => {
+        if (e.key === "Backspace" && input.value === "" && index > 0) {
+            inputs[index - 1].focus();
+        }
+    });
+});
+
   
   //Cards
   
@@ -57,30 +74,16 @@ document.querySelectorAll('.dropdown-header').forEach(header => {
     // Function to update card logo based on card number
     function updateCardLogo() {
         const cardNumber = cardNumberInput.value.replace(/\s+/g, '');
-        console.log(cardNumber)
-        // Visa cards start with 4
-        if (/^4[0-9]{12}(?:[0-9]{3})?$/.test(cardNumber)) {
+        if (cardNumber.startsWith('47')||cardNumber.startsWith('44')||cardNumber.startsWith('41')||cardNumber.startsWith('40')) {
             cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/visa.svg'; // Visa
-        } 
-        // MasterCard cards start with 51-55 or 2221-2720
-        else if (/^5[1-5][0-9]{14}$/.test(cardNumber) || /^2(22[1-9]|2[3-9][0-9]|[3-6][0-9]{2}|7[01][0-9]|720)[0-9]{12}$/.test(cardNumber)) {
+        } else if (cardNumber.startsWith('51')||cardNumber.startsWith('53')||cardNumber.startsWith('55')||cardNumber.startsWith('22')) {
             cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/mastercard.svg'; // MasterCard
-        } 
-        // American Express starts with 34 or 37
-        else if (/^3[47][0-9]{13}$/.test(cardNumber)) {
-            cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // American Express
-        } 
-        // Discover cards start with 65, 644-649, or 6011
-        else if (/^6(?:011|5[0-9]{2}|4[4-9][0-9])[0-9]{12}$/.test(cardNumber)) {
+        } else if (cardNumber.startsWith('62')||cardNumber.startsWith('65')||cardNumber.startsWith('60')) {
             cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/discover.svg'; // Discover
-        } 
-        // Diners Club starts with 36, 38, or 30
-        else if (/^3(?:0[0-5]|[68][0-9])[0-9]{11}$/.test(cardNumber)) {
-            cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/diners.svg'; // Diners Club
-        } 
-        // Default to Visa if no match
-        else {
-            cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/visa.svg'; // Default
+        } else if (cardNumber.startsWith('37')) {
+            cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // Maestro
+        } else {
+            cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
         }
     }
     

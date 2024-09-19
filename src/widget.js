@@ -3,7 +3,7 @@ import { initializeEventListeners } from './widgetListeners.js';  // Import the 
 
 
 // Top Section HTML
-const getTopSection = () => `
+const getTopSection = (amount) => `
   <div class="top-section">
     <div class="top-left">
       <img src="https://ayoseun.github.io/k-pay/assets/logo.svg" alt="Logo Head" class="icon">
@@ -14,7 +14,7 @@ const getTopSection = () => `
     <div class="top-right">
       <div class="text-column">
         <div class="text-item">Pay</div>
-        <div class="top-column-text-amount">$4500</div>
+        <div class="top-column-text-amount" id="amount-to-pay">$${amount}</div>
       </div>
     </div>
   </div>
@@ -61,7 +61,7 @@ const getBottomSection = () => `
                             <div class="input-wrapper">
                                 <input type="text" id="card-number" placeholder="5078 0000 0000 0000" maxlength="19"
                                     required>
-                                <img src="https://ayoseun.github.io/k-pay/assets/mastercard.svg" alt="Card Logo" id="card-logo">
+                                <img src="https://ayoseun.github.io/k-pay/assets/card.svg" alt="Card Logo" class="card-logo" id="card-logo">
                             </div>
                         </div>
                         <div class="form-field-group">
@@ -229,37 +229,35 @@ const getSuccessSection = () => `
 `;
 
 // Main Widget Creation Function
-export function createWidget() {
+export function createWidget(amount) {
     const widget = document.createElement('div');
     widget.classList.add('widget-container', 'card');
 
-    const style = document.createElement('style');
+    
 
-    style.appendChild(document.createTextNode(homeStyles));
-    document.head.appendChild(style);
+    // Create and append styles
+    const styles = [
+        homeStyles,
+        successStyles,
+        cardFormStyles,
+        cardPaymentSummaryStyles,
+        pinStyles,
+        todo
+    ];
 
-    const style2 = document.createElement('style');
-    style2.appendChild(document.createTextNode(successStyles));
-    document.head.appendChild(style2);
-
-    const style3 = document.createElement('style');
-    style2.appendChild(document.createTextNode(cardFormStyles));
-    document.head.appendChild(style3);
-
-    const style4 = document.createElement('style');
-    style2.appendChild(document.createTextNode(cardPaymentSummaryStyles));
-    document.head.appendChild(style4);
-
-    const style5 = document.createElement('style');
-    style2.appendChild(document.createTextNode(pinStyles));
-    document.head.appendChild(style5);
-
-    const style6 = document.createElement('style');
-    style2.appendChild(document.createTextNode(todo));
-    document.head.appendChild(style6);
+    styles.forEach((styleContent, index) => {
+        const style = document.createElement('style');
+        style.appendChild(document.createTextNode(styleContent));
+        document.head.appendChild(style);
+    });
+    if (amount==null) {
+        amount="0.0"
+    } else {
+        
+    }
     // Append each section to the widget container
     widget.innerHTML = `
-    ${getTopSection()}
+    ${getTopSection(amount)}
     ${getMiddleSection()}
     ${getBottomSection()}
     ${getSuccessSection()}
