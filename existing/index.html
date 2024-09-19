@@ -45,10 +45,14 @@
                     <div class="dropdown-inner">
                         <div class="dropdown-text">Pay with Cards</div>
                         <img src="https://ayoseun.github.io/k-pay/assets/visa.svg" alt="Image 1" class="dropdown-image">
-                        <img src="https://ayoseun.github.io/k-pay/assets/mastercard.svg" alt="Image 1" class="dropdown-image">
-                        <img src="https://ayoseun.github.io/k-pay/assets/discover.svg" alt="Image 1" class="dropdown-image">
-                        <img src="https://ayoseun.github.io/k-pay/assets/maestro.svg" alt="Image 1" class="dropdown-image">
-                        <img src="https://ayoseun.github.io/k-pay/assets/americanExpress.svg" alt="Image 1" class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/mastercard.svg" alt="Image 1"
+                            class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/discover.svg" alt="Image 1"
+                            class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/maestro.svg" alt="Image 1"
+                            class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/americanExpress.svg" alt="Image 1"
+                            class="dropdown-image">
                     </div>
 
 
@@ -70,7 +74,8 @@
                             <div class="input-wrapper">
                                 <input type="text" id="card-number" placeholder="5078 0000 0000 0000" maxlength="19"
                                     required>
-                                <img src="https://ayoseun.github.io/k-pay/assets/card.svg" style="height: 24px;" alt="Card Logo" id="card-logo">
+                                <img src="https://ayoseun.github.io/k-pay/assets/card.svg" style="height: 24px;"
+                                    alt="Card Logo" id="card-logo">
                             </div>
                         </div>
                         <div class="form-field-group">
@@ -135,16 +140,20 @@
                                 <input type="number" id="zip" placeholder="Enter code here">
                             </div>
                         </div>
-                        <button class="pay-button" onclick="submitForm()">Pay $45000</button>
+                        <button class="pay-button" id="pay-button" onclick="submitForm()">
+                            <span id="button-text">Pay $50000</span>
+                            <div id="loader"></div>
+                        </button>
+                        
                     </div>
 
                     <div class="pin-container" id="pin-container">
                         <p>Please enter your 4-digit card pin to authorize this payment</p>
                         <div class="pin-inputs">
-                            <input  maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            <input  maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            <input  maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            <input  maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
                         </div>
                         <div class="pin-buttons">
                             <button class="pin-back" id="pin-back">Go Back</button>
@@ -224,9 +233,9 @@
                         <div class="crypto-divider "></div>
                         <div class="payment-details">
                             <p class="amount">Amount to due:</p>
-                            <span > 15.7500</span>
+                            <span> 15.7500</span>
                         </div>
-                        
+
                         <button style="background-color: #2e7d32;">Connect wallet</button>
 
                         <h1>Pay with ethereum</h1>
@@ -281,7 +290,7 @@
             <button id="close-payment">Close</button>
         </div>
         <script src="script.js"></script>
-      
+
 </body>
 
 </html>
