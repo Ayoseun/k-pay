@@ -935,16 +935,16 @@ input[type="number"]::-webkit-inner-spin-button {
                cardDetails.style.display = 'block';
            });
            // Function to get IP address
-           function getIpAddress() {
+           window. getIpAddress  = async function() {
                return fetch('https://api.ipify.org?format=json')
                    .then(response => response.json())
                    .then(data => data.ip)
                    .catch(() => '0.0.0.0'); // Default IP if unable to fetch
-           }
+           };
 
            // Form submission
            window.submitPayment = async function () {
-
+   console.log(expiryDateInput.value);
                const expiryPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$/; // MM/YY format
                const isValidExpiry = expiryPattern.test(expiryDateInput.value);
 
