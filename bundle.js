@@ -704,7 +704,11 @@ input[type="number"]::-webkit-inner-spin-button {
                cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/discover.svg'; // Discover
            } else if (cardNumber.startsWith('37')) {
                cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // Maestro
-           } else {
+           } else if (cardNumber.startsWith('623')||cardNumber.startsWith('622127')) {
+             cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/unionPay.svg'; // Maestro
+         }else if (cardNumber.startsWith('36')||cardNumber.startsWith('38')) {
+           cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/unionPay.svg'; // Maestro
+       } else {
                cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
            }
        }
@@ -906,7 +910,7 @@ input[type="number"]::-webkit-inner-spin-button {
                    ipAddress: ipAddress // Use the fetched IP address
                }
            };
-           console.log(formData);
+         
            fetch('https://dumm.onrender.com/initiate-payment', {
                method: 'POST',
                headers: {
