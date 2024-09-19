@@ -1214,7 +1214,7 @@ input[type="number"]::-webkit-inner-spin-button {
     <h1>Payment Completed</h1>
     <p>The payment of $${amount} has been received successfully</p>
     <img src="https://ayoseun.github.io/k-pay/assets/success.svg" alt="Icon">
-    <button id="close-payment">Go back to platform</button>
+    <button id="close-payment">Close</button>
   </div>
 `;
 
