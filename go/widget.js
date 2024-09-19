@@ -6,7 +6,7 @@ import { initializeEventListeners } from './widgetListeners.js';  // Import the 
 const getTopSection = () => `
   <div class="top-section">
     <div class="top-left">
-      <img src="./assets/logoHead.svg" alt="Icon" class="icon">
+      <img src="https://ayoseun.github.io/k-pay/assets/logo.svg" alt="Logo Head" class="icon">
       <div class="text-row">
         <div class="logo-text">Orokiipay</div>
       </div>
@@ -35,15 +35,15 @@ const getBottomSection = () => `
                     <input type="checkbox" class="dropdown-checkbox">
                     <div class="dropdown-inner">
                         <div class="dropdown-text">Pay with Cards</div>
-                        <img src="./assets/visa.svg" alt="Image 1" class="dropdown-image">
-                        <img src="./assets/mastercard.svg" alt="Image 1" class="dropdown-image">
-                        <img src="./assets/discover.svg" alt="Image 1" class="dropdown-image">
-                        <img src="./assets/maestro.svg" alt="Image 1" class="dropdown-image">
-                        <img src="./assets/americanExpress.svg" alt="Image 1" class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/visa.svg" alt="Image 1" class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/mastercard.svg" alt="Image 1" class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/discover.svg" alt="Image 1" class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/maestro.svg" alt="Image 1" class="dropdown-image">
+                        <img src="https://ayoseun.github.io/k-pay/assets/americanExpress.svg" alt="Image 1" class="dropdown-image">
                     </div>
 
 
-                    <img src="./assets/chev.svg" alt="Image 1" class="dropdown-chevron">
+                    <img src="https://ayoseun.github.io/k-pay/assets/chev.svg" alt="Image 1" class="dropdown-chevron">
                 </div>
                 <div class="dropdown-content">
 
@@ -61,7 +61,7 @@ const getBottomSection = () => `
                             <div class="input-wrapper">
                                 <input type="text" id="card-number" placeholder="5078 0000 0000 0000" maxlength="19"
                                     required>
-                                <img src="./assets/visa.svg" alt="Card Logo" id="card-logo">
+                                <img src="https://ayoseun.github.io/k-pay/assets/visa.svg" alt="Card Logo" id="card-logo">
                             </div>
                         </div>
                         <div class="form-field-group">
@@ -143,7 +143,7 @@ const getBottomSection = () => `
                         </div>
                     </div>
                     <div class="summary-container" id="summary-container">
-                        <img src="./assets/checkout.svg" alt="Image 1" style="width: 48px;height: 48px;">
+                        <img src="https://ayoseun.github.io/k-pay/assets/checkout.svg" alt="Image 1" style="width: 48px;height: 48px;">
                         <h4>Payment Summary</h4>
                         <div class="amount-holder">
                             <p>Amount</p>
@@ -176,15 +176,15 @@ const getBottomSection = () => `
                     <input type="checkbox" class="dropdown-checkbox">
                     <div class="dropdown-inner">
                         <div class="dropdown-text">Pay with Crypto</div>
-                        <img src="./assets/bitcoin.svg" alt="Image 1" class="dropdown-image-crypto">
-                        <img src="./assets/ethereum.svg" alt="Image 1" class="dropdown-image-crypto">
-                        <img src="./assets/usdc.svg" alt="Image 1" class="dropdown-image-crypto">
-                        <img src="./assets/usdt.svg" alt="Image 1" class="dropdown-image-crypto">
-                        <img src="./assets/sol.svg" alt="Image 1" class="dropdown-image-crypto">
+                        <img src="https://ayoseun.github.io/k-pay/assets/bitcoin.svg" alt="Image 1" class="dropdown-image-crypto">
+                        <img src="https://ayoseun.github.io/k-pay/assets/ethereum.svg" alt="Image 1" class="dropdown-image-crypto">
+                        <img src="https://ayoseun.github.io/k-pay/assets/usdc.svg" alt="Image 1" class="dropdown-image-crypto">
+                        <img src="https://ayoseun.github.io/k-pay/assets/usdt.svg" alt="Image 1" class="dropdown-image-crypto">
+                        <img src="https://ayoseun.github.io/k-pay/assets/sol.svg" alt="Image 1" class="dropdown-image-crypto">
                     </div>
 
 
-                    <img src="./assets/chev.svg" alt="Image 1" class="dropdown-chevron">
+                    <img src="https://ayoseun.github.io/k-pay/assets/chev.svg" alt="Image 1" class="dropdown-chevron">
                 </div>
                  <div class="dropdown-content"><p class="todo">In progress</p></div>
             </div>
@@ -193,7 +193,7 @@ const getBottomSection = () => `
                     <input type="checkbox" class="dropdown-checkbox">
 
                     <div class="dropdown-text">Bank account</div>
-                    <img src="./assets/chev.svg" alt="Image 1" class="dropdown-chevron">
+                    <img src="https://ayoseun.github.io/k-pay/assets/chev.svg" alt="Image 1" class="dropdown-chevron">
                 </div>
                 <div class="dropdown-content"><p class="todo">In progress</p></div>
             </div>
@@ -202,14 +202,14 @@ const getBottomSection = () => `
                     <input type="checkbox" class="dropdown-checkbox">
                     <div class="dropdown-inner">
                         <div class="dropdown-text">Pay with</div>
-                        <img src="./assets/applePay.svg" alt="Image 1" class="dropdown-image-others">
-                        <img src="./assets/googlePay.svg" alt="Image 1" class="dropdown-image-others">
-                        <img src="./assets/paypal.svg" alt="Image 1" class="dropdown-image-others">
+                        <img src="https://ayoseun.github.io/k-pay/assets/applePay.svg" alt="Image 1" class="dropdown-image-others">
+                        <img src="https://ayoseun.github.io/k-pay/assets/googlePay.svg" alt="Image 1" class="dropdown-image-others">
+                        <img src="https://ayoseun.github.io/k-pay/assets/paypal.svg" alt="Image 1" class="dropdown-image-others">
 
                     </div>
 
 
-                    <img src="./assets/chev.svg" alt="Image 1" class="dropdown-chevron">
+                    <img src="https://ayoseun.github.io/k-pay/assets/chev.svg" alt="Image 1" class="dropdown-chevron">
                 </div>
                 <div class="dropdown-content"><p class="todo">In progress</p></div>
             </div>
@@ -223,7 +223,7 @@ const getSuccessSection = () => `
   <div class="success-container" id="success-container">
     <h1>Payment Completed</h1>
     <p>The payment of $45,000 has been received successfully</p>
-    <img src="./assets/success.svg" alt="Icon">
+    <img src="https://ayoseun.github.io/k-pay/assets/success.svg" alt="Icon">
     <button>Go back to platform</button>
   </div>
 `;
