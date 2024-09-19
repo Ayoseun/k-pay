@@ -13,6 +13,7 @@ border-radius: 2%;
 box-shadow: 0 4px 8px rgba(40, 41, 41, 0.1);
 height: auto; 
 box-sizing: border-box;
+padding-down:20px
 }
 
 .top-section {
