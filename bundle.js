@@ -137,7 +137,7 @@ border: 1.1px solid #6cf1ce;
 
 /* To add a checkmark when checked */
 .dropdown-checkbox:checked:after {
-content: '\xb9'; /* Unicode character for a checkmark */
+content: '\u2714'; /* Unicode character for a checkmark */
 position: absolute;
 top: 50%;
 left: 50%;
@@ -676,6 +676,7 @@ input[type="number"]::-webkit-inner-spin-button {
            const summaryBackBtn = document.getElementById('summary-buttons-go-back');
            const pinBackBtn = document.getElementById('pin-back');
            const pinBtnContinue = document.getElementById('pin-continue');
+           const closeBtn = document.getElementById('close-payment');
            // Format Expiry Date to MM/YY as user types
            expiryDateInput.addEventListener('input', (e) => {
                let value = e.target.value.replace(/\D/g, ''); // Only allow digits
@@ -703,9 +704,10 @@ input[type="number"]::-webkit-inner-spin-button {
                } else if (cardNumber.startsWith('622126') || cardNumber.startsWith('65') || cardNumber.startsWith('60')) {
                    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/discover.svg'; // Discover
                } else if (cardNumber.startsWith('37')) {
+
                    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // Maestro
                } else if (cardNumber.startsWith('623')||cardNumber.startsWith('622127')) {
-                   cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/unionPay.svg'; // Maestro
+                   cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/unionpay.svg'; // Maestro
                }else if (cardNumber.startsWith('36')||cardNumber.startsWith('38')) {
                    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/diners.svg'; // Maestro
                }  else {
@@ -838,9 +840,49 @@ input[type="number"]::-webkit-inner-spin-button {
 
            summaryConfirmBtn.addEventListener('click', (event) => {
                successContainer.style.display = 'flex';
+               summaryContainer.style.display = 'none';
                middleContainer.style.display = 'none';
                bottomContainer.style.display = 'none';
            });
+   // Add this function to reset the form and revert to the default state
+   function resetForm() {
+       // Clear input fields
+       cardNumberInput.value = '';
+       cardHolderNameInput.value = '';
+       cvcInput.value = '';
+       expiryDateInput.value = '';
+
+       // Reset the card logo
+       cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
+
+       // Uncheck any checkboxes in dropdowns
+       document.querySelectorAll('.dropdown-checkbox').forEach(checkbox => {
+           checkbox.checked = false;
+       });
+
+       // Close all dropdowns
+       document.querySelectorAll('.dropdown').forEach(dropdown => {
+           dropdown.classList.remove('open');
+       });
+
+       // Clear country, state, and city dropdowns
+       document.getElementById('country').selectedIndex = 0;
+       document.getElementById('state').innerHTML = '<option value="">Select State</option>';
+       document.getElementById('city').innerHTML = '<option value="">Select City</option>';
+   }
+
+   // Handle the click event for the close button
+   closeBtn.addEventListener('click', (event) => {
+       // Hide the success container and show the other containers
+       successContainer.style.display = 'none';
+       cardDetails.style.display = 'block';
+       middleContainer.style.display = 'block';
+       bottomContainer.style.display = 'block';
+
+       // Call the resetForm function to clear values and revert to default state
+       resetForm();
+   });
+
            summaryBackBtn.addEventListener('click', (event) => {
                summaryContainer.style.display = 'none';
                cardDetails.style.display = 'block';
@@ -922,7 +964,11 @@ input[type="number"]::-webkit-inner-spin-button {
                    .then(data => {
                        console.log('Payment initiated successfully', data);
 
-                       if (data.status === "SUCCESS") {
+                       if (data.transactionStatus === "DECLINED") {
+                           alert(`Card declined. Reason: ${data.transactionStatus}`);
+                      
+
+                       } else {
                            if (data.paymentOption.card.threeD.version !== null) {
                                cardDetails.style.display = 'none';
                                // document.getElementById('middle-section').style.display = 'none';
@@ -934,7 +980,6 @@ input[type="number"]::-webkit-inner-spin-button {
                                // document.getElementById('bottom-section').style.display = 'none';
                                summaryContainer.style.display = 'block';
                            }
-
                        }
                    })
                    .catch(error => {
@@ -972,7 +1017,7 @@ input[type="number"]::-webkit-inner-spin-button {
 `;
 
    // Bottom Section HTML
-   const getBottomSection = () => `
+   const getBottomSection = (amount) => `
 
   <div class="bottom-section" id="bottom-section">
             <div class="dropdown" id="dropdown-1">
@@ -1071,16 +1116,16 @@ input[type="number"]::-webkit-inner-spin-button {
                                 <input type="number" id="zip" placeholder="Enter code here">
                             </div>
                         </div>
-                        <button class="pay-button" onclick="submitForm()">Pay $45000</button>
+                        <button class="pay-button" onclick="submitForm(amount)">Pay $${amount}</button>
                     </div>
 
                     <div class="pin-container" id="pin-container">
                         <p>Please enter your 4-digit card pin to authorize this payment</p>
                         <div class="pin-inputs">
-                            <input type="number" maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            <input type="number" maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            <input type="number" maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            <input type="number" maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input  maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input  maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input  maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input  maxlength="1" pattern="[0-9]*" inputmode="numeric">
                         </div>
                         <div class="pin-buttons">
                             <button class="pin-back" id="pin-back">Go Back</button>
@@ -1092,7 +1137,7 @@ input[type="number"]::-webkit-inner-spin-button {
                         <h4>Payment Summary</h4>
                         <div class="amount-holder">
                             <p>Amount</p>
-                            <h1>$4500.00</h1>
+                            <h1>$${amount}</h1>
                         </div>
                         <div class="summary-details">
 
@@ -1106,7 +1151,7 @@ input[type="number"]::-webkit-inner-spin-button {
                                 <p>Discount (10%)</p><span>-$13.00</span>
                             </div>
                             <hr class="summary-divider">
-                            <div class="detail total"><span>Total</span><span>$4500.00</span></div>
+                            <div class="detail total"><span>Total</span><span>$${amount}</span></div>
                         </div>
                         <div class="summary-buttons">
                             <button class="summary-buttons-go-back" id="summary-buttons-go-back">Go Back</button>
@@ -1164,12 +1209,12 @@ input[type="number"]::-webkit-inner-spin-button {
 `;
 
    // Success Section HTML
-   const getSuccessSection = () => `
+   const getSuccessSection = (amount) => `
   <div class="success-container" id="success-container">
     <h1>Payment Completed</h1>
-    <p>The payment of $45,000 has been received successfully</p>
+    <p>The payment of $${amount} has been received successfully</p>
     <img src="https://ayoseun.github.io/k-pay/assets/success.svg" alt="Icon">
-    <button>Go back to platform</button>
+    <button id="close-payment">Go back to platform</button>
   </div>
 `;
 
@@ -1202,8 +1247,8 @@ input[type="number"]::-webkit-inner-spin-button {
        widget.innerHTML = `
     ${getTopSection(amount)}
     ${getMiddleSection()}
-    ${getBottomSection()}
-    ${getSuccessSection()}
+    ${getBottomSection(amount)}
+    ${getSuccessSection(amount)}
   `;
 
        // Add event listeners or other interactions here

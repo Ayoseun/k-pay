@@ -134,7 +134,7 @@ border: 1.1px solid #6cf1ce;
 
 /* To add a checkmark when checked */
 .dropdown-checkbox:checked:after {
-content: '\xb9'; /* Unicode character for a checkmark */
+content: '\u2714'; /* Unicode character for a checkmark */
 position: absolute;
 top: 50%;
 left: 50%;

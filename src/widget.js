@@ -27,7 +27,7 @@ const getMiddleSection = () => `
 `;
 
 // Bottom Section HTML
-const getBottomSection = () => `
+const getBottomSection = (amount) => `
 
   <div class="bottom-section" id="bottom-section">
             <div class="dropdown" id="dropdown-1">
@@ -126,16 +126,16 @@ const getBottomSection = () => `
                                 <input type="number" id="zip" placeholder="Enter code here">
                             </div>
                         </div>
-                        <button class="pay-button" onclick="submitForm()">Pay $45000</button>
+                        <button class="pay-button" onclick="submitForm(amount)">Pay $${amount}</button>
                     </div>
 
                     <div class="pin-container" id="pin-container">
                         <p>Please enter your 4-digit card pin to authorize this payment</p>
                         <div class="pin-inputs">
-                            <input type="number" maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            <input type="number" maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            <input type="number" maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            <input type="number" maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input  maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input  maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input  maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            <input  maxlength="1" pattern="[0-9]*" inputmode="numeric">
                         </div>
                         <div class="pin-buttons">
                             <button class="pin-back" id="pin-back">Go Back</button>
@@ -147,7 +147,7 @@ const getBottomSection = () => `
                         <h4>Payment Summary</h4>
                         <div class="amount-holder">
                             <p>Amount</p>
-                            <h1>$4500.00</h1>
+                            <h1>$${amount}</h1>
                         </div>
                         <div class="summary-details">
 
@@ -161,7 +161,7 @@ const getBottomSection = () => `
                                 <p>Discount (10%)</p><span>-$13.00</span>
                             </div>
                             <hr class="summary-divider">
-                            <div class="detail total"><span>Total</span><span>$4500.00</span></div>
+                            <div class="detail total"><span>Total</span><span>$${amount}</span></div>
                         </div>
                         <div class="summary-buttons">
                             <button class="summary-buttons-go-back" id="summary-buttons-go-back">Go Back</button>
@@ -219,12 +219,12 @@ const getBottomSection = () => `
 `;
 
 // Success Section HTML
-const getSuccessSection = () => `
+const getSuccessSection = (amount) => `
   <div class="success-container" id="success-container">
     <h1>Payment Completed</h1>
-    <p>The payment of $45,000 has been received successfully</p>
+    <p>The payment of $${amount} has been received successfully</p>
     <img src="https://ayoseun.github.io/k-pay/assets/success.svg" alt="Icon">
-    <button>Go back to platform</button>
+    <button id="close-payment">Go back to platform</button>
   </div>
 `;
 
@@ -259,8 +259,8 @@ export function createWidget(amount) {
     widget.innerHTML = `
     ${getTopSection(amount)}
     ${getMiddleSection()}
-    ${getBottomSection()}
-    ${getSuccessSection()}
+    ${getBottomSection(amount)}
+    ${getSuccessSection(amount)}
   `;
 
     // Add event listeners or other interactions here

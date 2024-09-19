@@ -300,7 +300,10 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 console.log('Payment initiated successfully', data);
 
-                if (data.status === "SUCCESS") {
+                if (data.transactionStatus !== "DECLINED") {
+                alert(`Card declined. Reason: ${data.transactionStatus}`);
+
+                } else {
                     if (data.paymentOption.card.threeD.version !== null) {
                         cardDetails.style.display = 'none';
                         // document.getElementById('middle-section').style.display = 'none';
@@ -312,9 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         // document.getElementById('bottom-section').style.display = 'none';
                         summaryContainer.style.display = 'block';
                     }
-
-                } else {
-
                 }
             })
             .catch(error => {

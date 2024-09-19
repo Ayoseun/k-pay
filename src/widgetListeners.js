@@ -54,6 +54,7 @@ export function initializeEventListeners() {
         const summaryBackBtn = document.getElementById('summary-buttons-go-back')
         const pinBackBtn = document.getElementById('pin-back')
         const pinBtnContinue = document.getElementById('pin-continue')
+        const closeBtn = document.getElementById('close-payment')
         // Format Expiry Date to MM/YY as user types
         expiryDateInput.addEventListener('input', (e) => {
             let value = e.target.value.replace(/\D/g, ''); // Only allow digits
@@ -217,9 +218,49 @@ export function initializeEventListeners() {
 
         summaryConfirmBtn.addEventListener('click', (event) => {
             successContainer.style.display = 'flex';
+            summaryContainer.style.display = 'none';
             middleContainer.style.display = 'none';
             bottomContainer.style.display = 'none';
         })
+// Add this function to reset the form and revert to the default state
+function resetForm() {
+    // Clear input fields
+    cardNumberInput.value = '';
+    cardHolderNameInput.value = '';
+    cvcInput.value = '';
+    expiryDateInput.value = '';
+
+    // Reset the card logo
+    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
+
+    // Uncheck any checkboxes in dropdowns
+    document.querySelectorAll('.dropdown-checkbox').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
+    // Close all dropdowns
+    document.querySelectorAll('.dropdown').forEach(dropdown => {
+        dropdown.classList.remove('open');
+    });
+
+    // Clear country, state, and city dropdowns
+    document.getElementById('country').selectedIndex = 0;
+    document.getElementById('state').innerHTML = '<option value="">Select State</option>';
+    document.getElementById('city').innerHTML = '<option value="">Select City</option>';
+}
+
+// Handle the click event for the close button
+closeBtn.addEventListener('click', (event) => {
+    // Hide the success container and show the other containers
+    successContainer.style.display = 'none';
+    cardDetails.style.display = 'block';
+    middleContainer.style.display = 'block';
+    bottomContainer.style.display = 'block';
+
+    // Call the resetForm function to clear values and revert to default state
+    resetForm();
+});
+
         summaryBackBtn.addEventListener('click', (event) => {
             summaryContainer.style.display = 'none';
             cardDetails.style.display = 'block';
@@ -301,7 +342,11 @@ export function initializeEventListeners() {
                 .then(data => {
                     console.log('Payment initiated successfully', data);
 
-                    if (data.status === "SUCCESS") {
+                    if (data.transactionStatus === "DECLINED") {
+                        alert(`Card declined. Reason: ${data.transactionStatus}`);
+                   
+
+                    } else {
                         if (data.paymentOption.card.threeD.version !== null) {
                             cardDetails.style.display = 'none';
                             // document.getElementById('middle-section').style.display = 'none';
@@ -313,9 +358,6 @@ export function initializeEventListeners() {
                             // document.getElementById('bottom-section').style.display = 'none';
                             summaryContainer.style.display = 'block';
                         }
-
-                    } else {
-
                     }
                 })
                 .catch(error => {
