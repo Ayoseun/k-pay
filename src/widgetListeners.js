@@ -256,7 +256,7 @@ closeBtn.addEventListener('click', (event) => {
     cardDetails.style.display = 'block';
     middleContainer.style.display = 'block';
     bottomContainer.style.display = 'block';
-
+    summaryContainer.style.display = 'none';
     // Call the resetForm function to clear values and revert to default state
     resetForm();
 });
