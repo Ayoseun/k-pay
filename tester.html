@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Demo</title>
+</head>
+<body>
+    <div id="widget-container"></div>
+    <script src="bundle.js"></script>
+    <script>
+         const container = document.getElementById('widget-container');
+        const widget = OrokiipayWidget.createWidget();
+        container.appendChild(widget);
+    </script>
+</body>
+</html>

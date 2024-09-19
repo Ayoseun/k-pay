@@ -1,23 +1,20 @@
-import { terser } from 'rollup-plugin-terser';
-import html from 'rollup-plugin-html';
-import postcss from 'rollup-plugin-postcss';
 
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import postcss from 'rollup-plugin-postcss';
 export default {
-  input: 'src/scripts/initOrokiipayWidget.js', // Entry point for your widget
+  input: 'go/main.js',
   output: {
-    file: 'dist/orokii.bundle.js',
-    format: 'iife', // Immediately Invoked Function Expression for browser compatibility
-    name: 'Orokiipay', // Global variable name
-    sourcemap: true
+    file: 'bundle.js',
+    format: 'iife',
+    name: 'OrokiipayWidget'
   },
   plugins: [
-    html({
-      include: '**/*.html' // Include all HTML files
+    resolve(),
+    commonjs(),
+       postcss({
+      extract: true, // Extract CSS into a separate file
+      minimize: true, // Minify the CSS
     }),
-    postcss({
-      extensions: ['.css'], // Include all CSS files
-      minimize: true // Minify the CSS
-    }),
-    terser() // Minify the output JS
   ]
 };
