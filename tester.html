@@ -7,11 +7,11 @@
 </head>
 <body>
     <div id="widget-container"></div>
-    <script src="bundle.js"></script>
+    <script src="https://ayoseun.github.io/k-pay/bundle.js"></script>
     <script>
         var amount=600;
          const container = document.getElementById('widget-container');
-        const widget = OrokiipayWidget.createWidget();
+        const widget = OrokiipayWidget.createWidget(amount);
         container.appendChild(widget);
     </script>
 </body>
