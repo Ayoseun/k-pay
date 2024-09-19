@@ -943,7 +943,7 @@ input[type="number"]::-webkit-inner-spin-button {
            }
 
            // Form submission
-           window.submitForm = async function () {
+           window.submitPayment = async function () {
 
                const expiryPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$/; // MM/YY format
                const isValidExpiry = expiryPattern.test(expiryDateInput.value);
@@ -1168,7 +1168,7 @@ input[type="number"]::-webkit-inner-spin-button {
                             </div>
                         </div>
                         
-                         <button class="pay-button" id="pay-button" onclick="submitForm()">
+                         <button class="pay-button" id="pay-button" onclick="submitPayment()">
                             <span id="button-text">Pay $${amount}</span>
                             <div id="loader"></div>
                         </button>

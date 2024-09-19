@@ -286,7 +286,7 @@ export function initializeEventListeners() {
         }
 
         // Form submission
-        window.submitForm = async function () {
+        window.submitPayment = async function () {
 
             const expiryPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$/; // MM/YY format
             const isValidExpiry = expiryPattern.test(expiryDateInput.value);

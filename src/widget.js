@@ -127,7 +127,7 @@ const getBottomSection = (amount) => `
                             </div>
                         </div>
                         
-                         <button class="pay-button" id="pay-button" onclick="submitForm()">
+                         <button class="pay-button" id="pay-button" onclick="submitPayment()">
                             <span id="button-text">Pay $${amount}</span>
                             <div id="loader"></div>
                         </button>
