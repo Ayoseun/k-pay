@@ -63,8 +63,8 @@ document.querySelectorAll('.dropdown-header').forEach(header => {
             cardLogo.src = './assets/mastercard.svg'; // MasterCard
         } else if (cardNumber.startsWith('6')) {
             cardLogo.src = './assets/discover.svg'; // Discover
-        } else if (cardNumber.startsWith('3')) {
-            cardLogo.src = './assets/maestro.svg'; // Maestro
+        } else if (cardNumber.startsWith('3755')) {
+            cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // Maestro
         } else {
             cardLogo.src = './assets/visa.svg'; // Default
         }

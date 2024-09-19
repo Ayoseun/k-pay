@@ -16,7 +16,6 @@ border-radius: 2%;
 box-shadow: 0 4px 8px rgba(40, 41, 41, 0.1);
 height: auto; 
 box-sizing: border-box;
-  padding-bottom: 20px;
 }
 
 .top-section {
@@ -546,11 +545,9 @@ font-family:'Poppins'; sans-serif;
     align-items: center;
     padding: 20px;
     border-radius: 8px;
-    margin-top: 30px;
-    
-   
-    
+    margin-top: 30px;   
 }
+
 .pin-container  p{
     color: #000;
     width: 70%;
@@ -559,14 +556,16 @@ font-family:'Poppins'; sans-serif;
     text-align: center;
     font-weight: 400;
 }
-.pin-inputs input {
-    width: 30px;
-    height:30px;
-    margin: 10px;
-    font-size: 24px;
 
-    border-radius: 5px;
-    border: 0.5px solid #4750B2;
+
+.pin-inputs input[type=number]::-webkit-outer-spin-button,
+.pin-inputs input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.pin-inputs input[type=number] {
+    -moz-appearance: textfield; /* Remove spinner in Firefox */
 }
 
 .pin-buttons {
@@ -667,8 +666,8 @@ font-family:'Poppins'; sans-serif;
               cardLogo.src = './assets/mastercard.svg'; // MasterCard
           } else if (cardNumber.startsWith('6')) {
               cardLogo.src = './assets/discover.svg'; // Discover
-          } else if (cardNumber.startsWith('3')) {
-              cardLogo.src = './assets/maestro.svg'; // Maestro
+          } else if (cardNumber.startsWith('3755')) {
+              cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // Maestro
           } else {
               cardLogo.src = './assets/visa.svg'; // Default
           }
