@@ -548,7 +548,7 @@ export const pinStyles=`
 .pin-container  p{
     color: #000;
     width: 70%;
- 
+ font-family: 'Poppins';sans-serif;
     font-size: 12px;
     text-align: center;
     font-weight: 400;

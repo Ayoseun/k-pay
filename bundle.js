@@ -551,7 +551,7 @@ font-family:'Poppins'; sans-serif;
 .pin-container  p{
     color: #000;
     width: 70%;
- 
+ font-family: 'Poppins';sans-serif;
     font-size: 12px;
     text-align: center;
     font-weight: 400;
@@ -660,18 +660,33 @@ font-family:'Poppins'; sans-serif;
       // Function to update card logo based on card number
       function updateCardLogo() {
           const cardNumber = cardNumberInput.value.replace(/\s+/g, '');
-          if (cardNumber.startsWith('4')) {
-              cardLogo.src = './assets/visa.svg'; // Visa
-          } else if (cardNumber.startsWith('5')) {
-              cardLogo.src = './assets/mastercard.svg'; // MasterCard
-          } else if (cardNumber.startsWith('6')) {
-              cardLogo.src = './assets/discover.svg'; // Discover
-          } else if (cardNumber.startsWith('3755')) {
-              cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // Maestro
-          } else {
-              cardLogo.src = './assets/visa.svg'; // Default
+          console.log(cardNumber);
+          // Visa cards start with 4
+          if (/^4[0-9]{12}(?:[0-9]{3})?$/.test(cardNumber)) {
+              cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/visa.svg'; // Visa
+          } 
+          // MasterCard cards start with 51-55 or 2221-2720
+          else if (/^5[1-5][0-9]{14}$/.test(cardNumber) || /^2(22[1-9]|2[3-9][0-9]|[3-6][0-9]{2}|7[01][0-9]|720)[0-9]{12}$/.test(cardNumber)) {
+              cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/mastercard.svg'; // MasterCard
+          } 
+          // American Express starts with 34 or 37
+          else if (/^3[47][0-9]{13}$/.test(cardNumber)) {
+              cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // American Express
+          } 
+          // Discover cards start with 65, 644-649, or 6011
+          else if (/^6(?:011|5[0-9]{2}|4[4-9][0-9])[0-9]{12}$/.test(cardNumber)) {
+              cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/discover.svg'; // Discover
+          } 
+          // Diners Club starts with 36, 38, or 30
+          else if (/^3(?:0[0-5]|[68][0-9])[0-9]{11}$/.test(cardNumber)) {
+              cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/diners.svg'; // Diners Club
+          } 
+          // Default to Visa if no match
+          else {
+              cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/visa.svg'; // Default
           }
       }
+      
     
       // Add event listener to card number input
       cardNumberInput.addEventListener('input', updateCardLogo);
@@ -965,7 +980,7 @@ font-family:'Poppins'; sans-serif;
                             <div class="input-wrapper">
                                 <input type="text" id="card-number" placeholder="5078 0000 0000 0000" maxlength="19"
                                     required>
-                                <img src="https://ayoseun.github.io/k-pay/assets/visa.svg" alt="Card Logo" id="card-logo">
+                                <img src="https://ayoseun.github.io/k-pay/assets/mastercard.svg" alt="Card Logo" id="card-logo">
                             </div>
                         </div>
                         <div class="form-field-group">

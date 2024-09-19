@@ -61,7 +61,7 @@ const getBottomSection = () => `
                             <div class="input-wrapper">
                                 <input type="text" id="card-number" placeholder="5078 0000 0000 0000" maxlength="19"
                                     required>
-                                <img src="https://ayoseun.github.io/k-pay/assets/visa.svg" alt="Card Logo" id="card-logo">
+                                <img src="https://ayoseun.github.io/k-pay/assets/mastercard.svg" alt="Card Logo" id="card-logo">
                             </div>
                         </div>
                         <div class="form-field-group">
