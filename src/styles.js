@@ -398,7 +398,42 @@ export const cardFormStyles=`
     cursor: pointer;
     margin-bottom: 20px;
     margin-top: 20px;
-    display: block;
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    position: relative;
+}
+
+/* Text styling */
+#button-text {
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    margin-right: 10px; /* Adds space between text and loader */
+}
+
+/* Loader styling */
+#loader {
+    border: 1px solid #f3f3f3; /* Light grey */
+    border-top: 1px solid #000000; /* Black */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: none; /* Initially hidden */
+}
+
+/* Show loader */
+.pay-button.loading #loader {
+    display: inline-block;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Specific styles for state and city selects */

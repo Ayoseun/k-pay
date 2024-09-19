@@ -17,27 +17,8 @@ export function initializeEventListeners() {
         });
     });
 
-    const inputs = document.querySelectorAll('.pin-inputs input');
-
-    inputs.forEach((input, index) => {
-        input.addEventListener('input', () => {
-            if (input.value.length === 1 && index < inputs.length - 1) {
-                // Move to the next input
-                inputs[index + 1].focus();
-            }
-        });
-
-        // Optionally handle the backspace to move to the previous input
-        input.addEventListener('keydown', (e) => {
-            if (e.key === "Backspace" && input.value === "" && index > 0) {
-                inputs[index - 1].focus();
-            }
-        });
-    });
-
 
     //Cards
-
     document.addEventListener('DOMContentLoaded', () => {
         const cardNumberInput = document.getElementById('card-number');
         const cardHolderNameInput = document.getElementById('cardholder-name')
@@ -55,6 +36,29 @@ export function initializeEventListeners() {
         const pinBackBtn = document.getElementById('pin-back')
         const pinBtnContinue = document.getElementById('pin-continue')
         const closeBtn = document.getElementById('close-payment')
+
+        // Disable button and show spinner if fields are empty
+        const payButton = document.getElementById('pay-button');
+        const buttonText = document.getElementById('button-text');
+        const spinner = document.getElementById('loader');
+
+        const inputs = document.querySelectorAll('.pin-inputs input');
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', () => {
+                if (input.value.length === 1 && index < inputs.length - 1) {
+                    // Move to the next input
+                    inputs[index + 1].focus();
+                }
+            });
+
+            // Optionally handle the backspace to move to the previous input
+            input.addEventListener('keydown', (e) => {
+                if (e.key === "Backspace" && input.value === "" && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
         // Format Expiry Date to MM/YY as user types
         expiryDateInput.addEventListener('input', (e) => {
             let value = e.target.value.replace(/\D/g, ''); // Only allow digits
@@ -84,15 +88,14 @@ export function initializeEventListeners() {
             } else if (cardNumber.startsWith('37')) {
 
                 cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // Maestro
-            } else if (cardNumber.startsWith('623')||cardNumber.startsWith('622127')) {
+            } else if (cardNumber.startsWith('623') || cardNumber.startsWith('622127')) {
                 cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/unionpay.svg'; // Maestro
-            }else if (cardNumber.startsWith('36')||cardNumber.startsWith('38')) {
+            } else if (cardNumber.startsWith('36') || cardNumber.startsWith('38')) {
                 cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/diners.svg'; // Maestro
-            }  else {
+            } else {
                 cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
             }
         }
-
 
         // Add event listener to card number input
         cardNumberInput.addEventListener('input', updateCardLogo);
@@ -222,44 +225,44 @@ export function initializeEventListeners() {
             middleContainer.style.display = 'none';
             bottomContainer.style.display = 'none';
         })
-// Add this function to reset the form and revert to the default state
-function resetForm() {
-    // Clear input fields
-    cardNumberInput.value = '';
-    cardHolderNameInput.value = '';
-    cvcInput.value = '';
-    expiryDateInput.value = '';
 
-    // Reset the card logo
-    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
+        function resetForm() {
+            // Clear input fields
+            cardNumberInput.value = '';
+            cardHolderNameInput.value = '';
+            cvcInput.value = '';
+            expiryDateInput.value = '';
+            inputs.forEach(input => input.value = '');
+            // Reset the card logo
+            cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
 
-    // Uncheck any checkboxes in dropdowns
-    document.querySelectorAll('.dropdown-checkbox').forEach(checkbox => {
-        checkbox.checked = false;
-    });
+            // Uncheck any checkboxes in dropdowns
+            document.querySelectorAll('.dropdown-checkbox').forEach(checkbox => {
+                checkbox.checked = false;
+            });
 
-    // Close all dropdowns
-    document.querySelectorAll('.dropdown').forEach(dropdown => {
-        dropdown.classList.remove('open');
-    });
+            // Close all dropdowns
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                dropdown.classList.remove('open');
+            });
 
-    // Clear country, state, and city dropdowns
-    document.getElementById('country').selectedIndex = 0;
-    document.getElementById('state').innerHTML = '<option value="">Select State</option>';
-    document.getElementById('city').innerHTML = '<option value="">Select City</option>';
-}
+            // Clear country, state, and city dropdowns
+            document.getElementById('country').selectedIndex = 0;
+            document.getElementById('state').innerHTML = '<option value="">Select State</option>';
+            document.getElementById('city').innerHTML = '<option value="">Select City</option>';
+        }
 
-// Handle the click event for the close button
-closeBtn.addEventListener('click', (event) => {
-    // Hide the success container and show the other containers
-    successContainer.style.display = 'none';
-    cardDetails.style.display = 'block';
-    middleContainer.style.display = 'block';
-    bottomContainer.style.display = 'block';
-    summaryContainer.style.display = 'none';
-    // Call the resetForm function to clear values and revert to default state
-    resetForm();
-});
+        // Handle the click event for the close button
+        closeBtn.addEventListener('click', (event) => {
+            // Hide the success container and show the other containers
+            successContainer.style.display = 'none';
+            cardDetails.style.display = 'block';
+            middleContainer.style.display = 'block';
+            bottomContainer.style.display = 'block';
+            summaryContainer.style.display = 'none';
+            // Call the resetForm function to clear values and revert to default state
+            resetForm();
+        });
 
         summaryBackBtn.addEventListener('click', (event) => {
             summaryContainer.style.display = 'none';
@@ -307,9 +310,18 @@ closeBtn.addEventListener('click', (event) => {
                 return;
             }
 
+            if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || !cardNumberInput.value) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
             // Get the IP address
             const ipAddress = await getIpAddress();
-
+            buttonText.style.display = 'none'; // Hide button text
+            spinner.style.display = 'flex'; // Show spinner
+            payButton.style.backgroundColor = '#000';
+            payButton.disabled = true; // Disable the button
+            // Collect form data
             // Collect form data
             const formData = {
                 amount: "200", // Fixed amount for example; adjust as needed
@@ -341,10 +353,14 @@ closeBtn.addEventListener('click', (event) => {
                 .then(response => response.json())
                 .then(data => {
                     console.log('Payment initiated successfully', data);
+                    payButton.disabled = false; // Re-enable the button
+                    buttonText.style.display = 'inline'; // Show button text
+                    spinner.style.display = 'none'; // Hide spinner
+                    payButton.style.backgroundColor = '#19624C';
 
                     if (data.transactionStatus === "DECLINED") {
                         alert(`Card declined. Reason: ${data.transactionStatus}`);
-                   
+
 
                     } else {
                         if (data.paymentOption.card.threeD.version !== null) {

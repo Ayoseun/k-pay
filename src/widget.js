@@ -126,7 +126,11 @@ const getBottomSection = (amount) => `
                                 <input type="number" id="zip" placeholder="Enter code here">
                             </div>
                         </div>
-                        <button class="pay-button" onclick="submitForm(amount)">Pay $${amount}</button>
+                        
+                         <button class="pay-button" id="pay-button" onclick="submitForm()">
+                            <span id="button-text">Pay $${amount}</span>
+                            <div id="loader"></div>
+                        </button>
                     </div>
 
                     <div class="pin-container" id="pin-container">

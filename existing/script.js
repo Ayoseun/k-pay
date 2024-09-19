@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
     // Format Expiry Date to MM/YY as user types
     expiryDateInput.addEventListener('input', (e) => {
         let value = e.target.value.replace(/\D/g, ''); // Only allow digits
@@ -80,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.value = value.slice(0, 5); // Max length: 5 (MM/YY)
 
     });
+    
     // Function to update card logo based on card number
     function updateCardLogo() {
         const cardNumber = cardNumberInput.value.replace(/\s+/g, '');
@@ -288,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Form submission
     window.submitForm = async function () {
 
-        console.log("here")
+        
 
         const expiryPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$/; // MM/YY format
         const isValidExpiry = expiryPattern.test(expiryDateInput.value);
@@ -315,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Get the IP address
         const ipAddress = await getIpAddress();
 
-        if (!cvcInput.value) {
+        if (!cvcInput.value||cardHolderNameInput.value||expiryDateInput.value||cardNumberInput.value) {
             alert('Please fill in all required fields.');
             return;
         }
