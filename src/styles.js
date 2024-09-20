@@ -11,6 +11,7 @@ export const homeStyles = `
     box-shadow: 0 4px 8px rgba(40, 41, 41, 0.1);
     height: auto; 
     box-sizing: border-box;
+    padding-bottom: 3%;
 }
 
 .top-section {
@@ -341,11 +342,13 @@ export const successStyles = `
 .success-container h1 {
     color: #000;
     font-size: 16px;
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
 }
 
 .success-container p {
     color: #79747E;
+    font-family: 'Inter', sans-serif;
     font-size: 10px;
 }
 
@@ -361,6 +364,7 @@ export const successStyles = `
     background-color: #19624C;
     color: white;
     border: none;
+    font-family: 'Inter', sans-serif;
     border-radius: 5px;
     font-size: 10px;
     cursor: pointer;
@@ -368,7 +372,52 @@ export const successStyles = `
     margin-bottom: 20px;
     padding-right: 15px;
 
-}`
+}
+@media screen and (max-width:436px) {
+    .success-container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.4rem;
+        margin: 20px 0px 20px 0px;
+    }
+    .success-container h1 {
+        color: #000;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.5rem;
+        font-weight: 400;
+    }
+    
+    .success-container p {
+        color: #79747E;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.35rem;
+    }
+    
+    .success-container img {
+        margin-bottom: 10px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .success-container button {
+        width: 60%;
+        padding: 8px;
+        background-color: #19624C;
+        color: white;
+        border: none;
+        font-family: 'Inter', sans-serif;
+        border-radius: 3px;
+        font-size: 0.5rem;
+        cursor: pointer;
+        padding-left: 15px;
+        margin-bottom: 20px;
+        padding-right: 15px;
+    
+    }
+}
+`
 
 export const cardFormStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -487,9 +536,8 @@ export const cardFormStyles = `
 }
 
 
-/* Button styling */
 .pay-button {
-    width: 27vw;
+    width: 100%;
     padding: 10px;
     background-color: #19624C;
     color: white;
@@ -661,8 +709,7 @@ export const cardFormStyles = `
         /* Initially hidden */
     }
 
-}
-    `;
+}`;
 
 export const cardPaymentSummaryStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
