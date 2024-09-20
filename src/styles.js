@@ -424,6 +424,7 @@ export const cardFormStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 
+
 .card-details {
     background-color: white;
     font-family: 'Poppins', sans-serif;
@@ -447,13 +448,8 @@ export const cardFormStyles = `
 }
 
 .card-logo {
-    width: 50px;
-    /* Adjust size as needed */
+    width: 24px;
     height: auto;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 
@@ -484,7 +480,7 @@ export const cardFormStyles = `
     margin-bottom: 10px;
     padding: 6px;
     display: flex;
-    width: 107%;
+    width: 104%;
     background-color: white;
 }
 
@@ -501,7 +497,9 @@ export const cardFormStyles = `
     outline: none;
     /* Remove default focus outline */
 }
-
+.input-wrapper img {
+width: 24px;
+}
 .input-wrapper input[type="text"]::placeholder,
 .input-wrapper select option {
     font-size: 10px;
@@ -522,7 +520,7 @@ export const cardFormStyles = `
 }
 
 .form-field-group .half .input-wrapper {
-    width: 100%;
+    width: 90%;
 }
 
 
@@ -536,6 +534,7 @@ export const cardFormStyles = `
 }
 
 
+/* Button styling */
 .pay-button {
     width: 100%;
     padding: 10px;
@@ -609,12 +608,8 @@ export const cardFormStyles = `
 
     .card-logo {
         width: 20px;
-        /* Adjust size as needed */
         height: auto;
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
+
     }
 
     .form-field label,
@@ -708,8 +703,8 @@ export const cardFormStyles = `
         display: none;
         /* Initially hidden */
     }
-
-}`;
+}
+`;
 
 export const cardPaymentSummaryStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -1097,3 +1092,75 @@ input[type="number"]::-webkit-inner-spin-button {
         background-color: #CFF1E6;
     }
 }`
+
+export const popupStyles=`
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Popup container */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Black background with transparency */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Popup content */
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  flex-direction: column;
+
+  font-family: 'Inter', sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.error-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-content p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.5rem;
+}
+
+.error-content img {
+  width: 48px;
+  height: 48px;
+}
+
+.error-content h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+}
+
+.close-btn:hover {
+  color: red;
+}
+`

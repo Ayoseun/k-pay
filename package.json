@@ -4,7 +4,7 @@
   "main": "script.js",
   "type": "module",
   "scripts": {
-    "build": "rollup -c",
+    "build": "NODE_ENV=production rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

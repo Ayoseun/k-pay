@@ -12,6 +12,8 @@
         var amount=600;
          const container = document.getElementById('widget-container');
         const widget = OrokiipayWidget.createWidget(amount);
+      let m=  OrokiipayWidget.paymentResult()
+        console.log(m)
         container.appendChild(widget);
     </script>
 </body>

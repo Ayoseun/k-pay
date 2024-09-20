@@ -1,6 +1,6 @@
 
 
-/* General card details styling */
+
 .card-details {
     background-color: white;
     font-family: 'Poppins', sans-serif;
@@ -24,13 +24,8 @@
 }
 
 .card-logo {
-    width: 50px;
-    /* Adjust size as needed */
+    width: 24px;
     height: auto;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 
@@ -61,7 +56,7 @@
     margin-bottom: 10px;
     padding: 6px;
     display: flex;
-    width: 107%;
+    width: 104%;
     background-color: white;
 }
 
@@ -78,7 +73,9 @@
     outline: none;
     /* Remove default focus outline */
 }
-
+.input-wrapper img {
+width: 24px;
+}
 .input-wrapper input[type="text"]::placeholder,
 .input-wrapper select option {
     font-size: 10px;
@@ -99,7 +96,7 @@
 }
 
 .form-field-group .half .input-wrapper {
-    width: 100%;
+    width: 90%;
 }
 
 
@@ -187,12 +184,8 @@
 
     .card-logo {
         width: 20px;
-        /* Adjust size as needed */
         height: auto;
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
+
     }
 
     .form-field label,

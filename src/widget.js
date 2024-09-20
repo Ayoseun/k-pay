@@ -1,4 +1,4 @@
-import { cardFormStyles, cardPaymentSummaryStyles, homeStyles, pinStyles, successStyles, todo } from './styles.js';
+import { cardFormStyles, cardPaymentSummaryStyles, homeStyles, pinStyles, popupStyles, successStyles, todo } from './styles.js';
 import { initializeEventListeners } from './widgetListeners.js';  // Import the event listeners logic
 
 
@@ -231,6 +231,20 @@ const getSuccessSection = (amount) => `
     <button id="close-payment">Close</button>
   </div>
 `;
+const popupSection=()=>
+    `  
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="pop-close-btn">&times;</span>
+                <div class="error-content">
+                    <h2>Error</h2>
+                    <img src="./assets/error.svg" alt="Icon">
+                    <p>something went wrong</p>
+                </div>
+
+
+            </div>
+        </div>`
 
 // Main Widget Creation Function
 export function createWidget(amount) {
@@ -246,7 +260,8 @@ export function createWidget(amount) {
         cardFormStyles,
         cardPaymentSummaryStyles,
         pinStyles,
-        todo
+        todo,
+        popupStyles
     ];
 
     styles.forEach((styleContent, index) => {
@@ -265,6 +280,7 @@ export function createWidget(amount) {
     ${getMiddleSection()}
     ${getBottomSection(amount)}
     ${getSuccessSection(amount)}
+ 
   `;
 
     // Add event listeners or other interactions here

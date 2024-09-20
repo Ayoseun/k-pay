@@ -44,6 +44,32 @@ export function initializeEventListeners() {
 
         const inputs = document.querySelectorAll('.pin-inputs input');
 
+
+
+        // const openPopupBtn = document.getElementById('openPopupBtn');
+        // const popup = document.getElementById('popup');
+        // const popCloseBtn = document.querySelector('.pop-close-btn');
+        
+        // // Open popup
+        // openPopupBtn.addEventListener('click', () => {
+        //   popup.style.display = 'flex';
+        // });
+        
+        // // Close popup
+        // popCloseBtn.addEventListener('click', () => {
+        //   popup.style.display = 'none';
+        // });
+        
+        // // Close popup if user clicks outside the popup content
+        // window.addEventListener('click', (event) => {
+        //   if (event.target === popup) {
+        //     popup.style.display = 'none';
+        //   }
+        // });
+        
+
+
+
         inputs.forEach((input, index) => {
             input.addEventListener('input', () => {
                 if (input.value.length === 1 && index < inputs.length - 1) {
@@ -262,6 +288,7 @@ export function initializeEventListeners() {
             summaryContainer.style.display = 'none';
             // Call the resetForm function to clear values and revert to default state
             resetForm();
+            paymentResult(true)
         });
 
         summaryBackBtn.addEventListener('click', (event) => {
@@ -384,4 +411,9 @@ export function initializeEventListeners() {
 
 
    // });
+}
+
+export  async function paymentResult(success){
+   
+    return success
 }
