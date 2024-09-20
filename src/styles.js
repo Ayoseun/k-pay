@@ -781,7 +781,6 @@ h4 {
     .summary-container {
         background: #fff;
         padding: 10px;
-
         display: none;
         width: auto;
         text-align: center;
@@ -874,7 +873,6 @@ h4 {
         cursor: pointer;
         border-radius: 1px;
         font-size: 0.45rem;
-
         padding: 5px 10px 5px 10px;
         font-weight: 300;
         font-family: 'Poppins', sans-serif;
@@ -924,7 +922,7 @@ export const pinStyles = `
 .pin-container p {
     color: #000;
     width: 70%;
-    font-family: 'Inter' sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     text-align: center;
     font-weight: 400;
@@ -935,7 +933,7 @@ export const pinStyles = `
     height: 30px;
     margin: 10px;
     font-size: 24px;
-    font-family: 'Inter' sans-serif;
+    font-family: 'Inter', sans-serif;
     text-align: center;
     border-radius: 5px;
     border: 0.5px solid #4750B2;
@@ -1014,7 +1012,7 @@ input[type="number"]::-webkit-inner-spin-button {
         height:3vh;
         margin: 5px;
         font-size: 0.5rem;
-        font-family: 'Inter' sans-serif;
+        font-family: 'Inter', sans-serif;
     text-align: center;
         border-radius: 2px;
         border: 0.5px solid #4750B2;
@@ -1051,6 +1049,4 @@ input[type="number"]::-webkit-inner-spin-button {
         font-family: 'Poppins', sans-serif;
         background-color: #CFF1E6;
     }
-}
-
-`
+}`

@@ -115,7 +115,7 @@
 
 /* Button styling */
 .pay-button {
-    width: 27vw;
+    width: 100%;
     padding: 10px;
     background-color: #19624C;
     color: white;
