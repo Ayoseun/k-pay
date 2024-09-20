@@ -1,8 +1,8 @@
 var OrokiipayWidget = (function (exports) {
-   'use strict';
+    'use strict';
 
-   // Inline CSS styles
-   const homeStyles = `
+    // Inline CSS styles
+    const homeStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
@@ -328,7 +328,7 @@ var OrokiipayWidget = (function (exports) {
     }
 }
 `;
-   const successStyles = `
+    const successStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
@@ -373,7 +373,7 @@ var OrokiipayWidget = (function (exports) {
 
 }`;
 
-   const cardFormStyles = `
+    const cardFormStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
@@ -667,7 +667,7 @@ var OrokiipayWidget = (function (exports) {
 }
     `;
 
-   const cardPaymentSummaryStyles = `
+    const cardPaymentSummaryStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;600;700&display=swap');
@@ -675,7 +675,7 @@ var OrokiipayWidget = (function (exports) {
     background: #fff;
     padding: 20px;
 
-display: none;
+    display: none;
     width: auto;
     text-align: center;
 }
@@ -684,18 +684,17 @@ display: none;
     display: block;
     flex-direction: column;
     align-items: center;
-    font-family:'Inter'; sans-serif;
     border: 0.8px solid #E0E5F2;
     border-radius: 8px;
-   margin: 0px 50px 0px 50px;
+    margin: 0px 50px 0px 50px;
     padding: 12px;
- 
+
 }
 
 .amount-holder h1 {
     font-size: 18px;
     color: #19624C;
-     font-family:'Inter'; sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 5px 0px 0px 0px;
 }
 
@@ -703,36 +702,36 @@ display: none;
     font-size: 10px;
     color: #677489;
     margin: 0px;
-     font-family:'Inter'; sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 h4 {
     color: #000;
     font-size: 12px;
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
-     font-family:'Inter'; sans-serif;
 }
 
 .summary-details .detail {
     display: flex;
     justify-content: space-between;
     margin: 10px 50px 0px 50px;
-     font-family:'Inter'; sans-serif;
 }
-.summary-details{
+
+.summary-details {
     margin-bottom: 20px;
 }
 
 .detail.total {
     font-weight: bold;
- font-family:'Inter'; sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .detail span {
     font-size: 10px;
     color: #000;
+    font-family: 'Poppins', sans-serif;
     margin: 0px;
-     font-family:'Inter'; sans-serif;
 }
 
 
@@ -740,8 +739,9 @@ h4 {
     font-size: 10px;
     color: #677489;
     margin: 0px;
-     font-family:'Inter'; sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
+
 .summary-divider {
     margin: 30px 50px 0px 50px;
     border: 0;
@@ -750,7 +750,7 @@ h4 {
 
 .summary-buttons {
     display: flex;
-   justify-content: center;
+    justify-content: center;
     margin-top: 30px;
     gap: 5px;
     margin-bottom: 30px;
@@ -764,7 +764,6 @@ h4 {
     cursor: pointer;
     border-radius: 3px;
     font-size: 8px;
-   font-family:'Poppins'; sans-serif;
     padding: 5px 40px 5px 40px;
     font-weight: 300;
     font-family: 'Poppins', sans-serif;
@@ -779,9 +778,125 @@ h4 {
     font-weight: 300;
     font-family: 'Poppins', sans-serif;
     background-color: #CFF1E6;
-}`;
+}
 
-   const todo = `
+@media screen and (max-width:540px) {
+    .summary-container {
+        background: #fff;
+        padding: 10px;
+
+        display: none;
+        width: auto;
+        text-align: center;
+    }
+
+    .amount-holder {
+        display: block;
+        font-family: 'Poppins', sans-serif;
+        flex-direction: column;
+        align-items: center;
+        border: 0.8px solid #E0E5F2;
+        border-radius: 8px;
+        margin: 0px 20px 0px 20px;
+        padding: 8px;
+
+    }
+
+    .amount-holder h1 {
+        font-size: 0.8rem;
+        font-family: 'Poppins', sans-serif;
+        color: #19624C;
+        margin: 5px 0px 0px 0px;
+    }
+
+    .amount-holder p {
+        font-size: 0.5rem;
+        font-family: 'Poppins', sans-serif;
+        color: #677489;
+        margin: 0px;
+    }
+
+    h4 {
+        color: #000;
+        font-size: 0.5rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+    }
+
+    .summary-details .detail {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 10px 0px 10px;
+    }
+
+    .summary-details {
+        margin-bottom: 20px;
+    }
+
+    .detail.total {
+        font-weight: bold;
+
+        font-family: 'Poppins', sans-serif;
+
+    }
+
+    .detail span {
+        font-size: 0.5rem;
+        color: #000;
+        font-family: 'Poppins', sans-serif;
+        margin: 0px;
+    }
+
+
+    .detail p {
+        font-size: 0.5rem;
+        color: #677489;
+        font-family: 'Poppins', sans-serif;
+        margin: 0px;
+    }
+
+    .summary-divider {
+        margin: 30px 10px 0px 10px;
+        border: 0;
+        border-top: 0.5px solid #ddd;
+    }
+
+    .summary-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 5px;
+        margin-bottom: 30px;
+    }
+
+    .summary-buttons-confirm {
+        padding: 5px 10px;
+        border: none;
+        background-color: #19624C;
+        color: white;
+        cursor: pointer;
+        border-radius: 1px;
+        font-size: 0.45rem;
+
+        padding: 5px 10px 5px 10px;
+        font-weight: 300;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .summary-buttons-go-back {
+        color: #19624C;
+        font-size: 0.45rem;
+        border: none;
+        cursor: pointer;
+        padding: 2px 25px 2px 25px;
+        font-weight: 300;
+        font-family: 'Poppins', sans-serif;
+        background-color: #CFF1E6;
+    }
+}
+    `;
+
+    const todo = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
@@ -792,12 +907,10 @@ font-family:'Poppins'; sans-serif;
 }
 `;
 
-   const pinStyles = `
+    const pinStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
-
-.pin-container  {
+.pin-container {
     background: #fff;
     display: none;
     flex-direction: column;
@@ -806,27 +919,31 @@ font-family:'Poppins'; sans-serif;
     padding: 20px;
     border-radius: 8px;
     margin-top: 30px;
-    
-   
-    
+
+
+
 }
-.pin-container  p{
+
+.pin-container p {
     color: #000;
     width: 70%;
- font-family:'Inter'; sans-serif;
+    font-family: 'Inter' sans-serif;
     font-size: 12px;
     text-align: center;
     font-weight: 400;
 }
+
 .pin-inputs input {
     width: 30px;
-    height:30px;
+    height: 30px;
     margin: 10px;
     font-size: 24px;
-text-align: center;
+    font-family: 'Inter' sans-serif;
+    text-align: center;
     border-radius: 5px;
     border: 0.5px solid #4750B2;
 }
+
 /* Remove the spinner arrows from the number inputs for Chrome, Safari, Edge, and Opera */
 .pin-inputs input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -843,7 +960,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .pin-buttons {
     display: flex;
-   justify-content: center;
+    justify-content: center;
     margin-top: 30px;
     gap: 5px;
     margin-bottom: 30px;
@@ -873,398 +990,464 @@ input[type="number"]::-webkit-inner-spin-button {
     background-color: #CFF1E6;
 }
 
+@media screen and (max-width: 436px) {
+    .pin-container {
+        background: #fff;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 30px;
+    
+    
+    
+    }
+    .pin-container  p{
+        color: #000;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.5rem;
+        text-align: center;
+        font-weight: 400;
+    }
+    .pin-inputs input {
+        width: 13%;
+        height:3vh;
+        margin: 5px;
+        font-size: 0.5rem;
+        font-family: 'Inter' sans-serif;
+    text-align: center;
+        border-radius: 2px;
+        border: 0.5px solid #4750B2;
+    }
+    .pin-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 7px;
+        margin-bottom: 30px;
+    }
+
+    .pin-continue {
+        padding: 5px 10px;
+        border: none;
+        background-color: #19624C;
+        color: white;
+        cursor: pointer;
+        border-radius: 2px;
+        font-size: 0.45rem;
+        padding: 5px 20px 5px 20px;
+        font-weight: 300;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .pin-back {
+        color: #19624C;
+        font-size: 0.45rem;
+        padding: 5px 20px 5px 20px;
+        font-weight: 300;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        background-color: #CFF1E6;
+    }
+}
+
 `;
 
-   function initializeEventListeners() {
-       document.querySelectorAll('.dropdown-header').forEach(header => {
-           header.addEventListener('click', function () {
-               const dropdown = this.parentElement;
+    function initializeEventListeners() {
+        document.querySelectorAll('.dropdown-header').forEach(header => {
+            header.addEventListener('click', function () {
+                const dropdown = this.parentElement;
 
-               // Close all other dropdowns
-               document.querySelectorAll('.dropdown').forEach(d => {
-                   if (d !== dropdown) {
-                       d.classList.remove('open');
-                       d.querySelector('.dropdown-checkbox').checked = false;
-                   }
-               });
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    if (d !== dropdown) {
+                        d.classList.remove('open');
+                        d.querySelector('.dropdown-checkbox').checked = false;
+                    }
+                });
 
-               // Toggle the clicked dropdown
-               dropdown.classList.toggle('open');
-               dropdown.querySelector('.dropdown-checkbox').checked = dropdown.classList.contains('open');
-           });
-       });
-
-
-       //Cards
-      // document.addEventListener('DOMContentLoaded', () => {
-           const cardNumberInput = document.getElementById('card-number');
-           const cardHolderNameInput = document.getElementById('cardholder-name');
-           const cvcInput = document.getElementById('cvc');
-           const cardLogo = document.getElementById('card-logo');
-           const expiryDateInput = document.getElementById('expiry-date');
-           const pinContainer = document.getElementById('pin-container');
-           const cardDetails = document.getElementById('card-details');
-           const summaryContainer = document.getElementById('summary-container');
-           const successContainer = document.getElementById('success-container');
-           const middleContainer = document.getElementById('middle-section');
-           const bottomContainer = document.getElementById('bottom-section');
-           const summaryConfirmBtn = document.getElementById('summary-buttons-confirm');
-           const summaryBackBtn = document.getElementById('summary-buttons-go-back');
-           const pinBackBtn = document.getElementById('pin-back');
-           const pinBtnContinue = document.getElementById('pin-continue');
-           const closeBtn = document.getElementById('close-payment');
-
-           // Disable button and show spinner if fields are empty
-           const payButton = document.getElementById('pay-button');
-           const buttonText = document.getElementById('button-text');
-           const spinner = document.getElementById('loader');
-
-           const inputs = document.querySelectorAll('.pin-inputs input');
-
-           inputs.forEach((input, index) => {
-               input.addEventListener('input', () => {
-                   if (input.value.length === 1 && index < inputs.length - 1) {
-                       // Move to the next input
-                       inputs[index + 1].focus();
-                   }
-               });
-
-               // Optionally handle the backspace to move to the previous input
-               input.addEventListener('keydown', (e) => {
-                   if (e.key === "Backspace" && input.value === "" && index > 0) {
-                       inputs[index - 1].focus();
-                   }
-               });
-           });
-           // Format Expiry Date to MM/YY as user types
-           expiryDateInput.addEventListener('input', (e) => {
-               let value = e.target.value.replace(/\D/g, ''); // Only allow digits
-
-               if (value.length >= 2) {
-                   let month = value.slice(0, 2);
-
-                   // Validate the month part (01-12)
-                   if (parseInt(month, 10) > 12) {
-                       month = '12'; // If invalid month, set it to 12
-                   }
-                   value = month + '/' + value.slice(2, 4); // Insert slash for MM/YY
-               }
-
-               e.target.value = value.slice(0, 5); // Max length: 5 (MM/YY)
-
-           });
-           // Function to update card logo based on card number
-           function updateCardLogo() {
-               const cardNumber = cardNumberInput.value.replace(/\s+/g, '');
-               if (cardNumber.startsWith('47') || cardNumber.startsWith('44') || cardNumber.startsWith('41') || cardNumber.startsWith('40')) {
-                   cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/visa.svg'; // Visa
-               } else if (cardNumber.startsWith('51') || cardNumber.startsWith('53') || cardNumber.startsWith('55') || cardNumber.startsWith('22')) {
-                   cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/mastercard.svg'; // MasterCard
-               } else if (cardNumber.startsWith('622126') || cardNumber.startsWith('65') || cardNumber.startsWith('60')) {
-                   cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/discover.svg'; // Discover
-               } else if (cardNumber.startsWith('37')) {
-
-                   cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // Maestro
-               } else if (cardNumber.startsWith('623') || cardNumber.startsWith('622127')) {
-                   cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/unionpay.svg'; // Maestro
-               } else if (cardNumber.startsWith('36') || cardNumber.startsWith('38')) {
-                   cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/diners.svg'; // Maestro
-               } else {
-                   cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
-               }
-           }
-
-           // Add event listener to card number input
-           cardNumberInput.addEventListener('input', updateCardLogo);
-
-           // Restrict CVV input to exactly 3 digits
-           cvcInput.addEventListener('input', () => {
-               if (cvcInput.value.length > 3) {
-                   cvcInput.value = cvcInput.value.slice(0, 3);
-               }
-           });
-
-           // Fetch and populate countries
-           fetch('https://restcountries.com/v3.1/all')
-               .then(response => response.json())
-               .then(data => {
-                   console.log('Countries fetched:', data.length);
-                   const countrySelect = document.getElementById('country');
-                   countrySelect.innerHTML = '<option value="">Select Country</option>';
-                   // Sort the countries by their common names in ascending order
-                   data.sort((a, b) => a.name.common.localeCompare(b.name.common));
-
-                   data.forEach(country => {
-                       const option = document.createElement('option');
-                       option.value = country.name.common;
-                       option.textContent = country.name.common;
-                       countrySelect.appendChild(option);
-                   });
-               })
-               .catch(error => console.error('Error fetching countries:', error));
-
-           // Fetch and populate states based on selected country
-           document.getElementById('country').addEventListener('change', (event) => {
-               const countryName = event.target.value;
-               console.log('Selected country:', countryName);
-
-               if (!countryName) {
-                   console.log('No country selected, clearing state and city dropdowns');
-                   document.getElementById('state').innerHTML = '<option value="">Select State</option>';
-                   document.getElementById('city').innerHTML = '<option value="">Select City</option>';
-                   return;
-               }
-
-               fetch('https://countriesnow.space/api/v0.1/countries/states', {
-                   method: 'POST',
-                   headers: {
-                       'Content-Type': 'application/json'
-                   },
-                   body: JSON.stringify({ country: countryName })
-               })
-                   .then(response => {
-                       console.log('State API response status:', response.status);
-                       return response.json();
-                   })
-                   .then(data => {
-                       console.log('State data received:', data);
-                       const stateSelect = document.getElementById('state');
-                       stateSelect.innerHTML = '<option value="">Select State</option>';
-                       if (data.data && data.data.states) {
-                           console.log('Number of states:', data.data.states.length);
-                           data.data.states.forEach(state => {
-                               const option = document.createElement('option');
-                               option.value = state.name;
-                               option.textContent = state.name;
-                               stateSelect.appendChild(option);
-                           });
-                       } else {
-                           console.log('No states found in the response');
-                       }
-                       // Clear city dropdown when country changes
-                       document.getElementById('city').innerHTML = '<option value="">Select City</option>';
-                   })
-                   .catch(error => {
-                       console.error('Error fetching states:', error);
-                       alert('Error fetching states. Please check the console for details.');
-                   });
-           });
-
-           // Fetch and populate cities based on selected state
-           document.getElementById('state').addEventListener('change', (event) => {
-               const countryName = document.getElementById('country').value;
-               const stateName = event.target.value;
-               console.log('Selected country for city fetch:', countryName);
-               console.log('Selected state for city fetch:', stateName);
-
-               if (!stateName) {
-                   console.log('No state selected, clearing city dropdown');
-                   document.getElementById('city').innerHTML = '<option value="">Select City</option>';
-                   return;
-               }
-
-               fetch('https://countriesnow.space/api/v0.1/countries/state/cities', {
-                   method: 'POST',
-                   headers: {
-                       'Content-Type': 'application/json'
-                   },
-                   body: JSON.stringify({ country: countryName, state: stateName })
-               })
-                   .then(response => {
-                       console.log('City API response status:', response.status);
-                       return response.json();
-                   })
-                   .then(data => {
-                       console.log('City data received:', data);
-                       const citySelect = document.getElementById('city');
-                       citySelect.innerHTML = '<option value="">Select City</option>';
-                       if (data.data) {
-                           console.log('Number of cities:', data.data.length);
-                           data.data.forEach(city => {
-                               const option = document.createElement('option');
-                               option.value = city;
-                               option.textContent = city;
-                               citySelect.appendChild(option);
-                           });
-                       } else {
-                           console.log('No cities found in the response');
-                       }
-                   })
-                   .catch(error => {
-                       console.error('Error fetching cities:', error);
-                       alert('Error fetching cities. Please check the console for details.');
-                   });
-           });
-
-           summaryConfirmBtn.addEventListener('click', (event) => {
-               successContainer.style.display = 'flex';
-               summaryContainer.style.display = 'none';
-               middleContainer.style.display = 'none';
-               bottomContainer.style.display = 'none';
-           });
-
-           function resetForm() {
-               // Clear input fields
-               cardNumberInput.value = '';
-               cardHolderNameInput.value = '';
-               cvcInput.value = '';
-               expiryDateInput.value = '';
-               inputs.forEach(input => input.value = '');
-               // Reset the card logo
-               cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
-
-               // Uncheck any checkboxes in dropdowns
-               document.querySelectorAll('.dropdown-checkbox').forEach(checkbox => {
-                   checkbox.checked = false;
-               });
-
-               // Close all dropdowns
-               document.querySelectorAll('.dropdown').forEach(dropdown => {
-                   dropdown.classList.remove('open');
-               });
-
-               // Clear country, state, and city dropdowns
-               document.getElementById('country').selectedIndex = 0;
-               document.getElementById('state').innerHTML = '<option value="">Select State</option>';
-               document.getElementById('city').innerHTML = '<option value="">Select City</option>';
-           }
-
-           // Handle the click event for the close button
-           closeBtn.addEventListener('click', (event) => {
-               // Hide the success container and show the other containers
-               successContainer.style.display = 'none';
-               cardDetails.style.display = 'block';
-               middleContainer.style.display = 'block';
-               bottomContainer.style.display = 'block';
-               summaryContainer.style.display = 'none';
-               // Call the resetForm function to clear values and revert to default state
-               resetForm();
-           });
-
-           summaryBackBtn.addEventListener('click', (event) => {
-               summaryContainer.style.display = 'none';
-               cardDetails.style.display = 'block';
-           });
-           pinBtnContinue.addEventListener('click', (event) => {
-               pinContainer.style.display = 'none';
-               summaryContainer.style.display = 'block';
-
-           });
-           pinBackBtn.addEventListener('click', (event) => {
-               pinContainer.style.display = 'none';
-               cardDetails.style.display = 'block';
-           });
-           // Function to get IP address
-           window. getIpAddress  = async function() {
-               return fetch('https://api.ipify.org?format=json')
-                   .then(response => response.json())
-                   .then(data => data.ip)
-                   .catch(() => '0.0.0.0'); // Default IP if unable to fetch
-           };
-
-           // Form submission
-           window.submitPayment = async function () {
-   console.log(expiryDateInput.value);
-               const expiryPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$/; // MM/YY format
-               const isValidExpiry = expiryPattern.test(expiryDateInput.value);
-
-               if (!isValidExpiry) {
-                   alert('Invalid expiry date format. Use MM/YY.');
-                   return;
-               }
-
-               const [month, year] = expiryDateInput.value.split('/');
-               const expiryMonth = parseInt(month, 10);
-               const expiryYear = parseInt(year, 10);
-
-               const currentDate = new Date();
-               const currentYear = currentDate.getFullYear() % 100; // Last two digits of the current year (YY format)
-               const currentMonth = currentDate.getMonth() + 1; // Current month (1-12)
-
-               // Check if the year is in the past
-               if (expiryYear < currentYear || (expiryYear === currentYear && expiryMonth < currentMonth)) {
-                   alert('The expiry date must be later than the current date.');
-                   return;
-               }
-
-               if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || cardNumberInput.value) {
-                   alert('Please fill in all required fields.');
-                   return;
-               }
-
-               // Get the IP address
-               const ipAddress = await getIpAddress();
-               buttonText.style.display = 'none'; // Hide button text
-               spinner.style.display = 'flex'; // Show spinner
-               payButton.style.backgroundColor = '#000';
-               payButton.disabled = true; // Disable the button
-               // Collect form data
-               // Collect form data
-               const formData = {
-                   amount: "200", // Fixed amount for example; adjust as needed
-                   currency: "USD",
-                   paymentOption: {
-                       card: {
-                           cardNumber: cardNumberInput.value.replace(/\s+/g, ''),
-                           cardHolderName: cardHolderNameInput.value,
-                           expirationMonth: month,
-                           expirationYear: `20${year}`, // Assuming the year is provided as YY
-                           CVV: cvcInput.value,
-                           threeD: {
-                               methodNotificationUrl: "<methodNotificationURL>" // Replace with actual URL
-                           }
-                       }
-                   },
-                   deviceDetails: {
-                       ipAddress: ipAddress // Use the fetched IP address
-                   }
-               };
-
-               fetch('https://dumm.onrender.com/initiate-payment', {
-                   method: 'POST',
-                   headers: {
-                       'Content-Type': 'application/json'
-                   },
-                   body: JSON.stringify(formData)
-               })
-                   .then(response => response.json())
-                   .then(data => {
-                       console.log('Payment initiated successfully', data);
-                       payButton.disabled = false; // Re-enable the button
-                       buttonText.style.display = 'inline'; // Show button text
-                       spinner.style.display = 'none'; // Hide spinner
-                       payButton.style.backgroundColor = '#19624C';
-
-                       if (data.transactionStatus === "DECLINED") {
-                           alert(`Card declined. Reason: ${data.transactionStatus}`);
+                // Toggle the clicked dropdown
+                dropdown.classList.toggle('open');
+                dropdown.querySelector('.dropdown-checkbox').checked = dropdown.classList.contains('open');
+            });
+        });
 
 
-                       } else {
-                           if (data.paymentOption.card.threeD.version !== null) {
-                               cardDetails.style.display = 'none';
-                               // document.getElementById('middle-section').style.display = 'none';
-                               // document.getElementById('bottom-section').style.display = 'none';
-                               pinContainer.style.display = 'flex';
-                           } else {
-                               cardDetails.style.display = 'none';
-                               // document.getElementById('middle-section').style.display = 'none';
-                               // document.getElementById('bottom-section').style.display = 'none';
-                               summaryContainer.style.display = 'block';
-                           }
-                       }
-                   })
-                   .catch(error => {
-                       console.error('Error:', error);
-                       // Handle error (e.g., show an error message)
-                   });
-           };
+        //Cards
+       // document.addEventListener('DOMContentLoaded', () => {
+            const cardNumberInput = document.getElementById('card-number');
+            const cardHolderNameInput = document.getElementById('cardholder-name');
+            const cvcInput = document.getElementById('cvc');
+            const cardLogo = document.getElementById('card-logo');
+            const expiryDateInput = document.getElementById('expiry-date');
+            const pinContainer = document.getElementById('pin-container');
+            const cardDetails = document.getElementById('card-details');
+            const summaryContainer = document.getElementById('summary-container');
+            const successContainer = document.getElementById('success-container');
+            const middleContainer = document.getElementById('middle-section');
+            const bottomContainer = document.getElementById('bottom-section');
+            const summaryConfirmBtn = document.getElementById('summary-buttons-confirm');
+            const summaryBackBtn = document.getElementById('summary-buttons-go-back');
+            const pinBackBtn = document.getElementById('pin-back');
+            const pinBtnContinue = document.getElementById('pin-continue');
+            const closeBtn = document.getElementById('close-payment');
+
+            // Disable button and show spinner if fields are empty
+            const payButton = document.getElementById('pay-button');
+            const buttonText = document.getElementById('button-text');
+            const spinner = document.getElementById('loader');
+
+            const inputs = document.querySelectorAll('.pin-inputs input');
+
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', () => {
+                    if (input.value.length === 1 && index < inputs.length - 1) {
+                        // Move to the next input
+                        inputs[index + 1].focus();
+                    }
+                });
+
+                // Optionally handle the backspace to move to the previous input
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === "Backspace" && input.value === "" && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+            });
+            // Format Expiry Date to MM/YY as user types
+            expiryDateInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, ''); // Only allow digits
+
+                if (value.length >= 2) {
+                    let month = value.slice(0, 2);
+
+                    // Validate the month part (01-12)
+                    if (parseInt(month, 10) > 12) {
+                        month = '12'; // If invalid month, set it to 12
+                    }
+                    value = month + '/' + value.slice(2, 4); // Insert slash for MM/YY
+                }
+
+                e.target.value = value.slice(0, 5); // Max length: 5 (MM/YY)
+
+            });
+            // Function to update card logo based on card number
+            function updateCardLogo() {
+                const cardNumber = cardNumberInput.value.replace(/\s+/g, '');
+                if (cardNumber.startsWith('47') || cardNumber.startsWith('44') || cardNumber.startsWith('41') || cardNumber.startsWith('40')) {
+                    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/visa.svg'; // Visa
+                } else if (cardNumber.startsWith('51') || cardNumber.startsWith('53') || cardNumber.startsWith('55') || cardNumber.startsWith('22')) {
+                    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/mastercard.svg'; // MasterCard
+                } else if (cardNumber.startsWith('622126') || cardNumber.startsWith('65') || cardNumber.startsWith('60')) {
+                    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/discover.svg'; // Discover
+                } else if (cardNumber.startsWith('37')) {
+
+                    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // Maestro
+                } else if (cardNumber.startsWith('623') || cardNumber.startsWith('622127')) {
+                    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/unionpay.svg'; // Maestro
+                } else if (cardNumber.startsWith('36') || cardNumber.startsWith('38')) {
+                    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/diners.svg'; // Maestro
+                } else {
+                    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
+                }
+            }
+
+            // Add event listener to card number input
+            cardNumberInput.addEventListener('input', updateCardLogo);
+
+            // Restrict CVV input to exactly 3 digits
+            cvcInput.addEventListener('input', () => {
+                if (cvcInput.value.length > 3) {
+                    cvcInput.value = cvcInput.value.slice(0, 3);
+                }
+            });
+
+            // Fetch and populate countries
+            fetch('https://restcountries.com/v3.1/all')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Countries fetched:', data.length);
+                    const countrySelect = document.getElementById('country');
+                    countrySelect.innerHTML = '<option value="">Select Country</option>';
+                    // Sort the countries by their common names in ascending order
+                    data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+
+                    data.forEach(country => {
+                        const option = document.createElement('option');
+                        option.value = country.name.common;
+                        option.textContent = country.name.common;
+                        countrySelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching countries:', error));
+
+            // Fetch and populate states based on selected country
+            document.getElementById('country').addEventListener('change', (event) => {
+                const countryName = event.target.value;
+                console.log('Selected country:', countryName);
+
+                if (!countryName) {
+                    console.log('No country selected, clearing state and city dropdowns');
+                    document.getElementById('state').innerHTML = '<option value="">Select State</option>';
+                    document.getElementById('city').innerHTML = '<option value="">Select City</option>';
+                    return;
+                }
+
+                fetch('https://countriesnow.space/api/v0.1/countries/states', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ country: countryName })
+                })
+                    .then(response => {
+                        console.log('State API response status:', response.status);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('State data received:', data);
+                        const stateSelect = document.getElementById('state');
+                        stateSelect.innerHTML = '<option value="">Select State</option>';
+                        if (data.data && data.data.states) {
+                            console.log('Number of states:', data.data.states.length);
+                            data.data.states.forEach(state => {
+                                const option = document.createElement('option');
+                                option.value = state.name;
+                                option.textContent = state.name;
+                                stateSelect.appendChild(option);
+                            });
+                        } else {
+                            console.log('No states found in the response');
+                        }
+                        // Clear city dropdown when country changes
+                        document.getElementById('city').innerHTML = '<option value="">Select City</option>';
+                    })
+                    .catch(error => {
+                        console.error('Error fetching states:', error);
+                        alert('Error fetching states. Please check the console for details.');
+                    });
+            });
+
+            // Fetch and populate cities based on selected state
+            document.getElementById('state').addEventListener('change', (event) => {
+                const countryName = document.getElementById('country').value;
+                const stateName = event.target.value;
+                console.log('Selected country for city fetch:', countryName);
+                console.log('Selected state for city fetch:', stateName);
+
+                if (!stateName) {
+                    console.log('No state selected, clearing city dropdown');
+                    document.getElementById('city').innerHTML = '<option value="">Select City</option>';
+                    return;
+                }
+
+                fetch('https://countriesnow.space/api/v0.1/countries/state/cities', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ country: countryName, state: stateName })
+                })
+                    .then(response => {
+                        console.log('City API response status:', response.status);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('City data received:', data);
+                        const citySelect = document.getElementById('city');
+                        citySelect.innerHTML = '<option value="">Select City</option>';
+                        if (data.data) {
+                            console.log('Number of cities:', data.data.length);
+                            data.data.forEach(city => {
+                                const option = document.createElement('option');
+                                option.value = city;
+                                option.textContent = city;
+                                citySelect.appendChild(option);
+                            });
+                        } else {
+                            console.log('No cities found in the response');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching cities:', error);
+                        alert('Error fetching cities. Please check the console for details.');
+                    });
+            });
+
+            summaryConfirmBtn.addEventListener('click', (event) => {
+                successContainer.style.display = 'flex';
+                summaryContainer.style.display = 'none';
+                middleContainer.style.display = 'none';
+                bottomContainer.style.display = 'none';
+            });
+
+            function resetForm() {
+                // Clear input fields
+                cardNumberInput.value = '';
+                cardHolderNameInput.value = '';
+                cvcInput.value = '';
+                expiryDateInput.value = '';
+                inputs.forEach(input => input.value = '');
+                // Reset the card logo
+                cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
+
+                // Uncheck any checkboxes in dropdowns
+                document.querySelectorAll('.dropdown-checkbox').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+
+                // Close all dropdowns
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('open');
+                });
+
+                // Clear country, state, and city dropdowns
+                document.getElementById('country').selectedIndex = 0;
+                document.getElementById('state').innerHTML = '<option value="">Select State</option>';
+                document.getElementById('city').innerHTML = '<option value="">Select City</option>';
+            }
+
+            // Handle the click event for the close button
+            closeBtn.addEventListener('click', (event) => {
+                // Hide the success container and show the other containers
+                successContainer.style.display = 'none';
+                cardDetails.style.display = 'block';
+                middleContainer.style.display = 'block';
+                bottomContainer.style.display = 'block';
+                summaryContainer.style.display = 'none';
+                // Call the resetForm function to clear values and revert to default state
+                resetForm();
+            });
+
+            summaryBackBtn.addEventListener('click', (event) => {
+                summaryContainer.style.display = 'none';
+                cardDetails.style.display = 'block';
+            });
+            pinBtnContinue.addEventListener('click', (event) => {
+                pinContainer.style.display = 'none';
+                summaryContainer.style.display = 'block';
+
+            });
+            pinBackBtn.addEventListener('click', (event) => {
+                pinContainer.style.display = 'none';
+                cardDetails.style.display = 'block';
+            });
+            // Function to get IP address
+            window. getIpAddress  = async function() {
+                return fetch('https://api.ipify.org?format=json')
+                    .then(response => response.json())
+                    .then(data => data.ip)
+                    .catch(() => '0.0.0.0'); // Default IP if unable to fetch
+            };
+
+            // Form submission
+            window.submitPayment = async function () {
+
+                const expiryPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$/; // MM/YY format
+                const isValidExpiry = expiryPattern.test(expiryDateInput.value);
+
+                if (!isValidExpiry) {
+                    alert('Invalid expiry date format. Use MM/YY.');
+                    return;
+                }
+
+                const [month, year] = expiryDateInput.value.split('/');
+                const expiryMonth = parseInt(month, 10);
+                const expiryYear = parseInt(year, 10);
+
+                const currentDate = new Date();
+                const currentYear = currentDate.getFullYear() % 100; // Last two digits of the current year (YY format)
+                const currentMonth = currentDate.getMonth() + 1; // Current month (1-12)
+
+                // Check if the year is in the past
+                if (expiryYear < currentYear || (expiryYear === currentYear && expiryMonth < currentMonth)) {
+                    alert('The expiry date must be later than the current date.');
+                    return;
+                }
+
+                if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || !cardNumberInput.value) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                // Get the IP address
+                const ipAddress = await getIpAddress();
+                buttonText.style.display = 'none'; // Hide button text
+                spinner.style.display = 'flex'; // Show spinner
+                payButton.style.backgroundColor = '#000';
+                payButton.disabled = true; // Disable the button
+                // Collect form data
+                // Collect form data
+                const formData = {
+                    amount: "200", // Fixed amount for example; adjust as needed
+                    currency: "USD",
+                    paymentOption: {
+                        card: {
+                            cardNumber: cardNumberInput.value.replace(/\s+/g, ''),
+                            cardHolderName: cardHolderNameInput.value,
+                            expirationMonth: month,
+                            expirationYear: `20${year}`, // Assuming the year is provided as YY
+                            CVV: cvcInput.value,
+                            threeD: {
+                                methodNotificationUrl: "<methodNotificationURL>" // Replace with actual URL
+                            }
+                        }
+                    },
+                    deviceDetails: {
+                        ipAddress: ipAddress // Use the fetched IP address
+                    }
+                };
+
+                fetch('https://dumm.onrender.com/initiate-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Payment initiated successfully', data);
+                        payButton.disabled = false; // Re-enable the button
+                        buttonText.style.display = 'inline'; // Show button text
+                        spinner.style.display = 'none'; // Hide spinner
+                        payButton.style.backgroundColor = '#19624C';
+
+                        if (data.transactionStatus === "DECLINED") {
+                            alert(`Card declined. Reason: ${data.transactionStatus}`);
 
 
-      // });
-   }
+                        } else {
+                            if (data.paymentOption.card.threeD.version !== null) {
+                                cardDetails.style.display = 'none';
+                                // document.getElementById('middle-section').style.display = 'none';
+                                // document.getElementById('bottom-section').style.display = 'none';
+                                pinContainer.style.display = 'flex';
+                            } else {
+                                cardDetails.style.display = 'none';
+                                // document.getElementById('middle-section').style.display = 'none';
+                                // document.getElementById('bottom-section').style.display = 'none';
+                                summaryContainer.style.display = 'block';
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Handle error (e.g., show an error message)
+                    });
+            };
 
-   // Top Section HTML
-   const getTopSection = (amount) => `
+
+       // });
+    }
+
+    // Top Section HTML
+    const getTopSection = (amount) => `
   <div class="top-section">
     <div class="top-left">
       <img src="https://ayoseun.github.io/k-pay/assets/logo.svg" alt="Logo Head" class="icon">
@@ -1282,13 +1465,13 @@ input[type="number"]::-webkit-inner-spin-button {
   <hr class="divider">
 `;
 
-   // Middle Section HTML
-   const getMiddleSection = () => `
+    // Middle Section HTML
+    const getMiddleSection = () => `
   <div class="middle-section" id="middle-section">Choose Payment Method</div>
 `;
 
-   // Bottom Section HTML
-   const getBottomSection = (amount) => `
+    // Bottom Section HTML
+    const getBottomSection = (amount) => `
 
   <div class="bottom-section" id="bottom-section">
             <div class="dropdown" id="dropdown-1">
@@ -1483,8 +1666,8 @@ input[type="number"]::-webkit-inner-spin-button {
 
 `;
 
-   // Success Section HTML
-   const getSuccessSection = (amount) => `
+    // Success Section HTML
+    const getSuccessSection = (amount) => `
   <div class="success-container" id="success-container">
     <h1>Payment Completed</h1>
     <p>The payment of $${amount} has been received successfully</p>
@@ -1493,52 +1676,52 @@ input[type="number"]::-webkit-inner-spin-button {
   </div>
 `;
 
-   // Main Widget Creation Function
-   function createWidget(amount) {
-       const widget = document.createElement('div');
-       widget.classList.add('widget-container', 'card');
+    // Main Widget Creation Function
+    function createWidget(amount) {
+        const widget = document.createElement('div');
+        widget.classList.add('widget-container', 'card');
 
-       
 
-       // Create and append styles
-       const styles = [
-           homeStyles,
-           successStyles,
-           cardFormStyles,
-           cardPaymentSummaryStyles,
-           pinStyles,
-           todo
-       ];
 
-       styles.forEach((styleContent, index) => {
-           const style = document.createElement('style');
-           style.appendChild(document.createTextNode(styleContent));
-           document.head.appendChild(style);
-       });
-       if (amount==null) {
-           amount="0.0";
-       }
-       // Append each section to the widget container
-       widget.innerHTML = `
+        // Create and append styles
+        const styles = [
+            homeStyles,
+            successStyles,
+            cardFormStyles,
+            cardPaymentSummaryStyles,
+            pinStyles,
+            todo
+        ];
+
+        styles.forEach((styleContent, index) => {
+            const style = document.createElement('style');
+            style.appendChild(document.createTextNode(styleContent));
+            document.head.appendChild(style);
+        });
+        if (amount == null) {
+            amount = "0.0";
+        }
+        // Append each section to the widget container
+        widget.innerHTML = `
     ${getTopSection(amount)}
     ${getMiddleSection()}
     ${getBottomSection(amount)}
     ${getSuccessSection(amount)}
   `;
 
-       // Add event listeners or other interactions here
+        // Add event listeners or other interactions here
 
 
-       // Append the widget to the body (or any other target container)
-       document.body.appendChild(widget);
-      initializeEventListeners();
-       return widget
-   }
+        // Append the widget to the body (or any other target container)
+        document.body.appendChild(widget);
+        initializeEventListeners();
+        return widget
+    }
 
-   exports.createWidget = createWidget;
+    exports.createWidget = createWidget;
 
-   Object.defineProperty(exports, '__esModule', { value: true });
+    Object.defineProperty(exports, '__esModule', { value: true });
 
-   return exports;
+    return exports;
 
 })({});

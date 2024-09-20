@@ -237,7 +237,7 @@ export function createWidget(amount) {
     const widget = document.createElement('div');
     widget.classList.add('widget-container', 'card');
 
-    
+
 
     // Create and append styles
     const styles = [
@@ -254,10 +254,10 @@ export function createWidget(amount) {
         style.appendChild(document.createTextNode(styleContent));
         document.head.appendChild(style);
     });
-    if (amount==null) {
-        amount="0.0"
+    if (amount == null) {
+        amount = "0.0"
     } else {
-        
+
     }
     // Append each section to the widget container
     widget.innerHTML = `
@@ -272,6 +272,6 @@ export function createWidget(amount) {
 
     // Append the widget to the body (or any other target container)
     document.body.appendChild(widget);
-   initializeEventListeners()
+    initializeEventListeners()
     return widget
 }

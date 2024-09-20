@@ -287,7 +287,7 @@ export function initializeEventListeners() {
 
         // Form submission
         window.submitPayment = async function () {
-console.log(expiryDateInput.value)
+
             const expiryPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$/; // MM/YY format
             const isValidExpiry = expiryPattern.test(expiryDateInput.value);
 
@@ -310,7 +310,7 @@ console.log(expiryDateInput.value)
                 return;
             }
 
-            if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || cardNumberInput.value) {
+            if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || !cardNumberInput.value) {
                 alert('Please fill in all required fields.');
                 return;
             }

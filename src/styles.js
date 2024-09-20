@@ -672,7 +672,7 @@ export const cardPaymentSummaryStyles = `
     background: #fff;
     padding: 20px;
 
-display: none;
+    display: none;
     width: auto;
     text-align: center;
 }
@@ -681,18 +681,17 @@ display: none;
     display: block;
     flex-direction: column;
     align-items: center;
-    font-family:'Inter'; sans-serif;
     border: 0.8px solid #E0E5F2;
     border-radius: 8px;
-   margin: 0px 50px 0px 50px;
+    margin: 0px 50px 0px 50px;
     padding: 12px;
- 
+
 }
 
 .amount-holder h1 {
     font-size: 18px;
     color: #19624C;
-     font-family:'Inter'; sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 5px 0px 0px 0px;
 }
 
@@ -700,36 +699,36 @@ display: none;
     font-size: 10px;
     color: #677489;
     margin: 0px;
-     font-family:'Inter'; sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 h4 {
     color: #000;
     font-size: 12px;
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
-     font-family:'Inter'; sans-serif;
 }
 
 .summary-details .detail {
     display: flex;
     justify-content: space-between;
     margin: 10px 50px 0px 50px;
-     font-family:'Inter'; sans-serif;
 }
-.summary-details{
+
+.summary-details {
     margin-bottom: 20px;
 }
 
 .detail.total {
     font-weight: bold;
- font-family:'Inter'; sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .detail span {
     font-size: 10px;
     color: #000;
+    font-family: 'Poppins', sans-serif;
     margin: 0px;
-     font-family:'Inter'; sans-serif;
 }
 
 
@@ -737,8 +736,9 @@ h4 {
     font-size: 10px;
     color: #677489;
     margin: 0px;
-     font-family:'Inter'; sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
+
 .summary-divider {
     margin: 30px 50px 0px 50px;
     border: 0;
@@ -747,7 +747,7 @@ h4 {
 
 .summary-buttons {
     display: flex;
-   justify-content: center;
+    justify-content: center;
     margin-top: 30px;
     gap: 5px;
     margin-bottom: 30px;
@@ -761,7 +761,6 @@ h4 {
     cursor: pointer;
     border-radius: 3px;
     font-size: 8px;
-   font-family:'Poppins'; sans-serif;
     padding: 5px 40px 5px 40px;
     font-weight: 300;
     font-family: 'Poppins', sans-serif;
@@ -776,7 +775,123 @@ h4 {
     font-weight: 300;
     font-family: 'Poppins', sans-serif;
     background-color: #CFF1E6;
-}`
+}
+
+@media screen and (max-width:540px) {
+    .summary-container {
+        background: #fff;
+        padding: 10px;
+
+        display: none;
+        width: auto;
+        text-align: center;
+    }
+
+    .amount-holder {
+        display: block;
+        font-family: 'Poppins', sans-serif;
+        flex-direction: column;
+        align-items: center;
+        border: 0.8px solid #E0E5F2;
+        border-radius: 8px;
+        margin: 0px 20px 0px 20px;
+        padding: 8px;
+
+    }
+
+    .amount-holder h1 {
+        font-size: 0.8rem;
+        font-family: 'Poppins', sans-serif;
+        color: #19624C;
+        margin: 5px 0px 0px 0px;
+    }
+
+    .amount-holder p {
+        font-size: 0.5rem;
+        font-family: 'Poppins', sans-serif;
+        color: #677489;
+        margin: 0px;
+    }
+
+    h4 {
+        color: #000;
+        font-size: 0.5rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+    }
+
+    .summary-details .detail {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 10px 0px 10px;
+    }
+
+    .summary-details {
+        margin-bottom: 20px;
+    }
+
+    .detail.total {
+        font-weight: bold;
+
+        font-family: 'Poppins', sans-serif;
+
+    }
+
+    .detail span {
+        font-size: 0.5rem;
+        color: #000;
+        font-family: 'Poppins', sans-serif;
+        margin: 0px;
+    }
+
+
+    .detail p {
+        font-size: 0.5rem;
+        color: #677489;
+        font-family: 'Poppins', sans-serif;
+        margin: 0px;
+    }
+
+    .summary-divider {
+        margin: 30px 10px 0px 10px;
+        border: 0;
+        border-top: 0.5px solid #ddd;
+    }
+
+    .summary-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 5px;
+        margin-bottom: 30px;
+    }
+
+    .summary-buttons-confirm {
+        padding: 5px 10px;
+        border: none;
+        background-color: #19624C;
+        color: white;
+        cursor: pointer;
+        border-radius: 1px;
+        font-size: 0.45rem;
+
+        padding: 5px 10px 5px 10px;
+        font-weight: 300;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .summary-buttons-go-back {
+        color: #19624C;
+        font-size: 0.45rem;
+        border: none;
+        cursor: pointer;
+        padding: 2px 25px 2px 25px;
+        font-weight: 300;
+        font-family: 'Poppins', sans-serif;
+        background-color: #CFF1E6;
+    }
+}
+    `
 
 export const todo = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
@@ -792,9 +907,7 @@ font-family:'Poppins'; sans-serif;
 export const pinStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
-
-.pin-container  {
+.pin-container {
     background: #fff;
     display: none;
     flex-direction: column;
@@ -803,27 +916,31 @@ export const pinStyles = `
     padding: 20px;
     border-radius: 8px;
     margin-top: 30px;
-    
-   
-    
+
+
+
 }
-.pin-container  p{
+
+.pin-container p {
     color: #000;
     width: 70%;
- font-family:'Inter'; sans-serif;
+    font-family: 'Inter' sans-serif;
     font-size: 12px;
     text-align: center;
     font-weight: 400;
 }
+
 .pin-inputs input {
     width: 30px;
-    height:30px;
+    height: 30px;
     margin: 10px;
     font-size: 24px;
-text-align: center;
+    font-family: 'Inter' sans-serif;
+    text-align: center;
     border-radius: 5px;
     border: 0.5px solid #4750B2;
 }
+
 /* Remove the spinner arrows from the number inputs for Chrome, Safari, Edge, and Opera */
 .pin-inputs input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -840,7 +957,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .pin-buttons {
     display: flex;
-   justify-content: center;
+    justify-content: center;
     margin-top: 30px;
     gap: 5px;
     margin-bottom: 30px;
@@ -868,6 +985,72 @@ input[type="number"]::-webkit-inner-spin-button {
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     background-color: #CFF1E6;
+}
+
+@media screen and (max-width: 436px) {
+    .pin-container {
+        background: #fff;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 30px;
+    
+    
+    
+    }
+    .pin-container  p{
+        color: #000;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.5rem;
+        text-align: center;
+        font-weight: 400;
+    }
+    .pin-inputs input {
+        width: 13%;
+        height:3vh;
+        margin: 5px;
+        font-size: 0.5rem;
+        font-family: 'Inter' sans-serif;
+    text-align: center;
+        border-radius: 2px;
+        border: 0.5px solid #4750B2;
+    }
+    .pin-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 7px;
+        margin-bottom: 30px;
+    }
+
+    .pin-continue {
+        padding: 5px 10px;
+        border: none;
+        background-color: #19624C;
+        color: white;
+        cursor: pointer;
+        border-radius: 2px;
+        font-size: 0.45rem;
+        padding: 5px 20px 5px 20px;
+        font-weight: 300;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .pin-back {
+        color: #19624C;
+        font-size: 0.45rem;
+        padding: 5px 20px 5px 20px;
+        font-weight: 300;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        background-color: #CFF1E6;
+    }
 }
 
 `
