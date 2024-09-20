@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.value = value.slice(0, 5); // Max length: 5 (MM/YY)
 
     });
-    
+
     // Function to update card logo based on card number
     function updateCardLogo() {
         const cardNumber = cardNumberInput.value.replace(/\s+/g, '');
@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Get the IP address
         const ipAddress = await getIpAddress();
 
-        if (!cvcInput.value||cardHolderNameInput.value||expiryDateInput.value||cardNumberInput.value) {
+        if (!cvcInput.value||!cardHolderNameInput.value||!expiryDateInput.value||!cardNumberInput.value) {
             alert('Please fill in all required fields.');
             return;
         }
@@ -362,8 +362,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 buttonText.style.display = 'inline'; // Show button text
                 spinner.style.display = 'none'; // Hide spinner
                 payButton.style.backgroundColor = '#19624C';
-                if (data.transactionStatus === "DECLINED") {
-                    alert(`Card declined. Reason: ${data.transactionStatus}`);
+                if (data.transactionStatus === "DECLINED" || data.status !=="SUCCESS") {
+                    if (data.transactionStatus !== undefined) {
+                        alert(`Card Declined. Reason: ${data.transactionStatus}`);
+                    } else {
+                        alert(`Card Declined. Reason: ${data.reason}`);
+                    }
+                   
 
                 } else {
                     if (data.paymentOption.card.threeD.version !== null) {
