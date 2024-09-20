@@ -269,6 +269,7 @@ export function createWidget(amount) {
 
     // Add event listeners or other interactions here
 
+
     // Append the widget to the body (or any other target container)
     document.body.appendChild(widget);
    initializeEventListeners()
