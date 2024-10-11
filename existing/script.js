@@ -1,10 +1,8 @@
-import { APICall } from "./js/api.js";
-import { formatExpiryDate, resetForm, updateCardLogo } from "./js/cardService.js";
-import { updatePaymentOption } from "./js/payments.js";
 
-
-
-
+let selectedCountry = "";
+let selectedCity = "";
+const baseURL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
+  
 document.addEventListener('DOMContentLoaded', () => {
 
   //HOME ELEMENTS
@@ -26,12 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const pinBackBtn = document.getElementById('pin-back')
   const pinBtnContinue = document.getElementById('pin-continue')
   const inputs = document.querySelectorAll('.pin-inputs input');
-  const payButton = document.getElementById('pay-button');
-  const buttonText = document.getElementById('button-text');
+  const cardPayButton = document.getElementById('card-pay-button');
+  const cardPayButtonText = document.getElementById('card-pay-button-text');
   const cardState = document.getElementById('state');
   const cardCity = document.getElementById('city')
+  const emailInput = document.getElementById('email');
+  const firstNameInput = document.getElementById('firstName');
+  const lastNameInput = document.getElementById('lastName');
+  const addressInput = document.getElementById('address');
   const country = document.getElementById('country');
 
+  getCountry(country)
   //SUCCESS ELEMENT
   const successContainer = document.getElementById('success-container')
 
@@ -80,8 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   //----------------CARD EVENTS------------
-  getCountry(country)
-  cardNumberInput.addEventListener('input', updateCardLogo(cardHolderNameInput, cardLogo));
+  cardNumberInput.addEventListener('input', () => {
+    updateCardLogo(cardNumberInput, cardLogo)
+  });
   expiryDateInput.addEventListener('input', formatExpiryDate); // Attach the event listener and pass the event to the function
   inputs.forEach((input, index) => {
     input.addEventListener('input', () => {
@@ -104,9 +108,20 @@ document.addEventListener('DOMContentLoaded', () => {
       cvcInput.value = cvcInput.value.slice(0, 3);
     }
   });
+
   // Fetch and populate states based on selected country
-  country.addEventListener('change', (e) => {
-    getCity(e)
+  country.addEventListener('change', (event) => {
+    const countryName = event.target.value;
+    console.log('Selected country:', countryName);
+
+    if (!countryName) {
+      console.log('No country selected, clearing state and city dropdowns');
+      document.getElementById('state').innerHTML = '<option value="">Select State</option>';
+      document.getElementById('city').innerHTML = '<option value="">Select City</option>';
+      return;
+    }
+    getState(countryName, cardState, cardCity)
+
   });
 
   // Fetch and populate cities based on selected state
@@ -121,29 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cardCity.innerHTML = '<option value="">Select City</option>';
       return;
     }
-
-    APICall('https://countriesnow.space/api/v0.1/countries/state/cities', JSON.stringify({ country: countryName, state: stateName })
-    )
-      .then(data => {
-        console.log('City data received:', data);
-        const citySelect = document.getElementById('city');
-        citySelect.innerHTML = '<option value="">Select City</option>';
-        if (data.data) {
-          console.log('Number of cities:', data.data.length);
-          data.data.forEach(city => {
-            const option = document.createElement('option');
-            option.value = city;
-            option.textContent = city;
-            citySelect.appendChild(option);
-          });
-        } else {
-          console.log('No cities found in the response');
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching cities:', error);
-        alert('Error fetching cities. Please check the console for details.');
-      });
+    getCity(countryName, stateName, cardCity)
   });
 
   pinBtnContinue.addEventListener('click', (event) => {
@@ -156,14 +149,15 @@ document.addEventListener('DOMContentLoaded', () => {
     cardDetails.style.display = 'block';
   })
 
+  cardPayButton.addEventListener('click', (event) => {
+    cardSubmit(expiryDateInput, cvcInput,
+      cardHolderNameInput, cardNumberInput, cardDetails,
+      summaryContainer, spinner,
+      cardPayButton,
+      cardPayButtonText,emailInput,lastNameInput,firstNameInput,addressInput)
 
-
-
-
+  })
   //------------------
-
-
-
 
 
   //-------CRYPTO ELEMENT---------
@@ -192,110 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Form submission
-  window.submitForm = async function () {
 
-
-
-    const expiryPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$/; // MM/YY format
-    const isValidExpiry = expiryPattern.test(expiryDateInput.value);
-
-    if (!isValidExpiry) {
-      alert('Invalid expiry date format. Use MM/YY.');
-      return;
-    }
-
-    const [month, year] = expiryDateInput.value.split('/');
-    const expiryMonth = parseInt(month, 10);
-    const expiryYear = parseInt(year, 10);
-
-    const currentDate = new Date();
-    const currentYear = currentDate.getFullYear() % 100; // Last two digits of the current year (YY format)
-    const currentMonth = currentDate.getMonth() + 1; // Current month (1-12)
-
-    // Check if the year is in the past
-    if (expiryYear < currentYear || (expiryYear === currentYear && expiryMonth < currentMonth)) {
-      alert('The expiry date must be later than the current date.');
-      return;
-    }
-
-    // Get the IP address
-    const ipAddress = await APICall('https://api.ipify.org?format=json', 'GET', null)
-      .then(response => response.json())
-      .then(data => data.ip)
-      .catch(() => '0.0.0.0');;
-
-    if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || !cardNumberInput.value) {
-      alert('Please fill in all required fields.');
-      return;
-    }
-
-
-    buttonText.style.display = 'none'; // Hide button text
-    spinner.style.display = 'flex'; // Show spinner
-    payButton.style.backgroundColor = '#000';
-    payButton.disabled = true; // Disable the button
-    // Collect form data
-    const formData = {
-      amount: "200", // Fixed amount for example; adjust as needed
-      currency: "USD",
-      paymentOption: {
-        card: {
-          cardNumber: cardNumberInput.value.replace(/\s+/g, ''),
-          cardHolderName: cardHolderNameInput.value,
-          expirationMonth: month,
-          expirationYear: `20${year}`, // Assuming the year is provided as YY
-          CVV: cvcInput.value,
-          threeD: {
-            methodNotificationUrl: "<methodNotificationURL>" // Replace with actual URL
-          }
-        }
-      },
-      deviceDetails: {
-        ipAddress: ipAddress // Use the fetched IP address
-      }
-    };
-    console.log(formData)
-    fetch('https://dumm.onrender.com/initiate-payment', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Payment initiated successfully', data);
-        payButton.disabled = false; // Re-enable the button
-        buttonText.style.display = 'inline'; // Show button text
-        spinner.style.display = 'none'; // Hide spinner
-        payButton.style.backgroundColor = '#19624C';
-        if (data.transactionStatus === "DECLINED" || data.status !== "SUCCESS") {
-          if (data.transactionStatus !== undefined) {
-            alert(`Card Declined. Reason: ${data.transactionStatus}`);
-          } else {
-            alert(`Card Declined. Reason: ${data.reason}`);
-          }
-
-
-        } else {
-          if (data.paymentOption.card.threeD.version !== null) {
-            cardDetails.style.display = 'none';
-            // document.getElementById('middle-section').style.display = 'none';
-            // document.getElementById('bottom-section').style.display = 'none';
-            pinContainer.style.display = 'flex';
-          } else {
-            cardDetails.style.display = 'none';
-            // document.getElementById('middle-section').style.display = 'none';
-            // document.getElementById('bottom-section').style.display = 'none';
-            summaryContainer.style.display = 'block';
-          }
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        // Handle error (e.g., show an error message)
-      });
-  };
 
 
 });
@@ -303,48 +194,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+function getCountry(country) {
+  fetch('https://restcountries.com/v3.1/all')
+    .then(response => response.json())
+    .then(data => {
+      console.log('Countries fetched:', data.length);
 
- async function getCountry(country) {
-// Fetch and populate countries
-const data=await APICall('https://restcountries.com/v3.1/all','GET',null)
+      country.innerHTML = '<option value="">Select Country</option>';
+      // Sort the countries by their common names in ascending order
+      data.sort((a, b) => a.name.common.localeCompare(b.name.common));
 
-
-    console.log('Countries fetched:', data.length);
-
-    country.innerHTML = '<option value="">Select Country</option>';
-    // Sort the countries by their common names in ascending order
-    data.sort((a, b) => a.name.common.localeCompare(b.name.common));
-
-    data.forEach(c => {
-      const option = document.createElement('option');
-      option.value = c.name.common;
-      option.textContent = c.name.common;
-      country.appendChild(option);
-    });
-  
- 
-// Function to update content display
+      data.forEach(c => {
+        const option = document.createElement('option');
+        option.value = c.name.common;
+        option.textContent = c.name.common;
+        console.log(c.cca2)
+        country.appendChild(option);
+        selectedCountry = c.cca2;
+      });
+    })
+    .catch(error => console.error('Error fetching countries:', error));
 
 }
 
-async function getCity(e,state,city){
-  const countryName = e.target.value;
-  console.log('Selected country:', countryName);
-
-  if (!countryName) {
-    console.log('No country selected, clearing state and city dropdowns');
-    state.innerHTML = '<option value="">Select State</option>';
-    city.innerHTML = '<option value="">Select City</option>';
-    return;
-  }
-
-  APICall('https://countriesnow.space/api/v0.1/countries/states', 
-     'POST',
-     JSON.stringify({ country: countryName })
-  )
+function getState(countryName, state, city) {
+  fetch('https://countriesnow.space/api/v0.1/countries/states', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ country: countryName })
+  })
+    .then(response => {
+      console.log('State API response status:', response.status);
+      return response.json();
+    })
     .then(data => {
       console.log('State data received:', data);
-      
+
       state.innerHTML = '<option value="">Select State</option>';
       if (data.data && data.data.states) {
         console.log('Number of states:', data.data.states.length);
@@ -365,3 +252,288 @@ async function getCity(e,state,city){
       alert('Error fetching states. Please check the console for details.');
     });
 }
+
+function getCity(countryName, stateName, city) {
+  fetch('https://countriesnow.space/api/v0.1/countries/state/cities', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ country: countryName, state: stateName })
+  })
+    .then(response => {
+      console.log('State API response status:', response.status);
+      return response.json();
+    })
+    .then(data => {
+
+      console.log('City data received:', data);
+
+      city.innerHTML = '<option value="">Select City</option>';
+      if (data.data) {
+        console.log('Number of cities:', data.data.length);
+        data.data.forEach(c => {
+          const option = document.createElement('option');
+          option.value = c;
+          option.textContent = c;
+          city.appendChild(option);
+          selectedCity=c;
+        });
+      } else {
+        console.log('No states found in the response');
+      }
+
+    })
+    .catch(error => {
+      console.error('Error fetching states:', error);
+      alert('Error fetching states. Please check the console for details.');
+    });
+}
+
+function updateContentDisplay(document, currentlyDisplayedContent, contentDisplay, paymentDiv) {
+  const content = paymentDiv.querySelector('.payment-content');
+
+  // If there's currently displayed content, move it back to its original payment div
+  if (currentlyDisplayedContent) {
+    const originalPaymentDiv = document.querySelector(`.payments[data-id="${currentlyDisplayedContent.getAttribute('data-id')}"]`);
+    if (originalPaymentDiv) {
+      originalPaymentDiv.appendChild(currentlyDisplayedContent);
+    }
+    currentlyDisplayedContent.style.display = 'none';
+  }
+
+  if (content) {
+    content.style.display = 'block';
+    contentDisplay.appendChild(content);
+    contentDisplay.style.display = 'block';
+    currentlyDisplayedContent = content;
+  } else {
+    contentDisplay.style.display = 'none';
+    currentlyDisplayedContent = null;
+  }
+}
+
+// Function to update radio button and content
+function updatePaymentOption(document, contentDisplay, paymentDiv) {
+  let currentlyDisplayedContent = null;
+  // Uncheck all radio buttons
+  document.querySelectorAll('.payments-radio').forEach(radio => {
+    radio.checked = false;
+  });
+
+  // Check the radio button in the clicked payment div
+  const radio = paymentDiv.querySelector('.payments-radio');
+  if (radio) {
+    radio.checked = true;
+  }
+
+  updateContentDisplay(document, currentlyDisplayedContent, contentDisplay, paymentDiv);
+}
+function cardSubmit(expiryDateInput, cvcInput,
+  cardHolderNameInput, cardNumberInput, cardDetails,
+  summaryContainer, spinner,
+  cardPayButton,
+  cardPayButtonText,emailInput,lastNameInput,firstNameInput,addressInput
+) {
+
+
+
+  const expiryPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$/; // MM/YY format
+  const isValidExpiry = expiryPattern.test(expiryDateInput.value);
+
+  if (!isValidExpiry) {
+    alert('Invalid expiry date format. Use MM/YY.');
+    return;
+  }
+
+  const [month, year] = expiryDateInput.value.split('/');
+  const expiryMonth = parseInt(month, 10);
+  const expiryYear = parseInt(year, 10);
+
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear() % 100; // Last two digits of the current year (YY format)
+  const currentMonth = currentDate.getMonth() + 1; // Current month (1-12)
+
+  // Check if the year is in the past
+  if (expiryYear < currentYear || (expiryYear === currentYear && expiryMonth < currentMonth)) {
+    alert('The expiry date must be later than the current date.');
+    return;
+  }
+  const ipAddress = fetch('https://api.ipify.org?format=json', {
+    method: 'GET',
+
+  })
+    .then(response => response.json())
+    .then(data => data.ip)
+    .catch(() => '0.0.0.0');;
+
+  if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || !cardNumberInput.value) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+
+  cardPayButtonText.style.display = 'none'; // Hide button text
+  spinner.style.display = 'flex'; // Show spinner
+  cardPayButton.style.backgroundColor = '#000';
+  cardPayButton.disabled = true; // Disable the button
+  // Collect form data
+  // Collect form data
+  const formData = {
+    currency: "EUR",
+    amount: "100",
+    transactionType: "Sale",
+    paymentOption: {
+      card: {
+        cardNumber: cardNumberInput.value.replace(/\s+/g, ''),
+        cardHolderName: cardHolderNameInput.value,
+        expirationMonth: month,
+        expirationYear: `20${year}`,
+        CVV: cvcInput.value
+      }
+    },
+    billingAddress: {
+      firstName: firstNameInput.value,
+      lastName: lastNameInput.value,
+      address: addressInput.value,
+      city: selectedCity,
+      country: selectedCountry,
+      email: emailInput.value,
+    },
+    deviceDetails: {
+      ipAddress: ipAddress
+    }
+  };
+  console.log(formData)
+  fetch(baseURL+"/payment/simple-card", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Payment initiated successfully', data);
+      cardPayButton.disabled = false; // Re-enable the button
+      cardPayButtonText.style.display = 'inline'; // Show button text
+      spinner.style.display = 'none'; // Hide spinner
+      cardPayButton.style.backgroundColor = '#19624C';
+      if (data.transactionStatus === "DECLINED" || data.status !== "SUCCESS") {
+        if (data.transactionStatus !== undefined) {
+          alert(`Card Declined. Reason: ${data.transactionStatus}`);
+        } else {
+          alert(`Card Declined. Reason: ${data.reason}`);
+        }
+
+
+      } else {
+        if (data.paymentOption.card.threeD.version !== null) {
+          cardDetails.style.display = 'none';
+          // document.getElementById('middle-section').style.display = 'none';
+          // document.getElementById('bottom-section').style.display = 'none';
+          pinContainer.style.display = 'flex';
+        } else {
+          cardDetails.style.display = 'none';
+          // document.getElementById('middle-section').style.display = 'none';
+          // document.getElementById('bottom-section').style.display = 'none';
+          summaryContainer.style.display = 'block';
+        }
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Handle error (e.g., show an error message)
+    });
+};
+
+const TARGET_CHAIN_ID = 0x13882;
+const connectWallet = async () => {
+  if (typeof window.ethereum !== 'undefined') {
+    try {
+      // Request account access
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      console.log(accounts[0]);
+      alert(accounts[0])
+      // Check the network chain ID
+      const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+      if (chainId !== TARGET_CHAIN_ID) {
+        alert('Please switch to the correct network (chainId: 84532).');
+
+      } else {
+
+
+        console.log(accounts[0]); // Fetch ENS name after successful connection
+      }
+    } catch (error) {
+      console.error("Error connecting to wallet: ", error);
+    }
+  } else {
+    alert('MetaMask is not installed. Please install it to use this feature.');
+  }
+};
+
+
+function updateCardLogo(cardNumberInput, cardLogo) {
+  const cardNumber = cardNumberInput.value.replace(/\s+/g, '');
+  if (cardNumber.startsWith('47') || cardNumber.startsWith('44') || cardNumber.startsWith('41') || cardNumber.startsWith('40')) {
+    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/visa.svg'; // Visa
+  } else if (cardNumber.startsWith('51') || cardNumber.startsWith('53') || cardNumber.startsWith('55') || cardNumber.startsWith('22')) {
+    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/mastercard.svg'; // MasterCard
+  } else if (cardNumber.startsWith('62') || cardNumber.startsWith('65') || cardNumber.startsWith('60')) {
+    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/discover.svg'; // Discover
+  } else if (cardNumber.startsWith('37')) {
+    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/americanExpress.svg'; // Maestro
+  } else if (cardNumber.startsWith('623')) {
+    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/unionpay.svg'; // Maestro
+  } else if (cardNumber.startsWith('36') || cardNumber.startsWith('38')) {
+    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/diners.svg'; // Maestro
+  } else {
+    cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
+  }
+}
+
+function formatExpiryDate(e) {
+  let value = e.target.value.replace(/\D/g, ''); // Only allow digits
+
+  if (value.length >= 2) {
+    let month = value.slice(0, 2);
+
+    // Validate the month part (01-12)
+    if (parseInt(month, 10) > 12) {
+      month = '12'; // If invalid month, set it to 12
+    }
+
+    value = month + '/' + value.slice(2, 4); // Insert slash for MM/YY
+  }
+
+  e.target.value = value.slice(0, 5); // Max length: 5 (MM/YY)
+}
+
+function resetForm(document, cardNumberInput,
+  cardHolderNameInput, cvcInput, expiryDateInput, inputs, cardLogo, country, cardCity, cardState
+) {
+  // Clear input fields
+  cardNumberInput.value = '';
+  cardHolderNameInput.value = '';
+  cvcInput.value = '';
+  expiryDateInput.value = '';
+  inputs.forEach(input => input.value = '');
+  // Reset the card logo
+  cardLogo.src = 'https://ayoseun.github.io/k-pay/assets/card.svg'; // Default
+
+  // Uncheck any checkboxes in dropdowns
+  document.querySelectorAll('.payments-radio').forEach(checkbox => {
+    checkbox.checked = false;
+  });
+
+
+
+  // Clear country, state, and city dropdowns
+  country.selectedIndex = 0;
+  cardState.innerHTML = '<option value="">Select State</option>';
+  cardCity.innerHTML = '<option value="">Select City</option>';
+}
+
+
+

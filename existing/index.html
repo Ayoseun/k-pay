@@ -130,25 +130,32 @@
                                 </div>
                             </div>
                             <div class="form-field">
-                                <label for="address1">Address 1</label>
+                                <label for="email">Email</label>
                                 <div class="input-wrapper">
-                                    <input type="text" id="address1" placeholder="Input address">
+                                    <input type="email" id="email" placeholder="Enter your email">
                                 </div>
                             </div>
                             <div class="form-field">
-                                <label for="address2">Address 2 (optional)</label>
+                                <label for="firstName">First Name</label>
                                 <div class="input-wrapper">
-                                    <input type="text" id="address2" placeholder="Input address (optional)">
+                                    <input type="text" id="firstName" placeholder="Enter your first name">
                                 </div>
                             </div>
                             <div class="form-field">
-                                <label for="zip">Zip Code</label>
+                                <label for="lastName">Last Name</label>
                                 <div class="input-wrapper">
-                                    <input type="number" id="zip" placeholder="Enter code here">
+                                    <input type="text" id="lastName" placeholder="Enter your last name">
                                 </div>
                             </div>
-                            <button class="pay-button" id="pay-button">
-                                <span id="button-text">Pay $50000</span>
+                            <div class="form-field">
+                                <label for="address2">Address</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="address" placeholder="Input address">
+                                </div>
+                            </div>
+                          
+                            <button class="card-pay-button" id="card-pay-button">
+                                <span id="card-pay-button-text">Pay $50000</span>
                                 <div id="loader"></div>
                             </button>
 
@@ -359,16 +366,8 @@
             <span class="orokiipay">Orokiipay</span>
         </div>
 
-        <script type="importmap">
-            {
-              "imports": {
-                "./js/api.js": "./js/api.js",
-                "./js/cardService.js": "./js/cardService.js",
-                "./js/payments.js": "./js/payments.js"
-              }
-            }
-            </script>
-            <script type="module" src="script.js"></script>
+        
+            <script  src="script.js"></script>
         
     </div>
 
