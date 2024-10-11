@@ -338,7 +338,7 @@ async function getCity(e,state,city){
     return;
   }
 
-  APICall('https://cors-anywhere.herokuapp.com/https://countriesnow.space/api/v0.1/countries/states', 
+  APICall('https://countriesnow.space/api/v0.1/countries/states', 
      'POST',
      JSON.stringify({ country: countryName })
   )
