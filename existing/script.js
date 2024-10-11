@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   //----------------CARD EVENTS------------
- 
+  getCountry(country)
   cardNumberInput.addEventListener('input', updateCardLogo(cardHolderNameInput, cardLogo));
   expiryDateInput.addEventListener('input', formatExpiryDate); // Attach the event listener and pass the event to the function
   inputs.forEach((input, index) => {
@@ -105,50 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   // Fetch and populate states based on selected country
-  document.getElementById('country').addEventListener('change', (event) => {
-    const countryName = event.target.value;
-    console.log('Selected country:', countryName);
-
-    if (!countryName) {
-      console.log('No country selected, clearing state and city dropdowns');
-      document.getElementById('state').innerHTML = '<option value="">Select State</option>';
-      document.getElementById('city').innerHTML = '<option value="">Select City</option>';
-      return;
-    }
-
-    fetch('https://countriesnow.space/api/v0.1/countries/states', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ country: countryName })
-    })
-      .then(response => {
-        console.log('State API response status:', response.status);
-        return response.json();
-      })
-      .then(data => {
-        console.log('State data received:', data);
-        const stateSelect = document.getElementById('state');
-        stateSelect.innerHTML = '<option value="">Select State</option>';
-        if (data.data && data.data.states) {
-          console.log('Number of states:', data.data.states.length);
-          data.data.states.forEach(state => {
-            const option = document.createElement('option');
-            option.value = state.name;
-            option.textContent = state.name;
-            stateSelect.appendChild(option);
-          });
-        } else {
-          console.log('No states found in the response');
-        }
-        // Clear city dropdown when country changes
-        document.getElementById('city').innerHTML = '<option value="">Select City</option>';
-      })
-      .catch(error => {
-        console.error('Error fetching states:', error);
-        alert('Error fetching states. Please check the console for details.');
-      });
+  country.addEventListener('change', (e) => {
+    getCity(e)
   });
 
   // Fetch and populate cities based on selected state
@@ -357,14 +315,53 @@ const data=await APICall('https://restcountries.com/v3.1/all','GET',null)
     // Sort the countries by their common names in ascending order
     data.sort((a, b) => a.name.common.localeCompare(b.name.common));
 
-    data.forEach(country => {
+    data.forEach(c => {
       const option = document.createElement('option');
-      option.value = country.name.common;
-      option.textContent = country.name.common;
+      option.value = c.name.common;
+      option.textContent = c.name.common;
       country.appendChild(option);
     });
   
  
 // Function to update content display
 
+}
+
+async function getCity(e,state,city){
+  const countryName = e.target.value;
+  console.log('Selected country:', countryName);
+
+  if (!countryName) {
+    console.log('No country selected, clearing state and city dropdowns');
+    state.innerHTML = '<option value="">Select State</option>';
+    city.innerHTML = '<option value="">Select City</option>';
+    return;
+  }
+
+  APICall('https://countriesnow.space/api/v0.1/countries/states', 
+     'POST',
+     JSON.stringify({ country: countryName })
+  )
+    .then(data => {
+      console.log('State data received:', data);
+      
+      state.innerHTML = '<option value="">Select State</option>';
+      if (data.data && data.data.states) {
+        console.log('Number of states:', data.data.states.length);
+        data.data.states.forEach(s => {
+          const option = document.createElement('option');
+          option.value = s.name;
+          option.textContent = s.name;
+          state.appendChild(option);
+        });
+      } else {
+        console.log('No states found in the response');
+      }
+      // Clear city dropdown when country changes
+      city.innerHTML = '<option value="">Select City</option>';
+    })
+    .catch(error => {
+      console.error('Error fetching states:', error);
+      alert('Error fetching states. Please check the console for details.');
+    });
 }
