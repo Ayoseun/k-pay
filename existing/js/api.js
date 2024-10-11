@@ -8,7 +8,7 @@ export async function APICall(url, method = 'POST', body = null) {
             body: body ? JSON.stringify(body) : undefined // Serialize body only if it's provided
         });
 
-        console.log('API response status:', response.status);
+        console.log('API response status:', response);
         
         if (!response.ok) {
             const errorBody = await response.text(); // Get response body for better error handling
