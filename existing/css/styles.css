@@ -1,15 +1,15 @@
-
 .card {
     width: 70%;
     max-width: 65%;
     background-color: white;
     border-radius: 2%;
     box-shadow: 0 4px 8px rgba(40, 41, 41, 0.1);
-    height: auto; 
+    height: auto;
     padding-bottom: 3%;
-  
+
     box-sizing: border-box;
 }
+
 
 .top-section {
     display: flex;
@@ -94,13 +94,13 @@
     margin: 10px 70px 0px 70px;
 }
 
-.dropdown {
+.payments {
 
     margin-bottom: 2px;
     overflow: hidden;
 }
 
-.dropdown-header {
+.payments-header {
     display: flex;
     border: 0.5px solid #D0D5DD;
     border-radius: 5px;
@@ -109,100 +109,71 @@
     cursor: pointer;
 }
 
-.dropdown-checkbox {
-    appearance: none;
-    -webkit-appearance: none;
-    margin-right: 10px;
-    border: 0.5px solid #D0D5DD;
-    border-radius: 2px;
-    width: 12px;
-    height: 12px;
-    background-color: #FFFFFF;
-    cursor: pointer;
-    position: relative; /* Add this for positioning the checkmark */
+input[type="radio"] {
+    width: 4%;
+    border: #16A34A;
+    border-width: 0.1%;
+    accent-color: #16A34A;
 }
 
-/* Style for when the checkbox is checked */
-.dropdown-checkbox:checked {
-    border: 1.1px solid #6cf1ce;
-
-}
-
-/* To add a checkmark when checked */
-.dropdown-checkbox:checked:after {
-    content: '\2714'; /* Unicode character for a checkmark */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #19624C;
-    font-size: 10px; /* Adjust size as needed */
-    line-height: 1;
-}
-
-.dropdown-inner {
+.payments-inner {
     display: flex;
     align-items: center;
 }
 
-.dropdown-image {
+.payments-image {
     width: 24px;
     height: 24px;
     margin-right: 10px;
 }
 
-.dropdown-image-crypto {
+.payments-image-crypto {
     width: 16px;
     height: 16px;
     margin-right: 10px;
 }
 
-.dropdown-image-others {
+.payments-image-others {
     width: 38px;
     height: 38px;
-    
+
 }
 
-.dropdown-text {
+.payments-text {
     flex: 1;
     margin-right: 15px;
     font-family: 'Poppins', sans-serif;
     font-size: x-small;
 }
 
-.dropdown-chevron {
-    width: 8px;
-    height: 8px;
-}
 
-.dropdown-chevron {
-    margin-left: auto;
-    font-size: 16px;
-}
 
-.dropdown-content {
+
+.payments-content {
     display: none;
     width: 100%;
     box-sizing: border-box;
     max-height: 350px;
     overflow-y: auto;
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+    /* For Internet Explorer and Edge */
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-.dropdown-content::-webkit-scrollbar {
+.payments-content::-webkit-scrollbar {
     display: none;
 }
 
 /* Optional: Custom scrollbar styling */
-.dropdown-content {
+.payments-content {
     /* Ensure the content has some padding on the right to avoid overlap */
     padding-right: 20px;
 }
 
 /* Create a custom scrollbar effect */
-.dropdown-content::after {
+.payments-content::after {
     content: "";
     position: absolute;
     top: 0;
@@ -214,25 +185,24 @@
 }
 
 /* Optional: Style the "thumb" of the scrollbar */
-.dropdown-content::before {
+.payments-content::before {
     content: "";
     position: absolute;
     top: 0;
     right: 0;
     width: 8px;
-    height: 30%; /* Adjust based on content */
+    height: 30%;
+    /* Adjust based on content */
     background: rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     opacity: 0;
     transition: opacity 0.2s;
 }
 
-.dropdown-content:hover::before {
+.payments-content:hover::before {
     opacity: 1;
 }
-.dropdown.open .dropdown-content {
-    display: block;
-}
+
 
 @media screen and (max-width: 436px) {
 
@@ -241,7 +211,7 @@
         height: 12px;
         margin-right: 10px;
     }
-    
+
     .logo-text {
         font-size: 0.5rem;
         color: #000;
@@ -263,6 +233,7 @@
         margin: 10px 0px 0px 20px;
         font-weight: 500;
     }
+
     .middle-section {
         display: block;
         text-align: center;
@@ -270,12 +241,13 @@
         font-size: 0.5rem;
         margin: 20px 0px 20px 0px;
     }
+
     .bottom-section {
         display: block;
         margin: 10px 20px 0px 20px;
     }
 
-    .dropdown-header {
+    .payment-header {
         display: flex;
         border: 0.5px solid #D0D5DD;
         border-radius: 5px;
@@ -285,7 +257,7 @@
         cursor: pointer;
     }
 
-    .dropdown-checkbox {
+    .payment-checkbox {
         appearance: none;
         -webkit-appearance: none;
         margin-right: 10px;
@@ -295,8 +267,10 @@
         height: 8px;
         background-color: #FFFFFF;
         cursor: pointer;
-        position: relative; /* Add this for positioning the checkmark */
+        position: relative;
+        /* Add this for positioning the checkmark */
     }
+
     .dropdown-text {
         flex: 1;
         margin-right: 15px;
@@ -309,16 +283,41 @@
         height: 10px;
         margin-right: 10px;
     }
-    
+
     .dropdown-image-crypto {
         width: 10px;
         height: 10px;
         margin-right: 10px;
     }
-    
+
     .dropdown-image-others {
         width: 15px;
         height: 15px;
-        
+
     }
+}
+
+
+
+
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.clickable-div {
+    background-color: #f0f0f0;
+    padding: 10px;
+    cursor: pointer;
+}
+.content {
+    background-color: #e0e0e0;
+    padding: 10px;
+    margin-top: 10px;
+    display: none;
 }
