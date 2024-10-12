@@ -13,8 +13,196 @@ const getIpAddress = async () => {
   }
 };
 
+const networks = [
+  {
+    chainId: "0x1", // 1 in decimal
+    network: "Ethereum",
+    token: "ETH",
+    rpc: "https://rpc.lokibuilder.xyz/wallet", // Replace with your RPC
+    symbol: "ETH",
+    decimal: 18
+  },
+  {
+    chainId: "0x1",
+    network: "Ethereum",
+    token: "USDC",
+    rpc: "https://rpc.lokibuilder.xyz/wallet",
+    symbol: "USDC",
+    decimal: 6
+  },
+  {
+    chainId: "0x1",
+    network: "Ethereum",
+    token: "USDT",
+    rpc: "https://rpc.lokibuilder.xyz/wallet",
+    symbol: "USDT",
+    decimal: 6
+  },
+  {
+    chainId: "0x1",
+    network: "Ethereum",
+    token: "DAI",
+    rpc: "https://rpc.lokibuilder.xyz/wallet",
+    symbol: "DAI",
+    decimal: 18
+  },
+  {
+    chainId: "0x89", // 137 in decimal
+    network: "Polygon",
+    token: "MATIC",
+    rpc: "https://polygon-rpc.com",
+    symbol: "MATIC",
+    decimal: 18
+  },
+  {
+    chainId: "0x89",
+    network: "Polygon",
+    token: "USDC",
+    rpc: "https://polygon-rpc.com",
+    symbol: "USDC",
+    decimal: 6
+  },
+  {
+    chainId: "0x89",
+    network: "Polygon",
+    token: "USDT",
+    rpc: "https://polygon-rpc.com",
+    symbol: "USDT",
+    decimal: 6
+  },
+  {
+    chainId: "0x89",
+    network: "Polygon",
+    token: "DAI",
+    rpc: "https://polygon-rpc.com",
+    symbol: "DAI",
+    decimal: 18
+  },
+  {
+    chainId: "0xa", // 10 in decimal
+    network: "Optimism",
+    token: "ETH",
+    rpc: "https://mainnet.optimism.io",
+    symbol: "ETH",
+    decimal: 18
+  },
+  {
+    chainId: "0xa",
+    network: "Optimism",
+    token: "USDC",
+    rpc: "https://mainnet.optimism.io",
+    symbol: "USDC",
+    contract: "0x7f5c764cbc14f9669b88837ca1490cca17c31607", // USDC contract on Optimism
+    
+    decimal: 6
+  },
+  {
+    chainId: "0xa",
+    network: "Optimism",
+    token: "USDT",
+    rpc: "https://mainnet.optimism.io",
+    symbol: "USDT",
+    decimal: 6
+  },
+  {
+    chainId: "0xa",
+    network: "Optimism",
+    token: "DAI",
+    contract: "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1", // DAI contract on Optimism
+   
+    rpc: "https://mainnet.optimism.io",
+    symbol: "DAI",
+    decimal: 18
+  },
+  {
+    chainId: "0xa4b1", 
+    chain: "42161",
+    network: "Arbitrum",
+    token: "ETH",
+    rpc: "https://arbitrum.llamarpc.com	",
+    symbol: "ETH",
+    decimal: 18
+  },
+  {
+    chainId: "0xa4b1",
+    chain: "42161",
+    network: "Arbitrum",
+    token: "USDC",
+    contract: "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8", // USDC contract on Arbitrum
+   
+    rpc: "https://arbitrum.llamarpc.com	",
+    symbol: "USDC",
+    decimal: 6
+  },
+  {
+    chainId: "0xa4b1",
+    chain: "42161",
+    network: "Arbitrum",
+    token: "USDT",
+    rpc: "https://arbitrum.llamarpc.com	",
+    symbol: "USDT",
+    decimal: 6
+  },
+  {
+    chainId: "0xa4b1",
+    chain: "42161",
+    network: "Arbitrum",
+    token: "DAI",
+    contract: "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1", // DAI contract on Arbitrum
+   
+    rpc: "https://arbitrum.llamarpc.com	",
+    symbol: "DAI",
+    decimal: 18
+  },
+  {
+    chainId: "0x2105", // 8453 in decimal
+    network: "Base",
+    token: "ETH",
+    rpc: "https://mainnet.base.org",
+    symbol: "ETH",
+    decimal: 18
+  },
+  {
+    chainId: "0x2105",
+    network: "Base",
+    token: "USDC",
+    contract:null,
+    rpc: "https://mainnet.base.org",
+    symbol: "USDC",
+    decimal: 6
+  },
+  {
+    chainId: "0xa4ec", // 42220 in decimal
+    network: "Celo",
+    token: "CELO",
+    contract:null,
+    rpc: "https://forno.celo.org",
+    symbol: "CELO",
+    decimal: 18
+  },
+  {
+    chainId: "0xa4ec",
+    network: "Celo",
+    token: "cUSD",
+    contract: "0x765de816845861e75a25fca122bb6898b8b1282a", // cUSD contract on Celo
+   
+    rpc: "https://forno.celo.org",
+    symbol: "cUSD",
+    decimal: 18
+  },
+  {
+    chainId: "0xa4ec",
+    network: "Celo",
+    token: "USDC",
+    contract: "0x37f750b7cc259a2f741af45294f6a16572cf5cad", // USDC contract on Celo
+  
+    rpc: "https://forno.celo.org",
+    symbol: "USDC",
+    decimal: 6
+  }
+];
 let paymentType = 0;
-const TARGET_CHAIN_ID = 0x13882;
+let TARGET_CHAIN_ID = "0x13882";
 document.addEventListener('DOMContentLoaded', () => {
 
 
@@ -50,11 +238,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const country = document.getElementById('country');
   const tokens = document.getElementById('tokens');
   const achPayButton = document.getElementById('ach-pay-button');
-
+  //CRYPTO
+  const connectWalletButton = document.getElementById('connect-wallet');
 
   //SUCCESS ELEMENT
   const successContainer = document.getElementById('success-container')
-  const connectWalletButton = document.getElementById('connect-wallet');
+
   //SUMMARY ELEMENTS
   const summaryContainer = document.getElementById('summary-container')
   const summaryConfirmBtn = document.getElementById('summary-buttons-confirm')
@@ -226,7 +415,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   //-------CRYPTO ELEMENT---------
-
+  tokens.addEventListener('change', (event) => {
+    
+    console.log('Selected token:', event.target.value);
+    const jsonData= JSON.parse(event.target.value)
+connectWallet(jsonData)
+   
+  });
   //--------------
 
   //----- CRYPTO EVENTS------
@@ -646,176 +841,6 @@ async function achSubmit(expiryDateInput, cvcInput,
 };
 
 
-const networks = [
-  {
-    chainId: "0x1", // 1 in decimal
-    network: "Ethereum",
-    token: "ETH",
-    rpc: "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID", // Replace with your RPC
-    symbol: "ETH",
-    decimal: 18
-  },
-  {
-    chainId: "0x1",
-    network: "Ethereum",
-    token: "USDC",
-    rpc: "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID",
-    symbol: "USDC",
-    decimal: 6
-  },
-  {
-    chainId: "0x1",
-    network: "Ethereum",
-    token: "USDT",
-    rpc: "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID",
-    symbol: "USDT",
-    decimal: 6
-  },
-  {
-    chainId: "0x1",
-    network: "Ethereum",
-    token: "DAI",
-    rpc: "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID",
-    symbol: "DAI",
-    decimal: 18
-  },
-  {
-    chainId: "0x89", // 137 in decimal
-    network: "Polygon",
-    token: "MATIC",
-    rpc: "https://polygon-rpc.com",
-    symbol: "MATIC",
-    decimal: 18
-  },
-  {
-    chainId: "0x89",
-    network: "Polygon",
-    token: "USDC",
-    rpc: "https://polygon-rpc.com",
-    symbol: "USDC",
-    decimal: 6
-  },
-  {
-    chainId: "0x89",
-    network: "Polygon",
-    token: "USDT",
-    rpc: "https://polygon-rpc.com",
-    symbol: "USDT",
-    decimal: 6
-  },
-  {
-    chainId: "0x89",
-    network: "Polygon",
-    token: "DAI",
-    rpc: "https://polygon-rpc.com",
-    symbol: "DAI",
-    decimal: 18
-  },
-  {
-    chainId: "0xa", // 10 in decimal
-    network: "Optimism",
-    token: "ETH",
-    rpc: "https://mainnet.optimism.io",
-    symbol: "ETH",
-    decimal: 18
-  },
-  {
-    chainId: "0xa",
-    network: "Optimism",
-    token: "USDC",
-    rpc: "https://mainnet.optimism.io",
-    symbol: "USDC",
-    decimal: 6
-  },
-  {
-    chainId: "0xa",
-    network: "Optimism",
-    token: "USDT",
-    rpc: "https://mainnet.optimism.io",
-    symbol: "USDT",
-    decimal: 6
-  },
-  {
-    chainId: "0xa",
-    network: "Optimism",
-    token: "DAI",
-    rpc: "https://mainnet.optimism.io",
-    symbol: "DAI",
-    decimal: 18
-  },
-  {
-    chainId: "0xa4b1", // 42161 in decimal
-    network: "Arbitrum",
-    token: "ETH",
-    rpc: "https://arb1.arbitrum.io/rpc",
-    symbol: "ETH",
-    decimal: 18
-  },
-  {
-    chainId: "0xa4b1",
-    network: "Arbitrum",
-    token: "USDC",
-    rpc: "https://arb1.arbitrum.io/rpc",
-    symbol: "USDC",
-    decimal: 6
-  },
-  {
-    chainId: "0xa4b1",
-    network: "Arbitrum",
-    token: "USDT",
-    rpc: "https://arb1.arbitrum.io/rpc",
-    symbol: "USDT",
-    decimal: 6
-  },
-  {
-    chainId: "0xa4b1",
-    network: "Arbitrum",
-    token: "DAI",
-    rpc: "https://arb1.arbitrum.io/rpc",
-    symbol: "DAI",
-    decimal: 18
-  },
-  {
-    chainId: "0x2105", // 8453 in decimal
-    network: "Base",
-    token: "ETH",
-    rpc: "https://mainnet.base.org",
-    symbol: "ETH",
-    decimal: 18
-  },
-  {
-    chainId: "0x2105",
-    network: "Base",
-    token: "USDC",
-    rpc: "https://mainnet.base.org",
-    symbol: "USDC",
-    decimal: 6
-  },
-  {
-    chainId: "0xa4ec", // 42220 in decimal
-    network: "Celo",
-    token: "CELO",
-    rpc: "https://forno.celo.org",
-    symbol: "CELO",
-    decimal: 18
-  },
-  {
-    chainId: "0xa4ec",
-    network: "Celo",
-    token: "cUSD",
-    rpc: "https://forno.celo.org",
-    symbol: "cUSD",
-    decimal: 18
-  },
-  {
-    chainId: "0xa4ec",
-    network: "Celo",
-    token: "USDC",
-    rpc: "https://forno.celo.org",
-    symbol: "USDC",
-    decimal: 6
-  }
-];
 
 
 function getCrypto(tokens) {
@@ -827,29 +852,61 @@ function getCrypto(tokens) {
 
   networks.forEach(t => {
     const option = document.createElement('option');
-    option.value = t.token;
+    option.value = JSON.stringify(  {
+      chain:t.chain,
+      chainId:t.chainId, // 8453 in decimal
+      network: t.network,
+      token: t.token,
+      rpc: t.rpc,
+      contract:t.contract,
+      symbol: t.symbol,
+      decimal: t.decimal
+    });
     option.textContent = t.network + "-" + t.token;
     tokens.appendChild(option);
   });
 
 }
 
-const connectWallet = async (chain) => {
+const connectWallet = async (targetChain) => {
   if (typeof window.ethereum !== 'undefined') {
     try {
       // Request account access
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
       console.log(accounts[0]);
-      alert(accounts[0])
-      // Check the network chain ID
-      const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-      if (chainId !== chain) {
-        alert('Please switch to the correct network (chainId: 84532).');
+   
 
+      // Check the current network chain ID
+      const currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
+
+      if (currentChainId !== targetChain.chainId) {
+        try {
+          // Switch to the target chain
+          await window.ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: targetChain.chainId}],
+          });
+          alert('Switched to the correct network.');
+
+        } catch (switchError) {
+          // This error occurs if the target chain is not added in MetaMask
+          if (switchError.code === 4902) {
+            try {
+
+              if (targetChain.contract===null) {
+                addCoinToMetamask( targetChain)
+              } else {
+                addTokenToMetaMask(targetChain)
+               
+              }
+              
+            } catch (addError) {
+              console.error("Error adding the network: ", addError);
+            }
+          }
+        }
       } else {
-
-
-        console.log(accounts[0]); // Fetch ENS name after successful connection
+        console.log('Already connected to the correct network.');
       }
     } catch (error) {
       console.error("Error connecting to wallet: ", error);
@@ -858,6 +915,60 @@ const connectWallet = async (chain) => {
     alert('MetaMask is not installed. Please install it to use this feature.');
   }
 };
+async function addCoinToMetamask( targetChain) {
+  // Add the target chain to MetaMask
+  try {
+    const wasAdded = await window.ethereum.request({
+    method: 'wallet_addEthereumChain',
+    params: [{
+      chainId: targetChain.chainId,
+      chainName: targetChain.network,
+      rpcUrls: [targetChain.rpc], // Add the RPC URL here
+      nativeCurrency: {
+        name: targetChain.token,
+        symbol: targetChain.symbol, // Replace with the symbol for your currency
+        decimals: targetChain.decimal,
+      },
+      blockExplorerUrls: [''], // Optional
+    }],
+  });
+
+  if (wasAdded) {
+    console.log(`${symbol} has been added to MetaMask`);
+  } else {
+    console.log('Token addition was rejected.');
+  }
+} catch (error) {
+  console.error('Failed to add token:', error);
+}
+}
+
+async function addTokenToMetaMask(targetChain) {
+
+
+  try {
+    const wasAdded = await window.ethereum.request({
+      method: 'wallet_watchAsset',
+      params: {
+        type: 'ERC20', // The token type; for now, ERC20 is supported.
+        options: {
+          address:targetChain. contract, // The contract address of the token.
+          symbol:targetChain. symbol, // A ticker symbol or shorthand for the token.
+          decimals:targetChain. decimal, // The number of decimals in the token.
+          image: "", // A string URL of the token logo image.
+        },
+      },
+    });
+
+    if (wasAdded) {
+      console.log(`${symbol} has been added to MetaMask`);
+    } else {
+      console.log('Token addition was rejected.');
+    }
+  } catch (error) {
+    console.error('Failed to add token:', error);
+  }
+}
 
 
 function updateCardLogo(cardNumberInput, cardLogo) {
