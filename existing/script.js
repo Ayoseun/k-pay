@@ -1,7 +1,7 @@
 
 let selectedCountry = "";
 let selectedCity = "";
-const baseURL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
+const baseURL = "https://e360-102-88-71-133.ngrok-free.app"
 const getIpAddress = async () => {
   try {
     const response = await fetch('https://api.ipify.org?format=json');
@@ -12,10 +12,12 @@ const getIpAddress = async () => {
     return '0.0.0.0';
   }
 };
+
+let paymentType = 0;
 document.addEventListener('DOMContentLoaded', () => {
 
 
-  
+
   //HOME ELEMENTS
   const middleContainer = document.getElementById('middle-section')
   const bottomContainer = document.getElementById('bottom-section')
@@ -32,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const expiryDateInput = window.document.getElementById('expiry-date');
   const pinContainer = document.getElementById('pin-container')
   const cardDetails = document.getElementById('card-details')
+  const achDetails = document.getElementById('ach-details')
   const pinBackBtn = document.getElementById('pin-back')
   const pinBtnContinue = document.getElementById('pin-continue')
   const inputs = document.querySelectorAll('.pin-inputs input');
@@ -44,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const lastNameInput = document.getElementById('lastName');
   const addressInput = document.getElementById('address');
   const country = document.getElementById('country');
+  const achPayButton = document.getElementById('ach-pay-button');
 
   getCountry(country)
   //SUCCESS ELEMENT
@@ -76,14 +80,65 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   //-----------
 
+  //-----ACH----
 
+  achPayButton.addEventListener('click', (event) => {
+    paymentType = 2;
+    achDetails.style.display = 'none';
+
+    contentDisplay.append(summaryContainer)
+    summaryContainer.style.display = 'block'
+
+    console.log(paymentType)
+  })
+// Define payment handler functions
+const paymentHandlers = {
+  0: () =>         cardSubmit(expiryDateInput, cvcInput,
+    cardHolderNameInput, cardNumberInput, spinner,
+    summaryConfirmBtn, summaryBackBtn, cardDetails, summaryContainer,
+    cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, successContainer, middleContainer, bottomContainer),
+  1: () => console.log("Payment type 1 not implemented yet"),
+  2: () => achSubmit(expiryDateInput, cvcInput,
+    cardHolderNameInput, cardNumberInput, spinner,
+    summaryConfirmBtn, summaryBackBtn, cardDetails, summaryContainer,
+    cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, successContainer, middleContainer, bottomContainer),
+  default: () => console.log("Unknown payment type")
+};
+
+summaryConfirmBtn.addEventListener('click', (event) => {
+  console.log(paymentType);
+  
+  // Get the appropriate handler function or use the default
+  const handler = paymentHandlers[paymentType] || paymentHandlers.default;
+  
+  // Call the handler function
+  handler();
+});
+
+
+  summaryConfirmBtn.addEventListener('click', (event) => {
+    console.log(paymentType)
+    switch (paymentType) {
+      case 0:
+
+        break;
+      case 1:
+        // code block
+        break;
+      case 2:
+        achSubmit(expiryDateInput, cvcInput,
+          cardHolderNameInput, cardNumberInput, spinner,
+          summaryConfirmBtn, summaryBackBtn, cardDetails, summaryContainer,
+          cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, successContainer, middleContainer, bottomContainer)
+        break;
+      default:
+      // code block
+    }
+
+  })
 
   //----SUMMARY ---EVENT
-  summaryConfirmBtn.addEventListener('click', (event) => {
-    successContainer.style.display = 'flex';
-    middleContainer.style.display = 'none';
-    bottomContainer.style.display = 'none';
-  })
+
   summaryBackBtn.addEventListener('click', (event) => {
     summaryContainer.style.display = 'none';
     cardDetails.style.display = 'block';
@@ -125,17 +180,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedOption = event.target.options[event.target.selectedIndex];
     const countryName = selectedOption.value;
     const cca2Code = selectedOption.dataset.cca2; // Retrieve the CCA2 code
-  
+
     console.log('Selected country:', countryName);
     console.log('Selected country CCA2 code:', cca2Code);
-  
+
     if (!countryName) {
       console.log('No country selected, clearing state and city dropdowns');
       document.getElementById('state').innerHTML = '<option value="">Select State</option>';
       document.getElementById('city').innerHTML = '<option value="">Select City</option>';
       return;
     }
-  selectedCountry=cca2Code
+    selectedCountry = cca2Code
     getState(countryName, cardState, cardCity);
   });
 
@@ -155,9 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   cardCity.addEventListener('change', (event) => {
-  
+
     selectedCity = event.target.value;
-   
+
   });
 
   pinBtnContinue.addEventListener('click', (event) => {
@@ -171,12 +226,19 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   cardPayButton.addEventListener('click', (event) => {
-    cardSubmit(expiryDateInput, cvcInput,
+    const isValid = validateForm(expiryDateInput, cvcInput,
       cardHolderNameInput, cardNumberInput, cardDetails,
       summaryContainer, spinner,
       cardPayButton,
-      cardPayButtonText,emailInput,lastNameInput,firstNameInput,addressInput)
+      cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, pinContainer)
+    if (!isValid) {
 
+    } else {
+      cardDetails.style.display = 'none';
+      // document.getElementById('middle-section').style.display = 'none';
+      // document.getElementById('bottom-section').style.display = 'none';
+      summaryContainer.style.display = 'block';
+    }
   })
   //------------------
 
@@ -295,7 +357,7 @@ function getCity(countryName, stateName, city) {
           option.value = c;
           option.textContent = c;
           city.appendChild(option);
-          
+
         });
       } else {
         console.log('No states found in the response');
@@ -333,6 +395,7 @@ function updateContentDisplay(document, currentlyDisplayedContent, contentDispla
 
 // Function to update radio button and content
 function updatePaymentOption(document, contentDisplay, paymentDiv) {
+
   let currentlyDisplayedContent = null;
   // Uncheck all radio buttons
   document.querySelectorAll('.payments-radio').forEach(radio => {
@@ -347,14 +410,10 @@ function updatePaymentOption(document, contentDisplay, paymentDiv) {
 
   updateContentDisplay(document, currentlyDisplayedContent, contentDisplay, paymentDiv);
 }
-async function cardSubmit(expiryDateInput, cvcInput,
-  cardHolderNameInput, cardNumberInput, cardDetails,
-  summaryContainer, spinner,
-  cardPayButton,
-  cardPayButtonText,emailInput,lastNameInput,firstNameInput,addressInput
-) {
 
- 
+function validateForm(expiryDateInput, cvcInput,
+  cardHolderNameInput, cardNumberInput,
+) {
 
   const expiryPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$/; // MM/YY format
   const isValidExpiry = expiryPattern.test(expiryDateInput.value);
@@ -377,7 +436,44 @@ async function cardSubmit(expiryDateInput, cvcInput,
     alert('The expiry date must be later than the current date.');
     return;
   }
-  
+
+  if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || !cardNumberInput.value) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  return true
+}
+async function cardSubmit(expiryDateInput, cvcInput,
+  cardHolderNameInput, cardNumberInput, spinner,
+  summaryConfirmBtn, summaryBackBtn, cardDetails, summaryContainer,
+  cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, successContainer, middleContainer, bottomContainer
+) {
+
+
+
+  const expiryPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$/; // MM/YY format
+  const isValidExpiry = expiryPattern.test(expiryDateInput.value);
+
+  if (!isValidExpiry) {
+    alert('Invalid expiry date format. Use MM/YY.');
+    return;
+  }
+
+  const [month, year] = expiryDateInput.value.split('/');
+  const expiryMonth = parseInt(month, 10);
+  const expiryYear = parseInt(year, 10);
+
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear() % 100; // Last two digits of the current year (YY format)
+  const currentMonth = currentDate.getMonth() + 1; // Current month (1-12)
+
+  // Check if the year is in the past
+  if (expiryYear < currentYear || (expiryYear === currentYear && expiryMonth < currentMonth)) {
+    alert('The expiry date must be later than the current date.');
+    return;
+  }
+
   if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || !cardNumberInput.value) {
     alert('Please fill in all required fields.');
     return;
@@ -386,10 +482,9 @@ async function cardSubmit(expiryDateInput, cvcInput,
 
   cardPayButtonText.style.display = 'none'; // Hide button text
   spinner.style.display = 'flex'; // Show spinner
-  cardPayButton.style.backgroundColor = '#000';
-  cardPayButton.disabled = true; // Disable the button
-  // Collect form data
-  // Collect form data
+  summaryConfirmBtn.style.backgroundColor = '#000';
+  summaryConfirmBtn.disabled = true; // Disable the button
+  summaryBackBtn.style.display = 'none';
   const formData = {
     currency: "EUR",
     amount: "100",
@@ -416,7 +511,7 @@ async function cardSubmit(expiryDateInput, cvcInput,
     }
   };
   console.log(formData)
-  fetch(baseURL+"/payment/simple-card", {
+  fetch(baseURL + "/payment/simple-card-tokenized", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -425,36 +520,146 @@ async function cardSubmit(expiryDateInput, cvcInput,
   })
     .then(response => response.json())
     .then(data => {
-      console.log('Payment initiated successfully', data);
-      cardPayButton.disabled = false; // Re-enable the button
-      cardPayButtonText.style.display = 'inline'; // Show button text
-      spinner.style.display = 'none'; // Hide spinner
-      cardPayButton.style.backgroundColor = '#19624C';
-      if (data.transactionStatus === "DECLINED" || data.status !== "SUCCESS") {
-        if (data.transactionStatus !== undefined) {
-          alert(`Card Declined. Reason: ${data.transactionStatus}`);
+      console.log('Payment initiated successfully', data.data);
+      if (data.status !== "FAILED") {
+        summaryConfirmBtn.disabled = false; // Re-enable the button
+        cardPayButtonText.style.display = 'inline'; // Show button text
+        spinner.style.display = 'none'; // Hide spinner
+        summaryConfirmBtn.style.backgroundColor = '#19624C';
+        if (data.data.transactionStatus !== "APPROVED") {
+          if (data.data.reason !== undefined) {
+            alert(`Card Declined. Reason: ${data.reason}`);
+
+          } else {
+            alert(`Card Declined. Reason: ${data.transactionStatus}`);
+          }
+
+
         } else {
-          alert(`Card Declined. Reason: ${data.reason}`);
+          if (data.transactionId !== null) {
+            successContainer.style.display = 'flex';
+            middleContainer.style.display = 'none';
+            bottomContainer.style.display = 'none';
+          } else {
+            // cardDetails.style.display = 'none';
+            // // document.getElementById('middle-section').style.display = 'none';
+            // // document.getElementById('bottom-section').style.display = 'none';
+            // summaryContainer.style.display = 'block';
+          }
         }
-
-
       } else {
-        if (data.paymentOption.card.threeD.version !== null) {
-          cardDetails.style.display = 'none';
-          // document.getElementById('middle-section').style.display = 'none';
-          // document.getElementById('bottom-section').style.display = 'none';
-          pinContainer.style.display = 'flex';
-        } else {
-          cardDetails.style.display = 'none';
-          // document.getElementById('middle-section').style.display = 'none';
-          // document.getElementById('bottom-section').style.display = 'none';
-          summaryContainer.style.display = 'block';
-        }
+        alert(`Invalid card details`);
+        summaryContainer.style.display = 'none';
+        cardDetails.style.display = 'block';
       }
+
     })
     .catch(error => {
       console.error('Error:', error);
-      // Handle error (e.g., show an error message)
+
+    });
+};
+
+
+async function achSubmit(expiryDateInput, cvcInput,
+  cardHolderNameInput, cardNumberInput, spinner,
+  summaryConfirmBtn, summaryBackBtn, cardDetails, summaryContainer,
+  cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, successContainer, middleContainer, bottomContainer
+) {
+
+
+
+
+
+
+  cardPayButtonText.style.display = 'none'; // Hide button text
+  spinner.style.display = 'flex'; // Show spinner
+  summaryConfirmBtn.style.backgroundColor = '#000';
+  summaryConfirmBtn.disabled = true; // Disable the button
+  summaryBackBtn.style.display = 'none';
+  const formData = {
+    "currency": "USD",
+    "amount": "100",
+    "paymentOption": {
+      "alternativePaymentMethod": {
+        "paymentMethod": "apmgw_ACH",
+        "AccountNumber": "111111111",
+        "RoutingNumber": "999999992",
+        "SECCode": "CCD"
+      }
+    },
+    "deviceDetails": {
+      "ipAddress": "93.146.254.172"
+    },
+    "billingAddress": {
+      "firstName": "John",
+      "lastName": "Smith",
+      "phone": "6175551414",
+      "address": "22 Main Street",
+      "city": "Boston",
+      "zip": "02460",
+      "state": "MA",
+      "country": "US"
+    },
+    "userDetails": {
+      "firstName": "John",
+      "lastName": "Smith",
+      "phone": "6175551414",
+      "address": "22 Main Street",
+      "city": "Boston",
+      "zip": "02460",
+      "state": "MA",
+      "country": "US",
+      "identification": "123456789"
+    }
+  };
+  console.log(formData)
+  fetch(baseURL + "/payment/payment-ach", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Payment initiated successfully', data.data);
+      if (data.status !== "FAILED") {
+        summaryConfirmBtn.disabled = false; // Re-enable the button
+        cardPayButtonText.style.display = 'inline'; // Show button text
+        spinner.style.display = 'none'; // Hide spinner
+        summaryConfirmBtn.style.backgroundColor = '#19624C';
+        if (data.data.transactionStatus !== "PENDING") {
+          if (data.data.reason !== undefined) {
+            alert(`Card Declined. Reason: ${data.reason}`);
+
+          } else {
+            alert(`Card Declined. Reason: ${data.transactionStatus}`);
+          }
+
+
+        } else {
+          if (data.transactionId !== null) {
+            successContainer.style.display = 'flex';
+            middleContainer.style.display = 'none';
+            bottomContainer.style.display = 'none';
+          } else {
+            // cardDetails.style.display = 'none';
+            // // document.getElementById('middle-section').style.display = 'none';
+            // // document.getElementById('bottom-section').style.display = 'none';
+            // summaryContainer.style.display = 'block';
+          }
+        }
+      } else {
+        alert(`Invalid card details`);
+        summaryContainer.style.display = 'none';
+        cardDetails.style.display = 'block';
+      }
+
+    })
+    .catch(error => {
+      console.error('Error:', error);
+
     });
 };
 

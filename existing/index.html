@@ -153,10 +153,10 @@
                                     <input type="text" id="address" placeholder="Input address">
                                 </div>
                             </div>
-                          
+
                             <button class="card-pay-button" id="card-pay-button">
-                                <span id="card-pay-button-text">Pay $50000</span>
-                                <div id="loader"></div>
+                                Pay $50000
+
                             </button>
 
                         </div>
@@ -197,8 +197,11 @@
                             </div>
                             <div class="summary-buttons">
                                 <button class="summary-buttons-go-back" id="summary-buttons-go-back">Go Back</button>
-                                <button class="summary-buttons-confirm" id="summary-buttons-confirm">Confirm
-                                    Payment</button>
+                                <button class="summary-buttons-confirm" id="summary-buttons-confirm">
+                                    <span id="card-pay-button-text">Confirm
+                                        Payment</span>
+                                    <div id="loader"></div>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -248,12 +251,12 @@
                                 <span> 15.7500</span>
                             </div>
 
-                            <button  style="background-color: #2e7d32;">Connect wallet</button>
+                            <button style="background-color: #2e7d32;">Connect wallet</button>
 
-                            <h1  >Pay with ethereum</h1>
+                            <h1>Pay with ethereum</h1>
                             <p>To complete this payment for REF 4578, send exactly 15.7500 ETH to the address below</p>
                             <div class="qr-code" id="qr-code">
-                                <img  alt="QR Code">
+                                <img alt="QR Code">
                             </div>
                             <p class="address">0x742d35Cc6634C0532925a3b844Bc454e4438f44e</p>
                             <p class="warning">Please make sure to only send ETH to this address</p>
@@ -271,47 +274,144 @@
                         <div class="payments-text">Pay with Bank Account</div>
                     </div>
                     <div class="payment-content" style="display: none;">
-                        <div class="card-details" id="card-details">
+                        <div class="card-details" id="ach-details">
                             <h2>Banking Details</h2>
+                            <div class="form-field">
+                                <label for="cardholder-name">Account Number</label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="account-number" placeholder="As seen on your cheque book">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="cardholder-name">Routing Number</label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="account-number" placeholder="As seen on your cheque book">
+                                </div>
+                            </div>
+                          
 
-                            <div class="banking-form-field">
-                                <label for="bank">Pay with</label>
-                                <div class="banking-input-wrapper">
-                                    <select style="color: #9499A1; font-size: 8px;">
-                                        <option>Checking</option>
-                                        <option>Savings</option>
-                                       
+                            <h2>User Details</h2>
+                            <p>We only require this information once for this card</p>
+                            <div class="form-field">
+                                <label for="country">Country</label>
+                                <div class="input-wrapper">
+                                    <select id="country">
                                         <!-- Options will be populated dynamically -->
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-field-group">
+                                <div class="form-field half">
+                                    <label for="state">State</label>
+                                    <div class="input-wrapper">
+                                        <select id="state">
+                                            <!-- Options will be populated dynamically -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-field half">
+                                    <label for="city">City</label>
+                                    <div class="input-wrapper">
+                                        <select id="city">
 
-                            <div class="form-field">
-                                <label for="address2">Account Holders Name</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="address2" placeholder="As seen on your cheque">
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-field">
-                                <label for="zip">Routing Number</label>
+                                <label for="email">Email</label>
                                 <div class="input-wrapper">
-                                    <input type="number" id="zip" placeholder="234091919">
+                                    <input type="email" id="email" placeholder="Enter your email">
                                 </div>
                             </div>
                             <div class="form-field">
-                                <label for="zip">Bank Name</label>
+                                <label for="firstName">First Name</label>
                                 <div class="input-wrapper">
-                                    <input type="text" id="bankName" placeholder="Wells Fargo">
+                                    <input type="text" id="firstName" placeholder="Enter your first name">
                                 </div>
                             </div>
                             <div class="form-field">
-                                <label for="accountNumber">Account Number</label>
+                                <label for="lastName">Last Name</label>
                                 <div class="input-wrapper">
-                                    <input type="number" id="acct" placeholder="00112255">
+                                    <input type="text" id="lastName" placeholder="Enter your last name">
                                 </div>
                             </div>
-                            <button class="pay-button" id="bank-pay-button" onclick="submitBankForm()">
-                                <span id="button-text">Pay $50000</span>
+                            <div class="form-field">
+                                <label for="address2">Address</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="address" placeholder="Input address">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="zip1">ZIP code</label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="address" placeholder="Input ZIP code">
+                                </div>
+                            </div>
+
+
+                            <h2>Billing Address</h2>
+                            <p>We only require this information once for this card</p>
+                            <div class="form-field">
+                                <label for="country">Country</label>
+                                <div class="input-wrapper">
+                                    <select id="country">
+                                        <!-- Options will be populated dynamically -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-field-group">
+                                <div class="form-field half">
+                                    <label for="state">State</label>
+                                    <div class="input-wrapper">
+                                        <select id="state">
+                                            <!-- Options will be populated dynamically -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-field half">
+                                    <label for="city">City</label>
+                                    <div class="input-wrapper">
+                                        <select id="city">
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="email">Email</label>
+                                <div class="input-wrapper">
+                                    <input type="email" id="email" placeholder="Enter your email">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="firstName">First Name</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="firstName" placeholder="Enter your first name">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="lastName">Last Name</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="lastName" placeholder="Enter your last name">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="address2">Address</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="address" placeholder="Input address">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="zip1">ZIP code</label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="address" placeholder="Input ZIP code">
+                                </div>
+                            </div>
+                            <button class="card-pay-button" id="ach-pay-button">
+                             
+                                <span id="card-pay-button-text">
+                                    Pay $5000</span>
                                 <div id="loader"></div>
                             </button>
 
@@ -366,9 +466,9 @@
             <span class="orokiipay">Orokiipay</span>
         </div>
 
-        
-            <script  src="script.js"></script>
-        
+
+        <script src="script.js"></script>
+
     </div>
 
 </body>
