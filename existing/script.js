@@ -2,9 +2,20 @@
 let selectedCountry = "";
 let selectedCity = "";
 const baseURL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
-  
+const getIpAddress = async () => {
+  try {
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    return data.ip;
+  } catch (error) {
+    console.error('Error fetching IP address:', error);
+    return '0.0.0.0';
+  }
+};
 document.addEventListener('DOMContentLoaded', () => {
 
+
+  
   //HOME ELEMENTS
   const middleContainer = document.getElementById('middle-section')
   const bottomContainer = document.getElementById('bottom-section')
@@ -111,17 +122,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Fetch and populate states based on selected country
   country.addEventListener('change', (event) => {
-    const countryName = event.target.value;
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    const countryName = selectedOption.value;
+    const cca2Code = selectedOption.dataset.cca2; // Retrieve the CCA2 code
+  
     console.log('Selected country:', countryName);
-
+    console.log('Selected country CCA2 code:', cca2Code);
+  
     if (!countryName) {
       console.log('No country selected, clearing state and city dropdowns');
       document.getElementById('state').innerHTML = '<option value="">Select State</option>';
       document.getElementById('city').innerHTML = '<option value="">Select City</option>';
       return;
     }
-    getState(countryName, cardState, cardCity)
-
+  selectedCountry=cca2Code
+    getState(countryName, cardState, cardCity);
   });
 
   // Fetch and populate cities based on selected state
@@ -137,6 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     getCity(countryName, stateName, cardCity)
+  });
+
+  cardCity.addEventListener('change', (event) => {
+  
+    selectedCity = event.target.value;
+   
   });
 
   pinBtnContinue.addEventListener('click', (event) => {
@@ -208,15 +229,12 @@ function getCountry(country) {
         const option = document.createElement('option');
         option.value = c.name.common;
         option.textContent = c.name.common;
-        console.log(c.cca2)
+        option.dataset.cca2 = c.cca2; // Store the CCA2 code in a data attribute
         country.appendChild(option);
-        selectedCountry = c.cca2;
       });
     })
     .catch(error => console.error('Error fetching countries:', error));
-
 }
-
 function getState(countryName, state, city) {
   fetch('https://countriesnow.space/api/v0.1/countries/states', {
     method: 'POST',
@@ -277,7 +295,7 @@ function getCity(countryName, stateName, city) {
           option.value = c;
           option.textContent = c;
           city.appendChild(option);
-          selectedCity=c;
+          
         });
       } else {
         console.log('No states found in the response');
@@ -329,14 +347,14 @@ function updatePaymentOption(document, contentDisplay, paymentDiv) {
 
   updateContentDisplay(document, currentlyDisplayedContent, contentDisplay, paymentDiv);
 }
-function cardSubmit(expiryDateInput, cvcInput,
+async function cardSubmit(expiryDateInput, cvcInput,
   cardHolderNameInput, cardNumberInput, cardDetails,
   summaryContainer, spinner,
   cardPayButton,
   cardPayButtonText,emailInput,lastNameInput,firstNameInput,addressInput
 ) {
 
-
+ 
 
   const expiryPattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$/; // MM/YY format
   const isValidExpiry = expiryPattern.test(expiryDateInput.value);
@@ -359,14 +377,7 @@ function cardSubmit(expiryDateInput, cvcInput,
     alert('The expiry date must be later than the current date.');
     return;
   }
-  const ipAddress = fetch('https://api.ipify.org?format=json', {
-    method: 'GET',
-
-  })
-    .then(response => response.json())
-    .then(data => data.ip)
-    .catch(() => '0.0.0.0');;
-
+  
   if (!cvcInput.value || !cardHolderNameInput.value || !expiryDateInput.value || !cardNumberInput.value) {
     alert('Please fill in all required fields.');
     return;
@@ -401,7 +412,7 @@ function cardSubmit(expiryDateInput, cvcInput,
       email: emailInput.value,
     },
     deviceDetails: {
-      ipAddress: ipAddress
+      ipAddress: await getIpAddress()
     }
   };
   console.log(formData)
