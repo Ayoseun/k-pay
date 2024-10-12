@@ -14,6 +14,7 @@ const getIpAddress = async () => {
 };
 
 let paymentType = 0;
+const TARGET_CHAIN_ID = 0x13882;
 document.addEventListener('DOMContentLoaded', () => {
 
 
@@ -47,17 +48,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const lastNameInput = document.getElementById('lastName');
   const addressInput = document.getElementById('address');
   const country = document.getElementById('country');
+  const tokens = document.getElementById('tokens');
   const achPayButton = document.getElementById('ach-pay-button');
 
-  getCountry(country)
+
   //SUCCESS ELEMENT
   const successContainer = document.getElementById('success-container')
-
+  const connectWalletButton = document.getElementById('connect-wallet');
   //SUMMARY ELEMENTS
   const summaryContainer = document.getElementById('summary-container')
   const summaryConfirmBtn = document.getElementById('summary-buttons-confirm')
   const summaryBackBtn = document.getElementById('summary-buttons-go-back')
 
+
+  getCountry(country)
+  getCrypto(tokens)
   //--------EVENT----------
   document.querySelectorAll('.payments').forEach(paymentDiv => {
     paymentDiv.addEventListener('click', (event) => {
@@ -91,54 +96,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log(paymentType)
   })
-// Define payment handler functions
-const paymentHandlers = {
-  0: () =>         cardSubmit(expiryDateInput, cvcInput,
-    cardHolderNameInput, cardNumberInput, spinner,
-    summaryConfirmBtn, summaryBackBtn, cardDetails, summaryContainer,
-    cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, successContainer, middleContainer, bottomContainer),
-  1: () => console.log("Payment type 1 not implemented yet"),
-  2: () => achSubmit(expiryDateInput, cvcInput,
-    cardHolderNameInput, cardNumberInput, spinner,
-    summaryConfirmBtn, summaryBackBtn, cardDetails, summaryContainer,
-    cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, successContainer, middleContainer, bottomContainer),
-  default: () => console.log("Unknown payment type")
-};
+  // Define payment handler functions
+  const paymentHandlers = {
+    0: () => cardSubmit(expiryDateInput, cvcInput,
+      cardHolderNameInput, cardNumberInput, spinner,
+      summaryConfirmBtn, summaryBackBtn, cardDetails, summaryContainer,
+      cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, successContainer, middleContainer, bottomContainer),
+    1: () => console.log("Payment type 1 not implemented yet"),
+    2: () => achSubmit(expiryDateInput, cvcInput,
+      cardHolderNameInput, cardNumberInput, spinner,
+      summaryConfirmBtn, summaryBackBtn, cardDetails, summaryContainer,
+      cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, successContainer, middleContainer, bottomContainer),
+    default: () => console.log("Unknown payment type")
+  };
 
-summaryConfirmBtn.addEventListener('click', (event) => {
-  console.log(paymentType);
-  
-  // Get the appropriate handler function or use the default
-  const handler = paymentHandlers[paymentType] || paymentHandlers.default;
-  
-  // Call the handler function
-  handler();
-});
-
-
-  summaryConfirmBtn.addEventListener('click', (event) => {
-    console.log(paymentType)
-    switch (paymentType) {
-      case 0:
-
-        break;
-      case 1:
-        // code block
-        break;
-      case 2:
-        achSubmit(expiryDateInput, cvcInput,
-          cardHolderNameInput, cardNumberInput, spinner,
-          summaryConfirmBtn, summaryBackBtn, cardDetails, summaryContainer,
-          cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, successContainer, middleContainer, bottomContainer)
-        break;
-      default:
-      // code block
-    }
-
-  })
 
   //----SUMMARY ---EVENT
+  summaryConfirmBtn.addEventListener('click', (event) => {
+    console.log(paymentType);
 
+    // Get the appropriate handler function or use the default
+    const handler = paymentHandlers[paymentType] || paymentHandlers.default;
+
+    // Call the handler function
+    handler();
+  });
   summaryBackBtn.addEventListener('click', (event) => {
     summaryContainer.style.display = 'none';
     cardDetails.style.display = 'block';
@@ -244,11 +226,11 @@ summaryConfirmBtn.addEventListener('click', (event) => {
 
 
   //-------CRYPTO ELEMENT---------
-  const connectWallet = document.getElementById('qr-code');
+
   //--------------
 
   //----- CRYPTO EVENTS------
-  connectWallet.addEventListener('click', (event) => {
+  connectWalletButton.addEventListener('click', (event) => {
     connectWallet()
   })
   //-----------
@@ -663,8 +645,196 @@ async function achSubmit(expiryDateInput, cvcInput,
     });
 };
 
-const TARGET_CHAIN_ID = 0x13882;
-const connectWallet = async () => {
+
+const networks = [
+  {
+    chainId: "0x1", // 1 in decimal
+    network: "Ethereum",
+    token: "ETH",
+    rpc: "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID", // Replace with your RPC
+    symbol: "ETH",
+    decimal: 18
+  },
+  {
+    chainId: "0x1",
+    network: "Ethereum",
+    token: "USDC",
+    rpc: "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID",
+    symbol: "USDC",
+    decimal: 6
+  },
+  {
+    chainId: "0x1",
+    network: "Ethereum",
+    token: "USDT",
+    rpc: "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID",
+    symbol: "USDT",
+    decimal: 6
+  },
+  {
+    chainId: "0x1",
+    network: "Ethereum",
+    token: "DAI",
+    rpc: "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID",
+    symbol: "DAI",
+    decimal: 18
+  },
+  {
+    chainId: "0x89", // 137 in decimal
+    network: "Polygon",
+    token: "MATIC",
+    rpc: "https://polygon-rpc.com",
+    symbol: "MATIC",
+    decimal: 18
+  },
+  {
+    chainId: "0x89",
+    network: "Polygon",
+    token: "USDC",
+    rpc: "https://polygon-rpc.com",
+    symbol: "USDC",
+    decimal: 6
+  },
+  {
+    chainId: "0x89",
+    network: "Polygon",
+    token: "USDT",
+    rpc: "https://polygon-rpc.com",
+    symbol: "USDT",
+    decimal: 6
+  },
+  {
+    chainId: "0x89",
+    network: "Polygon",
+    token: "DAI",
+    rpc: "https://polygon-rpc.com",
+    symbol: "DAI",
+    decimal: 18
+  },
+  {
+    chainId: "0xa", // 10 in decimal
+    network: "Optimism",
+    token: "ETH",
+    rpc: "https://mainnet.optimism.io",
+    symbol: "ETH",
+    decimal: 18
+  },
+  {
+    chainId: "0xa",
+    network: "Optimism",
+    token: "USDC",
+    rpc: "https://mainnet.optimism.io",
+    symbol: "USDC",
+    decimal: 6
+  },
+  {
+    chainId: "0xa",
+    network: "Optimism",
+    token: "USDT",
+    rpc: "https://mainnet.optimism.io",
+    symbol: "USDT",
+    decimal: 6
+  },
+  {
+    chainId: "0xa",
+    network: "Optimism",
+    token: "DAI",
+    rpc: "https://mainnet.optimism.io",
+    symbol: "DAI",
+    decimal: 18
+  },
+  {
+    chainId: "0xa4b1", // 42161 in decimal
+    network: "Arbitrum",
+    token: "ETH",
+    rpc: "https://arb1.arbitrum.io/rpc",
+    symbol: "ETH",
+    decimal: 18
+  },
+  {
+    chainId: "0xa4b1",
+    network: "Arbitrum",
+    token: "USDC",
+    rpc: "https://arb1.arbitrum.io/rpc",
+    symbol: "USDC",
+    decimal: 6
+  },
+  {
+    chainId: "0xa4b1",
+    network: "Arbitrum",
+    token: "USDT",
+    rpc: "https://arb1.arbitrum.io/rpc",
+    symbol: "USDT",
+    decimal: 6
+  },
+  {
+    chainId: "0xa4b1",
+    network: "Arbitrum",
+    token: "DAI",
+    rpc: "https://arb1.arbitrum.io/rpc",
+    symbol: "DAI",
+    decimal: 18
+  },
+  {
+    chainId: "0x2105", // 8453 in decimal
+    network: "Base",
+    token: "ETH",
+    rpc: "https://mainnet.base.org",
+    symbol: "ETH",
+    decimal: 18
+  },
+  {
+    chainId: "0x2105",
+    network: "Base",
+    token: "USDC",
+    rpc: "https://mainnet.base.org",
+    symbol: "USDC",
+    decimal: 6
+  },
+  {
+    chainId: "0xa4ec", // 42220 in decimal
+    network: "Celo",
+    token: "CELO",
+    rpc: "https://forno.celo.org",
+    symbol: "CELO",
+    decimal: 18
+  },
+  {
+    chainId: "0xa4ec",
+    network: "Celo",
+    token: "cUSD",
+    rpc: "https://forno.celo.org",
+    symbol: "cUSD",
+    decimal: 18
+  },
+  {
+    chainId: "0xa4ec",
+    network: "Celo",
+    token: "USDC",
+    rpc: "https://forno.celo.org",
+    symbol: "USDC",
+    decimal: 6
+  }
+];
+
+
+function getCrypto(tokens) {
+
+
+  tokens.innerHTML = '<option value="">Select Country</option>';
+  // Sort the countries by their common names in ascending order
+  networks.sort((a, b) => a.network.localeCompare(b.network));
+
+  networks.forEach(t => {
+    const option = document.createElement('option');
+    option.value = t.token;
+    option.textContent = t.network + "-" + t.token;
+    tokens.appendChild(option);
+  });
+
+}
+
+const connectWallet = async (chain) => {
   if (typeof window.ethereum !== 'undefined') {
     try {
       // Request account access
@@ -673,7 +843,7 @@ const connectWallet = async () => {
       alert(accounts[0])
       // Check the network chain ID
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-      if (chainId !== TARGET_CHAIN_ID) {
+      if (chainId !== chain) {
         alert('Please switch to the correct network (chainId: 84532).');
 
       } else {

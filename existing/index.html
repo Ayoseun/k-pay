@@ -222,16 +222,10 @@
                         <div class="crypto-container">
                             <h2>Select Cryptocurrency</h2>
                             <div class="crypto-form-field">
-                                <label for="country">Pay with</label>
+                                <label for="tokens">Pay with</label>
                                 <div class="crypto-input-wrapper">
-                                    <select style="color: #9499A1; font-size: 8px;">
-                                        <option>Select cryptocurrency network and token</option>
-                                        <option>Bitcoin</option>
-                                        <option>ETH-Ethereum</option>
-                                        <option>MATIC-Polygon</option>
-                                        <option>USDC-Polygon</option>
-                                        <option>USDT-Polygon</option>
-                                        <!-- Options will be populated dynamically -->
+                                    <select style="color: #9499A1; font-size: 8px;" id="tokens">
+                                        
                                     </select>
                                 </div>
                             </div>
@@ -251,7 +245,7 @@
                                 <span> 15.7500</span>
                             </div>
 
-                            <button style="background-color: #2e7d32;">Connect wallet</button>
+                            <button class="card-pay-button" id="connect-wallet">Connect wallet</button>
 
                             <h1>Pay with ethereum</h1>
                             <p>To complete this payment for REF 4578, send exactly 15.7500 ETH to the address below</p>
