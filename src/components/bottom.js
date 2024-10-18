@@ -1,55 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Widget</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/card_form.css">
-    <link rel="stylesheet" href="css/pin_form.css">
-    <link rel="stylesheet" href="css/card_payment_summary.css">
-    <link rel="stylesheet" href="css/success.css">
-    <link rel="stylesheet" href="css/crypto.css">
-    <link rel="stylesheet" href="css/pop_up.css">
-    <link rel="stylesheet" href="css/bank.css">
-    <link rel="stylesheet" href="css/poweredby.css">
-    <!-- Include Inter Font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-</head>
-
-<body>
-
-    <div style="  display: flex;
-    width: 75%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;">
 
 
-        <div class="card">
-            <!-- Top Section -->
-            <div class="top-section">
-                <div class="top-left">
-                    <img src="./assets/logo.svg" alt="Icon" class="icon">
-                    <div class="text-row">
-                        <div class="logo-text">Orokiipay</div>
-                    </div>
-                </div>
-                <div class="top-right">
-                    <div class="text-column">
-                        <div class="text-item">Pay</div>
-                        <div class="top-column-text-amount">$4500</div>
-                    </div>
-                </div>
-            </div>
-            <hr class="divider">
-            <!-- Middle Section -->
-            <div class="middle-section" id="middle-section">Choose Payment Method</div>
-            <!-- Bottom Section -->
-            <div class="bottom-section" id="bottom-section">
+// Bottom Section HTML
+export const getBottomSection = (amount) => `
+
+<div class="bottom-section" id="bottom-section">
                 <div class="dropdown" id="dropdown-1">
                     <div class="dropdown-header">
                         <input type="radio" class="payment-checkbox">
@@ -484,78 +438,15 @@
                     </div>
                 </div>
             </div>
-            <div class="summary-container" id="summary-container">
-                <img src="https://ayoseun.github.io/k-pay/assets/checkout.svg" alt="Image 1"
-                    style="width: 48px;height: 48px;">
-                <h4>Payment Summary</h4>
-                <div class="amount-holder">
-                    <p>Amount</p>
-                    <h1>$${amount}</h1>
-                </div>
-                <div class="summary-details">
-
-                    <div class="detail">
-                        <p>Subtotal</p><span>$4105.00</span>
-                    </div>
-                    <div class="detail">
-                        <p>Shipping Cost</p><span>$408.00</span>
-                    </div>
-                    <div class="detail">
-                        <p>Discount (10%)</p><span>-$13.00</span>
-                    </div>
-                    <hr class="summary-divider">
-                    <div class="detail total"><span>Total</span><span>$${amount}</span></div>
-                </div>
-                <div class="summary-buttons">
-                    <button class="summary-buttons-go-back" id="summary-buttons-go-back">Go Back</button>
-                    <button class="summary-buttons-confirm" id="summary-buttons-confirm">
-                        <span id="card-pay-button-text">
-                            Confirm
-                            Payment</span>
-
-                        <div id="loader"></div>
-                    </button>
-                </div>
-            </div>
-            <div class="success-container" id="success-container">
-                <h1>
-                    Payment Completed
-                </h1>
-                <p>
-                    The payment of $45,000 has been received successfully
-                </p>
-                <img src="./assets/success.svg" alt="Icon">
-                <button id="close-payment">Close</button>
-            </div>
-
-            <!-- <div id="popup" class="popup">
-            <div class="popup-content">
-                <span class="pop-close-btn">&times;</span>
-                <div class="error-content">
-                    <h2>Error</h2>
-                    <img src="./assets/error.svg" alt="Icon">
-                    <p>something went wrong</p>
-                </div>
 
 
-            </div>
-        </div> -->
-        </div>
+`;
 
-        <div class="secure-payments-button">
+export const secured=()=>`
+ <div class="secure-payments-button">
             <span class="text">Secure payments</span>
             <span class="powered-by">Powered by</span>
-            <img src="./assets/logo-white.svg" alt="Orokiipay logo" class="secured-logo">
+            <img src="https://ayoseun.github.io/k-pay/assets/logo-white.svg" alt="Orokiipay logo" class="secured-logo">
             <span class="orokiipay">Orokiipay</span>
         </div>
-
-
-        <script type="module" src="script.js"></script>
-
-    </div>
-
-</body>
-
-
-
-</html>
+`
