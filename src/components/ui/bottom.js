@@ -65,7 +65,7 @@ export const getBottomSection = (amount) => `
                                 <label for="country">Country</label>
                                 <div class="input-wrapper">
                                     <select id="country">
-                                        <!-- Options will be populated dynamically -->
+                                 
                                     </select>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@ export const getBottomSection = (amount) => `
                                     <label for="state">State</label>
                                     <div class="input-wrapper">
                                         <select id="state">
-                                            <!-- Options will be populated dynamically -->
+                                     
                                         </select>
                                     </div>
                                 </div>
@@ -157,19 +157,7 @@ export const getBottomSection = (amount) => `
                                 </button>
                             </div>
                         </div>
-                        <!-- <div class="pin-container" id="pin-container">
-                            <p>Please enter your 4-digit card pin to authorize this payment</p>
-                            <div class="pin-inputs">
-                                <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                                <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                                <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                                <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            </div>
-                            <div class="pin-buttons">
-                                <button class="pin-back" id="pin-back">Go Back</button>
-                                <button class="pin-continue" id="pin-continue">Continue</button>
-                            </div>
-                        </div> -->
+                    
 
                     </div>
                 </div>
@@ -199,7 +187,7 @@ export const getBottomSection = (amount) => `
 
                             <div class="exchange-rate">
                                 <p>Exchange rates:</p>
-                                <span> 1 - = 0.00 USD</span>
+                                <span> 1 = 0.00 USD</span>
                             </div>
                             <div class="payment-details">
                                 <p class="amount">Amount to due:</p>
@@ -247,7 +235,7 @@ export const getBottomSection = (amount) => `
                                 <label for="country">Country</label>
                                 <div class="input-wrapper">
                                     <select id="banking-country">
-                                        <!-- Options will be populated dynamically -->
+                                 
                                     </select>
                                 </div>
                             </div>
@@ -256,7 +244,7 @@ export const getBottomSection = (amount) => `
                                     <label for="state">State</label>
                                     <div class="input-wrapper">
                                         <select id="banking-state">
-                                            <!-- Options will be populated dynamically -->
+                                     
                                         </select>
                                     </div>
                                 </div>
@@ -308,7 +296,7 @@ export const getBottomSection = (amount) => `
                                 <label for="country">Country</label>
                                 <div class="input-wrapper">
                                     <select id="user-country">
-                                        <!-- Options will be populated dynamically -->
+                                 
                                     </select>
                                 </div>
                             </div>
@@ -317,7 +305,7 @@ export const getBottomSection = (amount) => `
                                     <label for="state">State</label>
                                     <div class="input-wrapper">
                                         <select id="user-state">
-                                            <!-- Options will be populated dynamically -->
+                                     
                                         </select>
                                     </div>
                                 </div>
