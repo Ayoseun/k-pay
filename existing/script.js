@@ -840,54 +840,7 @@ function getCountry(country) {
     .catch(error => console.error('Error fetching countries:', error));
 }
 
-function getBankingCountry(bankingCountry) {
-  fetch('https://restcountries.com/v3.1/all')
-    .then(response => response.json())
-    .then(data => {
-      console.log('Countries fetched:', data.length);
 
-
-      bankingCountry.innerHTML = '<option value="">Select Country</option>';
-
-      // Sort the countries by their common names in ascending order
-      data.sort((a, b) => a.name.common.localeCompare(b.name.common));
-
-      data.forEach(c => {
-        const option = document.createElement('option');
-        option.value = c.name.common;
-        option.textContent = c.name.common;
-        option.dataset.cca2 = c.cca2; // Store the CCA2 code in a data attribute
-
-        bankingCountry.appendChild(option);
-
-      });
-    })
-    .catch(error => console.error('Error fetching countries:', error));
-}
-function getUserCountry(userCountry) {
-  fetch('https://restcountries.com/v3.1/all')
-    .then(response => response.json())
-    .then(data => {
-      console.log('Countries fetched:', data.length);
-
-
-      userCountry.innerHTML = '<option value="">Select Country</option>';
-
-      // Sort the countries by their common names in ascending order
-      data.sort((a, b) => a.name.common.localeCompare(b.name.common));
-
-      data.forEach(c => {
-        const option = document.createElement('option');
-        option.value = c.name.common;
-        option.textContent = c.name.common;
-        option.dataset.cca2 = c.cca2; // Store the CCA2 code in a data attribute
-
-        userCountry.appendChild(option);
-
-      });
-    })
-    .catch(error => console.error('Error fetching countries:', error));
-}
 
 
 function getState(countryName, state, city) {

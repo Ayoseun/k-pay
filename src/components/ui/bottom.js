@@ -96,13 +96,13 @@ export const getBottomSection = (amount) => `
                             <div class="form-field">
                                 <label for="firstName">First Name</label>
                                 <div class="input-wrapper">
-                                    <input type="text" id="firstName" placeholder="Enter your first name">
+                                    <input type="text" id="first-name" placeholder="Enter your first name">
                                 </div>
                             </div>
                             <div class="form-field">
                                 <label for="lastName">Last Name</label>
                                 <div class="input-wrapper">
-                                    <input type="text" id="lastName" placeholder="Enter your last name">
+                                    <input type="text" id="last-name" placeholder="Enter your last name">
                                 </div>
                             </div>
                             <div class="form-field">
@@ -135,13 +135,13 @@ export const getBottomSection = (amount) => `
                             <div class="summary-details">
 
                                 <div class="detail">
-                                    <p>Subtotal</p><span>$4105.00</span>
+                                    <p>Subtotal</p><span>$0.00</span>
                                 </div>
                                 <div class="detail">
-                                    <p>Shipping Cost</p><span>$408.00</span>
+                                    <p>Shipping Cost</p><span>$0.00</span>
                                 </div>
                                 <div class="detail">
-                                    <p>Discount (10%)</p><span>-$13.00</span>
+                                    <p>Discount (0%)</p><span>-$0.00</span>
                                 </div>
                                 <hr class="summary-divider">
                                 <div class="detail total"><span>Total</span><span>$${amount}</span></div>
@@ -178,11 +178,11 @@ export const getBottomSection = (amount) => `
                         <input type="radio" class="payment-checkbox">
                         <div class="dropdown-inner">
                             <div class="dropdown-text">Pay with Crypto</div>
-                            <img src="./assets/bitcoin.svg" alt="Bitcoin" class="payments-image-crypto">
-                            <img src="./assets/ethereum.svg" alt="Ethereum" class="payments-image-crypto">
-                            <img src="./assets/usdc.svg" alt="USDC" class="payments-image-crypto">
-                            <img src="./assets/usdt.svg" alt="USDT" class="payments-image-crypto">
-                            <img src="./assets/sol.png" alt="Solana" class="payments-image-crypto">
+                            <img src="https://ayoseun.github.io/k-pay/assets/bitcoin.svg" alt="Bitcoin" class="payments-image-crypto">
+                            <img src="https://ayoseun.github.io/k-pay/assets/ethereum.svg" alt="Ethereum" class="payments-image-crypto">
+                            <img src="https://ayoseun.github.io/k-pay/assets/usdc.svg" alt="USDC" class="payments-image-crypto">
+                            <img src="https://ayoseun.github.io/k-pay/assets/usdt.svg" alt="USDT" class="payments-image-crypto">
+                            <img src="https://ayoseun.github.io/k-pay/assets/sol.png" alt="Solana" class="payments-image-crypto">
                         </div>
                     </div>
                     <div class="dropdown-content">
@@ -206,11 +206,7 @@ export const getBottomSection = (amount) => `
                                 <span> 0.00</span>
                             </div>
                             <div class="crypto-divider "></div>
-                            <div class="payment-details">
-                                <p>REF </p>
-                                <span>REF23456</span>
-
-                            </div>
+                           
 
 
 
@@ -373,7 +369,7 @@ export const getBottomSection = (amount) => `
                             </div>
                             <button class="pay-button" id="ach-pay-button">
 
-                                pay $5000
+                                pay $${amount}
 
                             </button>
 
@@ -389,13 +385,13 @@ export const getBottomSection = (amount) => `
                             <div class="summary-details">
 
                                 <div class="detail">
-                                    <p>Subtotal</p><span>$4105.00</span>
+                                    <p>Subtotal</p><span>$0.00</span>
                                 </div>
                                 <div class="detail">
-                                    <p>Shipping Cost</p><span>$408.00</span>
+                                    <p>Shipping Cost</p><span>$0.00</span>
                                 </div>
                                 <div class="detail">
-                                    <p>Discount (10%)</p><span>-$13.00</span>
+                                    <p>Discount (0%)</p><span>-$0.00</span>
                                 </div>
                                 <hr class="summary-divider">
                                 <div class="detail total"><span>Total</span><span>$${amount}</span></div>
@@ -442,7 +438,7 @@ export const getBottomSection = (amount) => `
 
 `;
 
-export const secured=()=>`
+export const getBanner=()=>`
  <div class="secure-payments-button">
             <span class="text">Secure payments</span>
             <span class="powered-by">Powered by</span>

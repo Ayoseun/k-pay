@@ -1,5 +1,5 @@
 
-import { createWidget } from './widget.js';
-import { paymentResult } from './widgetListeners.js';
+import { createWidget } from './js/widget.js';
 
-export { createWidget,paymentResult };
+
+export { createWidget};

@@ -2,8 +2,6 @@ export const cardFormStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-
-
 .card-details {
     background-color: white;
     font-family: 'Poppins', sans-serif;
@@ -65,6 +63,7 @@ export const cardFormStyles = `
 
 .input-wrapper input[type="text"],
 .input-wrapper input[type="number"],
+.input-wrapper input[type="email"],
 .input-wrapper select {
     width: 107%;
     border: none;
@@ -282,5 +281,75 @@ width: 24px;
         display: none;
         /* Initially hidden */
     }
+}
+
+
+
+
+@media screen and (max-width: 436px) {
+    .pin-container {
+        background: #fff;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 30px;
+    
+    
+    
+    }
+    .pin-container  p{
+        color: #000;
+        width: 100%;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.5rem;
+        text-align: center;
+        font-weight: 400;
+    }
+    .pin-inputs input {
+        width: 13%;
+        height:3vh;
+        margin: 5px;
+        font-size: 0.5rem;
+        font-family: 'Inter', sans-serif;
+    text-align: center;
+        border-radius: 2px;
+        border: 0.5px solid #4750B2;
+    }
+    .pin-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 7px;
+        margin-bottom: 30px;
+    }
+
+    .pin-continue {
+        padding: 5px 10px;
+        border: none;
+        background-color: #19624C;
+        color: white;
+        cursor: pointer;
+        border-radius: 2px;
+        font-size: 0.45rem;
+        padding: 5px 20px 5px 20px;
+        font-weight: 300;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .pin-back {
+        color: #19624C;
+        font-size: 0.45rem;
+        padding: 5px 20px 5px 20px;
+        font-weight: 300;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        background-color: #CFF1E6;
+    }
+
 }
 `;

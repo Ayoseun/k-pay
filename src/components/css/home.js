@@ -2,7 +2,6 @@
 export const homeStyles = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
 .card {
     width: 100%;
     max-width: 65%;
@@ -13,7 +12,13 @@ export const homeStyles = `
     box-sizing: border-box;
     padding-bottom: 3%;
 }
-
+.holder {
+ display: flex;
+    width: 75%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .top-section {
     display: flex;
     padding: 20px;
@@ -237,6 +242,116 @@ export const homeStyles = `
     display: block;
 }
 
+.payments {
+
+    margin-bottom: 2px;
+    overflow: hidden;
+}
+
+.payments-header {
+    display: flex;
+    border: 0.5px solid #D0D5DD;
+    border-radius: 5px;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    width: 4%;
+    border: #16A34A;
+    border-width: 0.1%;
+    accent-color: #16A34A;
+}
+
+.payments-inner {
+    display: flex;
+    align-items: center;
+}
+
+.payments-image {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.payments-image-crypto {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+.payments-image-others {
+    width: 38px;
+    height: 38px;
+
+}
+
+.payments-text {
+    flex: 1;
+    margin-right: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: x-small;
+}
+
+
+
+
+.payments-content {
+    display: none;
+    width: 100%;
+    box-sizing: border-box;
+    max-height: 350px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+    /* For Internet Explorer and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.payments-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Optional: Custom scrollbar styling */
+.payments-content {
+    /* Ensure the content has some padding on the right to avoid overlap */
+    padding-right: 20px;
+}
+
+/* Create a custom scrollbar effect */
+.payments-content::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+/* Optional: Style the "thumb" of the scrollbar */
+.payments-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 30%;
+    /* Adjust based on content */
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.payments-content:hover::before {
+    opacity: 1;
+}
+
+
 @media screen and (max-width: 436px) {
 
     .icon {
@@ -244,7 +359,7 @@ export const homeStyles = `
         height: 12px;
         margin-right: 10px;
     }
-    
+
     .logo-text {
         font-size: 0.5rem;
         color: #000;
@@ -266,6 +381,7 @@ export const homeStyles = `
         margin: 10px 0px 0px 20px;
         font-weight: 500;
     }
+
     .middle-section {
         display: block;
         text-align: center;
@@ -273,12 +389,13 @@ export const homeStyles = `
         font-size: 0.5rem;
         margin: 20px 0px 20px 0px;
     }
+
     .bottom-section {
         display: block;
         margin: 10px 20px 0px 20px;
     }
 
-    .dropdown-header {
+    .payment-header {
         display: flex;
         border: 0.5px solid #D0D5DD;
         border-radius: 5px;
@@ -288,7 +405,7 @@ export const homeStyles = `
         cursor: pointer;
     }
 
-    .dropdown-checkbox {
+    .payment-checkbox {
         appearance: none;
         -webkit-appearance: none;
         margin-right: 10px;
@@ -298,8 +415,10 @@ export const homeStyles = `
         height: 8px;
         background-color: #FFFFFF;
         cursor: pointer;
-        position: relative; /* Add this for positioning the checkmark */
+        position: relative;
+        /* Add this for positioning the checkmark */
     }
+
     .dropdown-text {
         flex: 1;
         margin-right: 15px;
@@ -312,17 +431,41 @@ export const homeStyles = `
         height: 10px;
         margin-right: 10px;
     }
-    
+
     .dropdown-image-crypto {
         width: 10px;
         height: 10px;
         margin-right: 10px;
     }
-    
+
     .dropdown-image-others {
         width: 15px;
         height: 15px;
-        
+
     }
 }
-`
+
+
+
+
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.clickable-div {
+    background-color: #f0f0f0;
+    padding: 10px;
+    cursor: pointer;
+}
+.content {
+    background-color: #e0e0e0;
+    padding: 10px;
+    margin-top: 10px;
+    display: none;
+}`

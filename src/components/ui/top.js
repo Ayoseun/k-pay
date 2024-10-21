@@ -4,7 +4,7 @@
 export const getTopSection = (amount) => `
             <div class="top-section">
                 <div class="top-left">
-                    <img src="./assets/logo.svg" alt="Icon" class="icon">
+                    <img src="https://ayoseun.github.io/k-pay/assets/logo.svg" alt="Icon" class="icon">
                     <div class="text-row">
                         <div class="logo-text">Orokiipay</div>
                     </div>
