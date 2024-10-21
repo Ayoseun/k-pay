@@ -392,7 +392,7 @@ export function initializeEventListeners() {
     ];
     let paymentType = 0;
 
-    document.addEventListener('DOMContentLoaded', () => {
+   // document.addEventListener('DOMContentLoaded', () => {
 
 
 
@@ -782,7 +782,7 @@ export function initializeEventListeners() {
       //-----------
 
 
-    });
+   // });
 
 
 
