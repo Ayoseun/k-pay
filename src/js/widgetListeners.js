@@ -1486,7 +1486,8 @@
 //     //return 
 
 // }
-export function initializeEventListeners() {
+export function initializeEventListeners(m) {
+    console.log(m)
   document.querySelectorAll('.dropdown-header').forEach(header => {
       header.addEventListener('click', function () {
           const dropdown = this.parentElement;

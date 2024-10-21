@@ -355,6 +355,6 @@ export function createWidget(amount) {
 
     // Append the widget to the body (or any other target container)
     document.body.appendChild(widget);
-    initializeEventListeners()
+    initializeEventListeners(amount)
     return widget
 }
