@@ -1,17 +1,10 @@
 //import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.min.js";
 
 
-export function initializeEventListeners() {
-    const paymentData = {
-        "totalAmount": "500",
-        "merchants": [{ "merchantId": "87766786", "amount": "60", "tax": "5" },
-        { "merchantId": "87766786", "amount": "60", "tax": "5" },
-        { "merchantId": "87766786", "amount": "60", "tax": "5" },],
-        "userACHToken": { "userTokenId": "c3e453aa-c917-4ca0-ad0d-8a3d9492cc86", "userPaymentOptionId": "132005098", },
-        "userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678", }
-    }
+export function initializeEventListeners(paymentData) {
+
     let selectedCountry = "";
-    const amount = "500"
+    const amount = paymentData["totalAmount"]
     let selectedCity = "";
     const baseURL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
     const getIpAddress = () => {

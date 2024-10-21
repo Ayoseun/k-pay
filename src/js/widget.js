@@ -59,7 +59,7 @@ export function createWidget(paymentData) {
     // Append the widget to the body (or any other target container)
     document.body.appendChild(widget);
     // initializeEventListeners()
-    initializeEventListeners()
+    initializeEventListeners(paymentData)
 
     return widget
 }
