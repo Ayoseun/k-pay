@@ -11,7 +11,7 @@ export function initializeEventListeners() {
         "userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678", }
     }
     let selectedCountry = "";
-    const amount = paymentData["totalAmount"]
+    const amount = "500"
     let selectedCity = "";
     const baseURL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
     const getIpAddress = () => {
