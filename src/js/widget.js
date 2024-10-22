@@ -49,7 +49,7 @@ export function createWidget(paymentData) {
     }
     // Append each section to the widget container
     widget.innerHTML = `
-    <div class="orokii-card">
+    <div class="card">
     ${getTopSection(amount)}
     ${getMiddleSection()}
     ${getBottomSection(amount)}
