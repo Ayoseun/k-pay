@@ -156,4 +156,16 @@ export const cryptoStyles=`
     width: 100%;
     border-top: 0.5px solid #ddd;
 }
+    #crypto-loader {
+    border: 1px solid #f3f3f3;
+    /* Light grey */
+    border-top: 1px solid #000000;
+    /* Black */
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    animation: spin 1s linear infinite;
+    display: none;
+    /* Initially hidden */
+}
 `

@@ -60,7 +60,7 @@ export const getBottomSection = (amount) => `
 
 
                             <p style="margin: 0%; font-size: 0.7rem; font-weight: 400; color: #000;">Billing Address</p>
-                            <p>We only require this information once for this card</p>
+                           
                             <div class="form-field">
                                 <label for="country">Country</label>
                                 <div class="input-wrapper">
@@ -174,7 +174,7 @@ export const getBottomSection = (amount) => `
                         </div>
                     </div>
                     <div class="dropdown-content">
-                        <div class="crypto-container">
+                        <div class="crypto-container" id="crypto-details">
                             <h2>Select Cryptocurrency</h2>
                             <div class="crypto-form-field">
                                 <label for="tokens">Pay with</label>
@@ -201,6 +201,39 @@ export const getBottomSection = (amount) => `
                             <button class="pay-button" id="connect-wallet">Pay</button>
 
                             <div class="crypto-divider "></div>
+                        </div>
+                        <div class="summary-container" id="summary-container-crypto">
+                            <img src="https://ayoseun.github.io/k-pay/assets/checkout.svg" alt="Image 1"
+                                style="width: 48px;height: 48px;">
+                            <h4>Payment Summary</h4>
+                            <div class="amount-holder">
+                                <p>Amount</p>
+                                <h1>$${amount}</h1>
+                            </div>
+                            <div class="summary-details">
+
+                                <div class="detail">
+                                    <p>Subtotal</p><span>$0.00</span>
+                                </div>
+                                <div class="detail">
+                                    <p>Shipping Cost</p><span>$0.00</span>
+                                </div>
+                                <div class="detail">
+                                    <p>Discount (0%)</p><span>-$0.00</span>
+                                </div>
+                                <hr class="summary-divider">
+                                <div class="detail total"><span>Total</span><span>$${amount}</span></div>
+                            </div>
+                            <div class="summary-buttons">
+                                <button class="summary-buttons-go-back" id="crypto-summary-button-go-back">Go Back</button>
+                                <button class="summary-buttons-confirm" id="crypto-summary-button-confirm">
+                                    <span id="crypto-pay-button-text">
+                                        Confirm
+                                        Payment</span>
+
+                                    <div id="crypto-loader"></div>
+                                </button>
+                            </div>
                         </div>
 
                     </div>
@@ -230,7 +263,7 @@ export const getBottomSection = (amount) => `
 
 
                             <h2>User Details</h2>
-                            <p>We only require this information once for this card</p>
+                           
                             <div class="form-field">
                                 <label for="country">Country</label>
                                 <div class="input-wrapper">
@@ -273,7 +306,7 @@ export const getBottomSection = (amount) => `
                             <div class="form-field">
                                 <label for="lastName">Phone</label>
                                 <div class="input-wrapper">
-                                    <input type="number" id="banking-phone" placeholder="Enter your last name">
+                                    <input type="number" id="banking-phone" placeholder="Enter your phone number">
                                 </div>
                             </div>
                             <div class="form-field">
@@ -285,13 +318,13 @@ export const getBottomSection = (amount) => `
                             <div class="form-field">
                                 <label for="zip1">ZIP code</label>
                                 <div class="input-wrapper">
-                                    <input type="number" id="banking-zip" placeholder="Input ZIP code">
+                                    <input type="number" id="banking-zip" placeholder="Enter your ZIP code">
                                 </div>
                             </div>
 
 
                             <h2>Billing Address</h2>
-                            <p>We only require this information once for this card</p>
+                            
                             <div class="form-field">
                                 <label for="country">Country</label>
                                 <div class="input-wrapper">

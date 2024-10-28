@@ -15,8 +15,6 @@ import { initializeEventListeners } from './widgetListeners.js';
 
 
 
-
-
 // Main Widget Creation Function
 export function createWidget(paymentData) {
     let amount = paymentData["totalAmount"]
@@ -24,7 +22,7 @@ export function createWidget(paymentData) {
     widget.classList.add('widget-container', 'holder');
 
     // Create and append styles
-    const styles = [
+    const orokiiWidgetStyles = [
         banner,
         homeStyles,
         successStyles,
@@ -37,10 +35,10 @@ export function createWidget(paymentData) {
 
     ];
 
-    styles.forEach((styleContent, index) => {
-        const style = document.createElement('style');
-        style.appendChild(document.createTextNode(styleContent));
-        document.head.appendChild(style);
+    orokiiWidgetStyles.forEach((orokiiWidgetStylesContent, index) => {
+        const orokiiWidgetStyle = document.createElement('style');
+        orokiiWidgetStyle.appendChild(document.createTextNode(orokiiWidgetStylesContent));
+        document.head.appendChild(orokiiWidgetStyle);
     });
     if (amount == null) {
         amount = "0.0"
@@ -49,6 +47,7 @@ export function createWidget(paymentData) {
     }
     // Append each section to the widget container
     widget.innerHTML = `
+  
     <div class="card">
     ${getTopSection(amount)}
     ${getMiddleSection()}

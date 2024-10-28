@@ -1,7 +1,9 @@
 import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.min.js";
-       
+
 let selectedCountry = "";
 let selectedCity = "";
+let selectedTokenAddress = "";
+let amountInCrypto;
 const baseURL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
 const getIpAddress = async () => {
   try {
@@ -262,6 +264,16 @@ const testnetNetworks = [
     chainId: "0x13882",
     chain: "80002",
     network: "Amoy",
+    token: "OPY",
+    rpc: "https://polygon-amoy.blockpi.network/v1/rpc/public",
+    symbol: "OPY",
+    decimal: 18,
+    contract: "0xF235fCA1026202D6d497d00d7fc812060f70286d" // Amoy OPY
+  },
+  {
+    chainId: "0x13882",
+    chain: "80002",
+    network: "Amoy",
     token: "USDC",
     rpc: "https://polygon-amoy.blockpi.network/v1/rpc/public",
     symbol: "USDC",
@@ -467,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
   getCountry(country)
   getCountry(userCountry)
   getCountry(bankingCountry)
-  getCrypto(testnetNetworks, tokens)
+  getCrypto(testnetNetworks, tokens,connectWalletButton)
   //--------EVENT----------
   document.querySelectorAll('.dropdown-header').forEach(header => {
     header.addEventListener('click', function () {
@@ -736,14 +748,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('Selected token:', event.target.value);
     const jsonData = JSON.parse(event.target.value)
-    connectWallet(jsonData,exchangeRateSpan,cryptoAmountSpan)
+    connectWallet(jsonData, exchangeRateSpan, cryptoAmountSpan,connectWalletButton)
 
   });
   //--------------
 
   //----- CRYPTO EVENTS------
   connectWalletButton.addEventListener('click', (e) => {
-   // const chain = JSON.parse(e.target.value)
+    // const chain = JSON.parse(e.target.value)
     interactWithContract(window)
   })
   //-----------
@@ -769,52 +781,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// Function to clone HTML and JavaScript functionality
-function cloneElementWithEvents(source, target) {
 
-  // Clone the source element
-  const clone = source.cloneNode(true);
-
-
-  // Append the clone to the target
-  target.appendChild(clone);
-  target.style.display = 'block';
-}
-
-
-let currentlyDisplayedContent = null;
-
-function updateContentDisplay(document, contentDisplay, paymentDiv) {
-  const content = paymentDiv.querySelector('.payment-content')
-  const paymentId = paymentDiv.getAttribute('data-id');
-
-  if (currentlyDisplayedContent === content && content.style.display !== 'none') {
-    // If clicking the same option that's currently displayed, hide it
-    content.style.display = 'none';
-    contentDisplay.innerHTML = '';
-    contentDisplay.style.display = 'none';
-    contentDisplay.removeAttribute('data-id');
-    currentlyDisplayedContent = null;
-  } else {
-    // Hide previous content if exists
-    if (currentlyDisplayedContent) {
-      currentlyDisplayedContent.style.display = 'none';
-    }
-    // Show new content
-    content.style.display = 'block';
-    contentDisplay.innerHTML = '';
-    contentDisplay.appendChild(content);
-    contentDisplay.style.display = 'block';
-    contentDisplay.setAttribute('data-id', paymentId);
-    currentlyDisplayedContent = content;
-  }
-}
-
-function updatePaymentOption(document, contentDisplay) {
-
-
-
-}
 
 
 function getCountry(country) {
@@ -1252,7 +1219,7 @@ async function achSubmit(amount, accountNumberInput, routingNumberInput,
 };
 
 
-function getCrypto(networks, tokens) {
+function getCrypto(networks, tokens,connectWalletButton) {
   tokens.innerHTML = '<option value="">Select Cryptocurrency</option>';
   // Sort the countries by their common names in ascending order
   networks.sort((a, b) => a.network.localeCompare(b.network));
@@ -1272,10 +1239,11 @@ function getCrypto(networks, tokens) {
     option.textContent = t.network + "-" + t.token;
     tokens.appendChild(option);
   });
-
+  connectWalletButton.disabled = true;
+  connectWalletButton.style.backgroundColor='#808080'
 }
 
-const connectWallet = async (targetChain,exchangeRateSpan,cryptoAmountSpan) => {
+const connectWallet = async (targetChain, exchangeRateSpan, cryptoAmountSpan,connectWalletButton) => {
   if (typeof window.ethereum !== 'undefined') {
     try {
       // Request account access
@@ -1293,7 +1261,7 @@ const connectWallet = async (targetChain,exchangeRateSpan,cryptoAmountSpan) => {
             method: 'wallet_switchEthereumChain',
             params: [{ chainId: targetChain.chainId }],
           });
-         
+
 
         } catch (switchError) {
           // This error occurs if the target chain is not added in MetaMask
@@ -1315,7 +1283,7 @@ const connectWallet = async (targetChain,exchangeRateSpan,cryptoAmountSpan) => {
       } else {
         console.log('Already connected to the correct network.');
       }
-      getCryptoPrice(targetChain.token,exchangeRateSpan,cryptoAmountSpan)
+      getCryptoPrice(targetChain.token, exchangeRateSpan, cryptoAmountSpan,connectWalletButton)
     } catch (error) {
       console.error("Error connecting to wallet: ", error);
     }
@@ -1370,6 +1338,7 @@ async function addTokenToMetaMask(targetChain) {
     });
 
     if (wasAdded) {
+      selectedTokenAddress = targetChain.contract;
       console.log(`${symbol} has been added to MetaMask`);
     } else {
       console.log('Token addition was rejected.');
@@ -1384,23 +1353,31 @@ async function interactWithContract(window) {
     const provider = new ethers.BrowserProvider(window.ethereum);
     // Need to await the signer
     const signer = await provider.getSigner();
-    
+
     // Create contract instance
     const contract = new ethers.Contract(
-      "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      "0xbF5095D72CD859c637cAD3bFFdC613B7341f6f27",
       contractABI,
       signer
     );
 
     const merchantId = ethers.encodeBytes32String("merchant ayo");
-    
+
     // Call the view function
-    const merchant = await contract.getOneMerchant("0x6d65726368616e742061796f0000000000000000000000000000000000000000");
-    console.log('Merchant data:', merchant);
-    
+    const tx = await contract.addMerchantBalance(
+      merchantId,
+      selectedTokenAddress,
+      amountInCrypto
+    )
+
+    tx.wait()
+    console.log('Merchant data:', tx.hash());
     // Note: .wait() is only needed for transactions that modify state
     // For view/read functions, we don't need to wait for a receipt
-    
+    // successContainer.style.display = 'flex';
+    // middleContainer.style.display = 'none';
+    // bottomContainer.style.display = 'none';
+
   } catch (error) {
     console.error('Error interacting with the smart contract: ', error);
   }
@@ -1510,7 +1487,7 @@ function resetForm(document, cardNumberInput,
   if (userCity) userCity.innerHTML = '<option value="">Select City</option>';
 }
 
-function getCryptoPrice(token, exchangeRateSpan,cryptoAmountSpan) {
+function getCryptoPrice(token, exchangeRateSpan, cryptoAmountSpan,connectWalletButton) {
   fetch(`https://rest.coinapi.io/v1/exchangerate/${token}/USD`, {
     method: 'GET',
     headers: {
@@ -1520,22 +1497,30 @@ function getCryptoPrice(token, exchangeRateSpan,cryptoAmountSpan) {
   })
     .then(response => {
       if (!response.ok) {
-       // throw new Error(`HTTP error! Status: ${response.status}`);
+        // throw new Error(`HTTP error! Status: ${response.status}`);
       }
       return response.json(); // Parse as JSON
     })
     .then(data => {
+      connectWalletButton.disabled = false;
+      connectWalletButton.style.backgroundColor='#19624C'
       console.log(data); // Log the entire data object for debugging
       let USDPrice = data.rate; // Access the rate property directly
       console.log(USDPrice); // Correct variable name
       exchangeRateSpan.textContent = `1 ${token} = ${USDPrice.toFixed(3)} USD`; // Use toFixed for 3 decimal places
-     const amountInCrypto= 4000/USDPrice
-      cryptoAmountSpan.textContent  = `${amountInCrypto.toFixed(3)}`
+      amountInCrypto = 4000 / USDPrice
+      cryptoAmountSpan.textContent = `${amountInCrypto.toFixed(3)}`
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => {
+      connectWalletButton.disabled = true;
+         connectWalletButton.style.backgroundColor='#808080'
+      amountInCrypto =3.000;
+      cryptoAmountSpan.textContent = `${amountInCrypto.toFixed(3)}`
+      console.error('Error:', error)
+    });
 }
 
-    
+
 const contractABI =
   [
     {

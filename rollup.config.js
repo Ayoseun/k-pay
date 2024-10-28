@@ -3,6 +3,8 @@ import commonjs from '@rollup/plugin-commonjs';
 import postcss from 'rollup-plugin-postcss';
 import terser from '@rollup/plugin-terser';
 import obfuscator from 'rollup-plugin-obfuscator';
+import nodePolyfills from 'rollup-plugin-polyfill-node';
+import json from '@rollup/plugin-json';
 
 export default {
   input: 'src/main.js',
@@ -10,11 +12,30 @@ export default {
     file: 'bundle.js',
     format: 'iife',
     name: 'OrokiipayWidget',
-    sourcemap: process.env.NODE_ENV !== 'production'
+    sourcemap: process.env.NODE_ENV !== 'production',
+    globals: {
+      crypto: 'crypto',
+      buffer: 'Buffer',
+      http: 'http',
+      https: 'https',
+      url: 'url',
+      stream: 'stream',
+      zlib: 'zlib',
+      events: 'events'
+    }
   },
   plugins: [
-    resolve(),
-    commonjs(),
+    nodePolyfills({
+      include: ['buffer', 'crypto', 'http', 'https', 'stream', 'url', 'zlib', 'events']
+    }),
+    resolve({
+      browser: true,
+      preferBuiltins: false
+    }),
+    commonjs({
+      transformMixedEsModules: true
+    }),
+    json(),
     postcss({
       extract: true,
       minimize: true,
@@ -37,5 +58,6 @@ export default {
         unicodeEscapeSequence: false
       }
     }),
-  ]
+  ],
+  context: 'window'
 };
