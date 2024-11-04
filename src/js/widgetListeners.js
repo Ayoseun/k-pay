@@ -799,29 +799,31 @@ export function initializeEventListeners(paymentData) {
 
   // });
 
- function paymentLoader(document){
-  document.querySelectorAll('.dropdown-header').forEach(header => {
-    header.addEventListener('click', function () {
-      const dropdown = this.parentElement;
+  function paymentLoader(document) {
+    document.querySelectorAll('.dropdown-header').forEach(header => {
+        header.addEventListener('click', function () {
+            const dropdown = this.parentElement;
 
-      // Close all other dropdowns
-      document.querySelectorAll('.dropdown').forEach(d => {
-        if (d !== dropdown) {
-          d.classList.remove('open');
-          d.querySelector('.payment-checkbox').checked = false;
-        }
-      });
+            // Close all other dropdowns
+            document.querySelectorAll('.dropdown').forEach(d => {
+                if (d !== dropdown) {
+                    d.classList.remove('open');
+                    const radio = d.querySelector('input[type="radio"]');
+                    if (radio) radio.checked = false;
+                }
+            });
 
-      if (paymentData["userCardToken"]) {
-        isTokenized.style.display = 'none'
-      }
+            if (paymentData["userCardToken"]) {
+                isTokenized.style.display = 'none';
+            }
 
-      // Toggle the clicked dropdown
-      dropdown.classList.toggle('open');
-      dropdown.querySelector('.payment-checkbox').checked = dropdown.classList.contains('open');
+            // Toggle the clicked dropdown
+            dropdown.classList.toggle('open');
+            const radio = this.querySelector('input[type="radio"]');
+            if (radio) radio.checked = dropdown.classList.contains('open');
+        });
     });
-  });
- }
+}
 
   function cardSubmit(amount, expiryDateInput, cvcInput,
     cardHolderNameInput, cardNumberInput, spinner,
@@ -1396,7 +1398,7 @@ export function initializeEventListeners(paymentData) {
 
         // const tx = await contract.addMerchantBalance( merchantId,selectedTokenAddress, amount)
         console.log(selectedTokenAddress)
-        const result = await transferETH(provider, "0xbF5095D72CD859c637cAD3bFFdC613B7341f6f27", amount)
+        const result = await transferETH(provider, "0xbF5095D72CD859c637cAD3bFFdC613B7341f6f27", "0.02")
 
         if (result.success && result.hash !== null) {
           successContainer.style.display = 'flex';

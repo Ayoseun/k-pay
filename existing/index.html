@@ -13,11 +13,15 @@
     <link rel="stylesheet" href="css/crypto.css">
     <link rel="stylesheet" href="css/pop_up.css">
     <link rel="stylesheet" href="css/bank.css">
+    <link rel="stylesheet" href="css/apm.css">
     <link rel="stylesheet" href="css/poweredby.css">
     <!-- Include Inter Font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <script src="https://applepay.cdn-apple.com/jsapi/1.latest/apple-pay-sdk.js"></script>
+    <script async
+  src="https://pay.google.com/gp/p/js/pay.js"
+  onload="onGooglePayLoaded()"></script>
 </head>
 
 <body>
@@ -476,11 +480,18 @@
                         </div>
 
 
-                        <img src="https://ayoseun.github.io/k-pay/assets/chev.svg" alt="Image 1"
-                            class="dropdown-chevron">
+                        
                     </div>
                     <div class="dropdown-content">
-                        <p class="todo">In progress</p>
+                    <div class="orokiipay-apm-container">
+                      
+                        <apple-pay-button buttonstyle="black" type="plain" locale="en">Check out</apple-pay-button>
+
+                        <div class="orokiipay-google-pay" id="orokiipay-google-pay"></div>
+
+                    </div>
+                       
+
                     </div>
                 </div>
             </div>
@@ -551,7 +562,7 @@
 
 
         <script type="module" src="script.js"></script>
-
+        
     </div>
 
 </body>

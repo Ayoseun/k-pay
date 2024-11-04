@@ -1,0 +1,29 @@
+.orokiipay-apm-container {
+    width: auto;
+    height: 2.5rem;
+    padding: 5%;
+    display: flex;
+    flex-direction: row;
+    gap: 50px; /* Adds space between items */
+    justify-content: space-between; /* Distributes space evenly */
+}
+
+apple-pay-button {
+    flex: 1; /* Makes items take equal width */
+    --apple-pay-button-width: 100%; /* Takes full width of its flex container */
+    --apple-pay-button-height: 20px;
+    --apple-pay-button-border-radius: 5px;
+    --apple-pay-button-padding: 5px;
+    display: block;
+}
+
+.orokiipay-google-pay {
+    color: black;
+    flex: 1; /* Makes items take equal width */
+    width: 100%; /* Takes full width of its flex container */
+}
+
+/* If you have any other payment buttons, give them flex: 1 as well */
+.other-payment-button {
+    flex: 1;
+}

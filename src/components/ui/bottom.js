@@ -6,7 +6,7 @@ export const getBottomSection = (amount) => `
 <div class="bottom-section" id="bottom-section">
                 <div class="dropdown" id="dropdown-1">
                     <div class="dropdown-header">
-                        <input type="radio" class="payment-checkbox">
+                        <input type="radio" id="payment-radio-card" class="payment-checkbox">
                         <div class="dropdown-inner">
                             <div class="dropdown-text">Pay with Cards</div>
                             <img src="https://ayoseun.github.io/k-pay/assets/visa.svg" alt="Image 1"
@@ -163,7 +163,7 @@ export const getBottomSection = (amount) => `
                 </div>
                 <div class="dropdown" id="dropdown-2">
                     <div class="dropdown-header">
-                        <input type="radio" class="payment-checkbox">
+                        <input type="radio" id="payment-radio-crypto" class="payment-checkbox">
                         <div class="dropdown-inner">
                             <div class="dropdown-text">Pay with Crypto</div>
                             <img src="https://ayoseun.github.io/k-pay/assets/bitcoin.svg" alt="Bitcoin" class="payments-image-crypto">
@@ -240,7 +240,7 @@ export const getBottomSection = (amount) => `
                 </div>
                 <div class="dropdown" id="dropdown-3">
                     <div class="dropdown-header">
-                        <input type="radio" class="payment-checkbox">
+                        <input type="radio" id="payment-radio-ach" class="payment-checkbox">
 
                         <div class="dropdown-text">Pay with Bank Account</div>
 
@@ -434,7 +434,7 @@ export const getBottomSection = (amount) => `
                 </div>
                 <div class="dropdown" id="dropdown-4">
                     <div class="dropdown-header">
-                        <input type="radio" class="payment-checkbox">
+                        <input type="radio" id="payment-radio-apm" class="payment-checkbox">
                         <div class="dropdown-inner">
                             <div class="dropdown-text">Pay with</div>
                             <img src="https://ayoseun.github.io/k-pay/assets/applePay.svg" alt="Image 1"
