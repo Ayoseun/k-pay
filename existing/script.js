@@ -2,7 +2,9 @@ import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethe
 
 let orokiiSelectedCountry = "";
 let orokiiSelectedCity = "";
+let orokiiBTCCheckoutLink="";
 let orokiiSelectedTokenAddress = "";
+let orokiiSelectedToken = "";
 let orokiiAmountInCrypto;
 const orokiiBaseURL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
 const getIpAddress = async () => {
@@ -497,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const summaryBackBtn = document.getElementById('orokii-summary-buttons-go-back')
   const achSummaryConfirmBtn = document.getElementById('orokii-ach-summary-buttons-confirm')
   const achSummaryBackBtn = document.getElementById('orokii-ach-summary-buttons-go-back')
-
+  const iframeCloseBtn = document.getElementById('orokii-iframe-close-btn')
 
   getCountry(country)
   getCountry(userCountry)
@@ -783,6 +785,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (orokiiSelectedTokenAddress) {
       interactWithContract(window)
+    } else if (orokiiSelectedToken == 'BTC') {
+      btcPayments("0.006")
+
     } else {
       transferETH(
         "0.005", window, connectWalletButton, spinner,
@@ -794,7 +799,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //-----------
 
 
-
+  iframeCloseBtn.addEventListener('click', (event) => {
+    closeModal(orokiiBTCCheckoutLink)
+  })
 
 
 
@@ -815,7 +822,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Function to open the modal and set the URL
+function openModal(src) {
+  const modal = document.getElementById('orokii-myModal');
+  const iframe = document.getElementById('orokii-modalIframe');
+  iframe.src = src; // Set your URL here
+  modal.style.display = 'flex';
+}
 
+// Function to close the modal
+function closeModal(src) {
+  const modal = document.getElementById('orokii-myModal');
+  const iframe = document.getElementById('orokii-modalIframe');
+  iframe.src = src; // Clear iframe source for cleanup
+  modal.style.display = 'none';
+}
 
 function getCountry(country) {
   fetch('https://restcountries.com/v3.1/all')
@@ -840,7 +861,46 @@ function getCountry(country) {
     .catch(error => console.error('Error fetching countries:', error));
 }
 
+function btcPayments(amount) {
 
+  const url = 'https://btcpay516690.lndyn.com/api/v1/stores/HadUh2T9WnCeTab4ahKSSqdpjkKVktsjVR8MipQfZTAW/invoices';
+  const headers = {
+    'Authorization': 'token 6bf7ed255cba58f9697436cdf6f3b4e58318833a',
+    'Content-Type': 'application/json'
+  };
+
+  const body = JSON.stringify({
+    amount: amount,
+    currency: 'USD'
+  });
+
+  fetch(url, {
+    method: 'POST',
+    headers: headers,
+    body: body
+  })
+    .then(response => response.json()) // Parse JSON response
+    .then(data => {
+      // Extract checkoutLink and expirationTime
+      const orokiiBTCCheckoutLink = data.checkoutLink;
+      const expirationTime = data.expirationTime;
+
+      // Log the extracted values
+      console.log('Checkout Link:', orokiiBTCCheckoutLink);
+      if (orokiiBTCCheckoutLink) {
+        openModal(orokiiBTCCheckoutLink)
+      } else {
+
+      }
+      // Convert expirationTime to a human-readable date
+      const expirationDate = new Date(expirationTime * 1000); // Convert from Unix timestamp (seconds) to milliseconds
+      console.log('Expiration Date:', expirationDate);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+
+}
 
 
 function getState(countryName, state, city) {
@@ -1287,52 +1347,63 @@ function getCrypto(networks, tokens, connectWalletButton) {
 }
 
 const connectWallet = async (targetChain, exchangeRateSpan, cryptoAmountSpan, connectWalletButton) => {
+
   if (typeof window.ethereum !== 'undefined') {
-    try {
-      // Request account access
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      console.log(accounts[0]);
+
+    if (targetChain.token == "BTC") {
+      orokiiSelectedToken = "BTC"
+      getCryptoPrice(targetChain.token, exchangeRateSpan, cryptoAmountSpan, connectWalletButton)
+    } else {
+
+      try {
+        // Request account access
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        console.log(accounts[0]);
 
 
-      // Check the current network chain ID
-      const currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
+        // Check the current network chain ID
+        const currentChainId = await window.ethereum.request({ method: 'eth_chainId' });
 
-      if (currentChainId !== targetChain.chainId) {
-        try {
-          // Switch to the target chain
-          await window.ethereum.request({
-            method: 'wallet_switchEthereumChain',
-            params: [{ chainId: targetChain.chainId }],
-          });
+        if (currentChainId !== targetChain.chainId) {
+          try {
+            // Switch to the target chain
+            await window.ethereum.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: targetChain.chainId }],
+            });
 
 
-        } catch (switchError) {
-          // This error occurs if the target chain is not added in MetaMask
-          if (switchError.code === 4902) {
-            try {
+          } catch (switchError) {
+            // This error occurs if the target chain is not added in MetaMask
+            if (switchError.code === 4902) {
+              try {
 
-              if (targetChain.contract === null) {
-                addCoinToMetamask(targetChain)
-              } else {
-                addTokenToMetaMask(targetChain)
+                if (targetChain.contract === null) {
+                  addCoinToMetamask(targetChain)
+                } else {
+                  addTokenToMetaMask(targetChain)
 
+                }
+
+              } catch (addError) {
+                console.error("Error adding the network: ", addError);
               }
-
-            } catch (addError) {
-              console.error("Error adding the network: ", addError);
             }
           }
+        } else {
+          console.log('Already connected to the correct network.');
         }
-      } else {
-        console.log('Already connected to the correct network.');
+        getCryptoPrice(targetChain.token, exchangeRateSpan, cryptoAmountSpan, connectWalletButton)
+      } catch (error) {
+        console.error("Error connecting to wallet: ", error);
       }
-      getCryptoPrice(targetChain.token, exchangeRateSpan, cryptoAmountSpan, connectWalletButton)
-    } catch (error) {
-      console.error("Error connecting to wallet: ", error);
     }
+
   } else {
     alert('MetaMask is not installed. Please install it to use this feature.');
   }
+
+
 };
 
 async function addCoinToMetamask(targetChain) {
@@ -1381,7 +1452,8 @@ async function addTokenToMetaMask(targetChain) {
     });
 
     if (wasAdded) {
-      selectedTokenAddress = targetChain.contract;
+      orokiiSelectedTokenAddress = targetChain.contract;
+
       console.log(`${symbol} has been added to MetaMask`);
     } else {
       console.log('Token addition was rejected.');
