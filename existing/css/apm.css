@@ -1,4 +1,4 @@
-.orokiipay-apm-container {
+.orokii-apm-container {
     width: auto;
     height: 2.5rem;
     padding: 5%;
@@ -17,13 +17,9 @@ apple-pay-button {
     display: block;
 }
 
-.orokiipay-google-pay {
+.orokii-google-pay {
     color: black;
     flex: 1; /* Makes items take equal width */
     width: 100%; /* Takes full width of its flex container */
 }
 
-/* If you have any other payment buttons, give them flex: 1 as well */
-.other-payment-button {
-    flex: 1;
-}

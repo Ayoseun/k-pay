@@ -1,10 +1,10 @@
 import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.min.js";
 
-let selectedCountry = "";
-let selectedCity = "";
-let selectedTokenAddress = "";
-let amountInCrypto;
-const baseURL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
+let orokiiSelectedCountry = "";
+let orokiiSelectedCity = "";
+let orokiiSelectedTokenAddress = "";
+let orokiiAmountInCrypto;
+const orokiiBaseURL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
 const getIpAddress = async () => {
   try {
     const response = await fetch('https://api.ipify.org?format=json');
@@ -16,7 +16,7 @@ const getIpAddress = async () => {
   }
 };
 
-const network = [
+const orokiiNetwork = [
   {
     chainId: "0x1", // 1 in decimal
     network: "Ethereum",
@@ -209,7 +209,17 @@ const network = [
     decimal: 6
   }
 ];
-const testnetNetworks = [
+const orokiiTestnetNetworks = [
+  {
+    chainId: "", // 5 in decimal
+    chain: "",
+    network: "Bitcoin",
+    token: "BTC",
+    contract: null,
+    rpc: "",
+    symbol: "",
+    decimal: 0
+  },
   {
     chainId: "0x18fe", // 5 in decimal
     chain: "6398",
@@ -391,106 +401,119 @@ const testnetNetworks = [
     decimal: 18
   }
 ];
-let paymentType = 0;
+let orokiiPaymentType = 0;
 let TARGET_CHAIN_ID = "0x13882";
-let tokenPrice = "";
+let orokiiTokenPrice = "";
 document.addEventListener('DOMContentLoaded', () => {
-
+  // window.paypal
+  //   .Buttons({
+  //     style: {
+  //       shape: "rect",
+  //       layout: "vertical",
+  //       color: "gold",
+  //       label: "paypal",
+  //     },
+  //     message: {
+  //       amount: 100,
+  //     },
+  //   })
+  //   .render("#paypal-button-container");
 
 
   //HOME ELEMENTS
-  const middleContainer = document.getElementById('middle-section')
-  const bottomContainer = document.getElementById('bottom-section')
+  const middleContainer = document.getElementById('orokii-middle-section')
+  const bottomContainer = document.getElementById('orokii-bottom-section')
 
   //PAYMENT OPTION ELEMENTS
-  const contentDisplay = document.getElementById('payments-display');
-  const spinner = document.getElementById('loader');
-  const achSpinner = document.getElementById('ach-loader');
-  const closeBtn = document.getElementById('close-payment')
+
+  const spinner = document.getElementById('orokii-loader');
+  const achSpinner = document.getElementById('orokii-ach-loader');
+  const closeBtn = document.getElementById('orokii-close-payment')
   //CARD-INPUT
-  const cardNumberInput = document.getElementById('card-number');
-  const cardHolderNameInput = document.getElementById('cardholder-name')
-  const cvcInput = document.getElementById('cvc');
-  const cardLogo = document.getElementById('card-logo');
-  const expiryDateInput = window.document.getElementById('expiry-date');
-  const pinContainer = document.getElementById('pin-container')
-  const cardDetails = document.getElementById('card-details')
-  const achDetails = document.getElementById('ach-details')
-  const pinBackBtn = document.getElementById('pin-back')
-  const pinBtnContinue = document.getElementById('pin-continue')
-  const inputs = document.querySelectorAll('.pin-inputs input');
-  const cardPayButton = document.getElementById('card-pay-button');
-  const cardPayButtonText = document.getElementById('card-pay-button-text');
-  const achPayButtonText = document.getElementById('ach-pay-button-text');
-  const isTokenized = document.getElementById('isTokenized');
-  const country = document.getElementById('country');
-  const state = document.getElementById('state');
-  const city = document.getElementById('city')
+  const cardNumberInput = document.getElementById('orokii-card-number');
+  const cardHolderNameInput = document.getElementById('orokii-cardholder-name')
+  const cvcInput = document.getElementById('orokii-cvc');
+  const cardLogo = document.getElementById('orokii-card-logo');
+  const expiryDateInput = window.document.getElementById('orokii-expiry-date');
+  const pinContainer = document.getElementById('orokii-pin-container')
+  const cardDetails = document.getElementById('orokii-card-details')
+  const achDetails = document.getElementById('orokii-ach-details')
+  const pinBackBtn = document.getElementById('orokii-pin-back')
+  const pinBtnContinue = document.getElementById('orokii-pin-continue')
+  const inputs = document.querySelectorAll('.orokii-pin-inputs input');
+  const cardPayButton = document.getElementById('orokii-card-pay-button');
+  const cardPayButtonText = document.getElementById('orokii-card-pay-button-text');
+  const cryptoPayButtonText = document.getElementById('orokii-crypto-pay-button-text');
+  const achPayButtonText = document.getElementById('orokii-ach-pay-button-text');
+  const isTokenized = document.getElementById('orokii-isTokenized');
+  const country = document.getElementById('orokii-country');
+  const state = document.getElementById('orokii-state');
+  const city = document.getElementById('orokii-city')
 
-  const emailInput = document.getElementById('email');
-  const firstNameInput = document.getElementById('first-name');
-  const lastNameInput = document.getElementById('last-name');
-  const addressInput = document.getElementById('address');
-  const phoneInput = document.getElementById('phone');
-  const zipInput = document.getElementById('zip');
+  const emailInput = document.getElementById('orokii-email');
+  const firstNameInput = document.getElementById('orokii-first-name');
+  const lastNameInput = document.getElementById('orokii-last-name');
+  const addressInput = document.getElementById('orokii-address');
+  const phoneInput = document.getElementById('orokii-phone');
+  const zipInput = document.getElementById('orokii-zip');
 
-  const bankingEmailInput = document.getElementById('banking-email');
-  const bankingFirstNameInput = document.getElementById('banking-first-name');
-  const bankingLastNameInput = document.getElementById('banking-last-name');
-  const bankingAddressInput = document.getElementById('banking-address');
-  const bankingPhoneInput = document.getElementById('banking-phone');
-  const bankingZipInput = document.getElementById('banking-zip');
-  const bankingCountry = document.getElementById('banking-country');
-  const bankingState = document.getElementById('banking-state');
-  const bankingCity = document.getElementById('banking-city')
+  const bankingEmailInput = document.getElementById('orokii-banking-email');
+  const bankingFirstNameInput = document.getElementById('orokii-banking-first-name');
+  const bankingLastNameInput = document.getElementById('orokii-banking-last-name');
+  const bankingAddressInput = document.getElementById('orokii-banking-address');
+  const bankingPhoneInput = document.getElementById('orokii-banking-phone');
+  const bankingZipInput = document.getElementById('orokii-banking-zip');
+  const bankingCountry = document.getElementById('orokii-banking-country');
+  const bankingState = document.getElementById('orokii-banking-state');
+  const bankingCity = document.getElementById('orokii-banking-city')
 
-  const identificationInput = document.getElementById('identification');
-  const userFirstNameInput = document.getElementById('user-first-name');
-  const userLastNameInput = document.getElementById('user-last-name');
-  const userAddressInput = document.getElementById('user-address');
-  const userZipInput = document.getElementById('user-zip');
-  const userPhoneInput = document.getElementById('user-phone');
-  const userCountry = document.getElementById('user-country');
-  const userState = document.getElementById('user-state');
-  const userCity = document.getElementById('user-city')
+  const identificationInput = document.getElementById('orokii-identification');
+  const userFirstNameInput = document.getElementById('orokii-user-first-name');
+  const userLastNameInput = document.getElementById('orokii-user-last-name');
+  const userAddressInput = document.getElementById('orokii-user-address');
+  const userZipInput = document.getElementById('orokii-user-zip');
+  const userPhoneInput = document.getElementById('orokii-user-phone');
+  const userCountry = document.getElementById('orokii-user-country');
+  const userState = document.getElementById('orokii-user-state');
+  const userCity = document.getElementById('orokii-user-city')
 
-  const tokens = document.getElementById('tokens');
-  const achPayButton = document.getElementById('ach-pay-button');
-  const routingNumberInput = document.getElementById('routing-number');
-  const accountNumberInput = document.getElementById('account-number');
+  const tokens = document.getElementById('orokii-tokens');
+  const achPayButton = document.getElementById('orokii-ach-pay-button');
+  const routingNumberInput = document.getElementById('orokii-routing-number');
+  const accountNumberInput = document.getElementById('orokii-account-number');
 
   //CRYPTO
-  const connectWalletButton = document.getElementById('connect-wallet');
-  const exchangeRateSpan = document.querySelector('.exchange-rate span');
-  const cryptoAmountSpan = document.querySelector('.payment-details span');
+  const connectWalletButton = document.getElementById('orokii-connect-wallet');
+  const exchangeRateSpan = document.querySelector('.orokii-exchange-rate span');
+  const cryptoAmountSpan = document.querySelector('.orokii-payment-details span');
 
   //SUCCESS ELEMENT
-  const successContainer = document.getElementById('success-container')
+  const successContainer = document.getElementById('orokii-success-container')
 
   //SUMMARY ELEMENTS
-  const summaryContainerCard = document.getElementById('summary-container-card')
-  const summaryContainerAch = document.getElementById('summary-container-ach')
-  const summaryConfirmBtn = document.getElementById('summary-buttons-confirm')
-  const summaryBackBtn = document.getElementById('summary-buttons-go-back')
-  const achSummaryConfirmBtn = document.getElementById('ach-summary-buttons-confirm')
-  const achSummaryBackBtn = document.getElementById('ach-summary-buttons-go-back')
+  const summaryContainerCard = document.getElementById('orokii-summary-container-card')
+  const summaryContainerAch = document.getElementById('orokii-summary-container-ach')
+  const summaryConfirmBtn = document.getElementById('orokii-summary-buttons-confirm')
+  const summaryBackBtn = document.getElementById('orokii-summary-buttons-go-back')
+  const achSummaryConfirmBtn = document.getElementById('orokii-ach-summary-buttons-confirm')
+  const achSummaryBackBtn = document.getElementById('orokii-ach-summary-buttons-go-back')
 
 
   getCountry(country)
   getCountry(userCountry)
   getCountry(bankingCountry)
-  getCrypto(testnetNetworks, tokens,connectWalletButton)
-  onGooglePayLoaded()
+  getCrypto(orokiiTestnetNetworks, tokens, connectWalletButton)
+
   //--------EVENT----------
-  document.querySelectorAll('.dropdown-header').forEach(header => {
+  document.querySelectorAll('.orokii-dropdown-header').forEach(header => {
     header.addEventListener('click', function () {
       const dropdown = this.parentElement;
 
       // Close all other dropdowns
-      document.querySelectorAll('.dropdown').forEach(d => {
+      document.querySelectorAll('.orokii-dropdown').forEach(d => {
         if (d !== dropdown) {
           d.classList.remove('open');
-          d.querySelector('.payment-checkbox').checked = false;
+          d.querySelector('.orokii-payment-checkbox').checked = false;
         }
       });
 
@@ -500,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Toggle the clicked dropdown
       dropdown.classList.toggle('open');
-      dropdown.querySelector('.payment-checkbox').checked = dropdown.classList.contains('open');
+      dropdown.querySelector('.orokii-payment-checkbox').checked = dropdown.classList.contains('open');
     });
   });
   // Handle the click event for the close button
@@ -533,7 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //-----ACH----
 
   achPayButton.addEventListener('click', (event) => {
-    paymentType = 2;
+    orokiiPaymentType = 2;
 
     achDetails.style.display = 'none';
     summaryContainerAch.style.display = 'block';
@@ -570,7 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
   summaryConfirmBtn.addEventListener('click', (event) => {
     console.log("here")
     // Get the appropriate handler function or use the default
-    const handler = paymentHandlers[paymentType] || paymentHandlers.default;
+    const handler = paymentHandlers[orokiiPaymentType] || paymentHandlers.default;
 
     // Call the handler function
     handler();
@@ -578,7 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
   achSummaryConfirmBtn.addEventListener('click', (event) => {
     console.log("here")
     // Get the appropriate handler function or use the default
-    const handler = paymentHandlers[paymentType] || paymentHandlers.default;
+    const handler = paymentHandlers[orokiiPaymentType] || paymentHandlers.default;
 
     // Call the handler function
     handler();
@@ -639,13 +662,13 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('city').innerHTML = '<option value="">Select City</option>';
       return;
     }
-    selectedCountry = cca2Code
+    orokiiSelectedCountry = cca2Code
     getState(countryName, state, city);
   });
 
   // Fetch and populate cities based on selected state
   state.addEventListener('change', (event) => {
-    const countryName = document.getElementById('country').value;
+    const countryName = document.getElementById('orokii-country').value;
     const stateName = event.target.value;
     console.log('Selected country for city fetch:', countryName);
     console.log('Selected state for city fetch:', stateName);
@@ -660,7 +683,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   city.addEventListener('change', (event) => {
 
-    selectedCity = event.target.value;
+    orokiiSelectedCity = event.target.value;
 
   });
 
@@ -678,7 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('city').innerHTML = '<option value="">Select City</option>';
       return;
     }
-    selectedCountry = cca2Code
+    orokiiSelectedCountry = cca2Code
     getState(countryName, bankingState, bankingCity);
   });
 
@@ -699,7 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   bankingCity.addEventListener('change', (event) => {
 
-    selectedCity = event.target.value;
+    orokiiSelectedCity = event.target.value;
 
   });
 
@@ -713,7 +736,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //   pinContainer.style.display = 'none';
   //   cardDetails.style.display = 'block';
   // })
-  const y = true;
+  const y = false;
   cardPayButton.addEventListener('click', (event) => {
     if (!y) {
       const isValid = validateForm(expiryDateInput, cvcInput,
@@ -724,16 +747,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isValid) {
 
       } else {
-        paymentType = 0;
-        console.log(paymentType)
+        orokiiPaymentType = 0;
+        //console.log(paymentType)
         cardDetails.style.display = 'none';
         // document.getElementById('middle-section').style.display = 'none';
         // document.getElementById('bottom-section').style.display = 'none';
         summaryContainerCard.style.display = 'block';
       }
     } else {
-      paymentType = 1;
-      console.log(paymentType)
+      orokiiPaymentType = 1;
+      //console.log(paymentType)
       cardDetails.style.display = 'none';
       // document.getElementById('middle-section').style.display = 'none';
       // document.getElementById('bottom-section').style.display = 'none';
@@ -749,7 +772,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('Selected token:', event.target.value);
     const jsonData = JSON.parse(event.target.value)
-    connectWallet(jsonData, exchangeRateSpan, cryptoAmountSpan,connectWalletButton)
+    connectWallet(jsonData, exchangeRateSpan, cryptoAmountSpan, connectWalletButton)
 
   });
   //--------------
@@ -757,7 +780,16 @@ document.addEventListener('DOMContentLoaded', () => {
   //----- CRYPTO EVENTS------
   connectWalletButton.addEventListener('click', (e) => {
     // const chain = JSON.parse(e.target.value)
-    interactWithContract(window)
+
+    if (orokiiSelectedTokenAddress) {
+      interactWithContract(window)
+    } else {
+      transferETH(
+        "0.005", window, connectWalletButton, spinner,
+        cryptoPayButtonText,
+        successContainer, middleContainer, bottomContainer)
+    }
+
   })
   //-----------
 
@@ -987,7 +1019,7 @@ async function cardSubmit(expiryDateInput, cvcInput,
     }
   };
   console.log(formData)
-  fetch(baseURL + "/payment/simple-card-tokenized", {
+  fetch(orokiiBaseURL + "/payment/simple-card-tokenized", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -1220,31 +1252,41 @@ async function achSubmit(amount, accountNumberInput, routingNumberInput,
 };
 
 
-function getCrypto(networks, tokens,connectWalletButton) {
+function getCrypto(networks, tokens, connectWalletButton) {
   tokens.innerHTML = '<option value="">Select Cryptocurrency</option>';
-  // Sort the countries by their common names in ascending order
   networks.sort((a, b) => a.network.localeCompare(b.network));
 
   networks.forEach(t => {
     const option = document.createElement('option');
     option.value = JSON.stringify({
-      chain: t.chain,
-      chainId: t.chainId,
-      network: t.network,
-      token: t.token,
-      rpc: t.rpc,
-      contract: t.contract,
-      symbol: t.symbol,
-      decimal: t.decimal
+      chain: t.chain, chainId: t.chainId, network: t.network,
+      token: t.token, rpc: t.rpc, contract: t.contract,
+      symbol: t.symbol, decimal: t.decimal
     });
-    option.textContent = t.network + "-" + t.token;
+
+    const iconElement = document.createElement('img');
+    iconElement.src = `./assets/bitcoin.svg`;
+    iconElement.alt = t.token;
+    iconElement.className = 'orokii-token-icon';
+
+    const nameElement = document.createElement('span');
+    nameElement.textContent = `${t.network} - ${t.token}`;
+    nameElement.className = 'orokii-token-name';
+
+    const optionContent = document.createElement('div');
+    optionContent.className = 'orokii-token-option-content';
+    optionContent.appendChild(iconElement);
+    optionContent.appendChild(nameElement);
+
+    option.appendChild(optionContent);
     tokens.appendChild(option);
   });
+
   connectWalletButton.disabled = true;
-  connectWalletButton.style.backgroundColor='#808080'
+  connectWalletButton.style.backgroundColor = '#808080';
 }
 
-const connectWallet = async (targetChain, exchangeRateSpan, cryptoAmountSpan,connectWalletButton) => {
+const connectWallet = async (targetChain, exchangeRateSpan, cryptoAmountSpan, connectWalletButton) => {
   if (typeof window.ethereum !== 'undefined') {
     try {
       // Request account access
@@ -1284,7 +1326,7 @@ const connectWallet = async (targetChain, exchangeRateSpan, cryptoAmountSpan,con
       } else {
         console.log('Already connected to the correct network.');
       }
-      getCryptoPrice(targetChain.token, exchangeRateSpan, cryptoAmountSpan,connectWalletButton)
+      getCryptoPrice(targetChain.token, exchangeRateSpan, cryptoAmountSpan, connectWalletButton)
     } catch (error) {
       console.error("Error connecting to wallet: ", error);
     }
@@ -1348,6 +1390,58 @@ async function addTokenToMetaMask(targetChain) {
     console.error('Failed to add token:', error);
   }
 }
+
+async function transferETH(
+  amount, window, connectWalletButton, spinner,
+  cryptoPayButtonText,
+  successContainer, middleContainer, bottomContainer) {
+  cryptoPayButtonText.style.display = 'none'; // Hide button text
+  spinner.style.display = 'flex'; // Show spinner
+  connectWalletButton.style.backgroundColor = '#000';
+  connectWalletButton.disabled = true; // Disable the button
+  try {
+    // Get provider and signer
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
+
+    // Define the recipient address and amount in ETH
+    const recipientAddress = "0xB948b2C9716F7e441FA3808761428f07205060e4"; // Replace with the recipient's address
+    const amountInETH = amount; // Replace with the amount of ETH to send
+
+    // Convert ETH to Wei (smallest unit of ETH)
+    const amountInWei = ethers.parseEther(amountInETH);
+
+    // Send the transaction
+    const tx = await signer.sendTransaction({
+      to: recipientAddress,
+      value: amountInWei,
+    });
+
+    // Wait for the transaction to be mined
+    const receipt = await tx.wait();
+    console.log("Transaction successful:", receipt);
+    cryptoPayButtonText.style.display = 'inline'; // Show button text
+    spinner.style.display = 'none'; // Hide spinner
+    connectWalletButton.style.backgroundColor = '#808080'
+    if (receipt != null) {
+      successContainer.style.display = 'flex';
+      middleContainer.style.display = 'none';
+      bottomContainer.style.display = 'none';
+    } else {
+      cryptoPayButtonText.style.display = 'inline'; // Hide button text
+      spinner.style.display = 'none'; // Show spinner
+      connectWalletButton.style.backgroundColor = '#19624C';
+      connectWalletButton.disabled = false; // Disable the button
+    }
+  } catch (error) {
+    console.error("Error transferring ETH:", error);
+    cryptoPayButtonText.style.display = 'inline'; // Hide button text
+    spinner.style.display = 'none'; // Show spinner
+    connectWalletButton.style.backgroundColor = '#19624C';
+    connectWalletButton.disabled = false; // Disable the button
+  }
+}
+
 async function interactWithContract(window) {
   try {
     // Get provider and signer
@@ -1367,8 +1461,8 @@ async function interactWithContract(window) {
     // Call the view function
     const tx = await contract.addMerchantBalance(
       merchantId,
-      selectedTokenAddress,
-      amountInCrypto
+      orokiiSelectedTokenAddress,
+      orokiiAmountInCrypto
     )
 
     tx.wait()
@@ -1488,7 +1582,7 @@ function resetForm(document, cardNumberInput,
   if (userCity) userCity.innerHTML = '<option value="">Select City</option>';
 }
 
-function getCryptoPrice(token, exchangeRateSpan, cryptoAmountSpan,connectWalletButton) {
+function getCryptoPrice(token, exchangeRateSpan, cryptoAmountSpan, connectWalletButton) {
   fetch(`https://rest.coinapi.io/v1/exchangerate/${token}/USD`, {
     method: 'GET',
     headers: {
@@ -1504,19 +1598,19 @@ function getCryptoPrice(token, exchangeRateSpan, cryptoAmountSpan,connectWalletB
     })
     .then(data => {
       connectWalletButton.disabled = false;
-      connectWalletButton.style.backgroundColor='#19624C'
+      connectWalletButton.style.backgroundColor = '#19624C'
       console.log(data); // Log the entire data object for debugging
       let USDPrice = data.rate; // Access the rate property directly
       console.log(USDPrice); // Correct variable name
       exchangeRateSpan.textContent = `1 ${token} = ${USDPrice.toFixed(3)} USD`; // Use toFixed for 3 decimal places
-      amountInCrypto = 4000 / USDPrice
-      cryptoAmountSpan.textContent = `${amountInCrypto.toFixed(3)}`
+      orokiiAmountInCrypto = 4000 / USDPrice
+      cryptoAmountSpan.textContent = `${orokiiAmountInCrypto.toFixed(3)}`
     })
     .catch(error => {
       connectWalletButton.disabled = true;
-         connectWalletButton.style.backgroundColor='#808080'
-      amountInCrypto =3.000;
-      cryptoAmountSpan.textContent = `${amountInCrypto.toFixed(3)}`
+      connectWalletButton.style.backgroundColor = '#808080'
+      orokiiAmountInCrypto = 3.000;
+      cryptoAmountSpan.textContent = `${orokiiAmountInCrypto.toFixed(3)}`
       console.error('Error:', error)
     });
 }
@@ -2545,266 +2639,5 @@ const contractABI =
 
 
 
-  /**
- * Define the version of the Google Pay API referenced when creating your
- * configuration
- *
- * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#PaymentDataRequest|apiVersion in PaymentDataRequest}
- */
-const baseRequest = {
-    apiVersion: 2,
-    apiVersionMinor: 0
-  };
-  
-  /**
-   * Card networks supported by your site and your gateway
-   *
-   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
-   * @todo confirm card networks supported by your site and gateway
-   */
-  const allowedCardNetworks = ["AMEX", "DISCOVER", "INTERAC", "JCB", "MASTERCARD", "VISA"];
-  
-  /**
-   * Card authentication methods supported by your site and your gateway
-   *
-   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
-   * @todo confirm your processor supports Android device tokens for your
-   * supported card networks
-   */
-  const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
-  
-  /**
-   * Identify your gateway and your site's gateway merchant identifier
-   *
-   * The Google Pay API response will return an encrypted payment method capable
-   * of being charged by a supported gateway after payer authorization
-   *
-   * @todo check with your gateway on the parameters to pass
-   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#gateway|PaymentMethodTokenizationSpecification}
-   */
-  const tokenizationSpecification = {
-    type: 'PAYMENT_GATEWAY',
-    parameters: {
-      'gateway': 'example',
-      'gatewayMerchantId': 'exampleGatewayMerchantId'
-    }
-  };
-  
-  /**
-   * Describe your site's support for the CARD payment method and its required
-   * fields
-   *
-   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
-   */
-  const baseCardPaymentMethod = {
-    type: 'CARD',
-    parameters: {
-      allowedAuthMethods: allowedCardAuthMethods,
-      allowedCardNetworks: allowedCardNetworks
-    }
-  };
-  
-  /**
-   * Describe your site's support for the CARD payment method including optional
-   * fields
-   *
-   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#CardParameters|CardParameters}
-   */
-  const cardPaymentMethod = Object.assign(
-    {},
-    baseCardPaymentMethod,
-    {
-      tokenizationSpecification: tokenizationSpecification
-    }
-  );
-  
-  /**
-   * An initialized google.payments.api.PaymentsClient object or null if not yet set
-   *
-   * @see {@link getGooglePaymentsClient}
-   */
-  let paymentsClient = null;
-  
-  /**
-   * Configure your site's support for payment methods supported by the Google Pay
-   * API.
-   *
-   * Each member of allowedPaymentMethods should contain only the required fields,
-   * allowing reuse of this base request when determining a viewer's ability
-   * to pay and later requesting a supported payment method
-   *
-   * @returns {object} Google Pay API version, payment methods supported by the site
-   */
-  function getGoogleIsReadyToPayRequest() {
-    return Object.assign(
-        {},
-        baseRequest,
-        {
-          allowedPaymentMethods: [baseCardPaymentMethod]
-        }
-    );
-  }
-  
-  /**
-   * Configure support for the Google Pay API
-   *
-   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#PaymentDataRequest|PaymentDataRequest}
-   * @returns {object} PaymentDataRequest fields
-   */
-  function getGooglePaymentDataRequest() {
-    const paymentDataRequest = Object.assign({}, baseRequest);
-    paymentDataRequest.allowedPaymentMethods = [cardPaymentMethod];
-    paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
-    paymentDataRequest.merchantInfo = {
-      // @todo a merchant ID is available for a production environment after approval by Google
-      // See {@link https://developers.google.com/pay/api/web/guides/test-and-deploy/integration-checklist|Integration checklist}
-      // merchantId: '01234567890123456789',
-      merchantName: 'Example Merchant'
-    };
-  
-    paymentDataRequest.callbackIntents = ["PAYMENT_AUTHORIZATION"];
-  
-    return paymentDataRequest;
-  }
-  
-  /**
-   * Return an active PaymentsClient or initialize
-   *
-   * @see {@link https://developers.google.com/pay/api/web/reference/client#PaymentsClient|PaymentsClient constructor}
-   * @returns {google.payments.api.PaymentsClient} Google Pay API client
-   */
-  function getGooglePaymentsClient() {
-    if ( paymentsClient === null ) {
-      paymentsClient = new google.payments.api.PaymentsClient({
-          environment: 'TEST',
-        paymentDataCallbacks: {
-          onPaymentAuthorized: onPaymentAuthorized
-        }
-      });
-    }
-    return paymentsClient;
-  }
-  
-  /**
-   * Handles authorize payments callback intents.
-   *
-   * @param {object} paymentData response from Google Pay API after a payer approves payment through user gesture.
-   * @see {@link https://developers.google.com/pay/api/web/reference/response-objects#PaymentData object reference}
-   *
-   * @see {@link https://developers.google.com/pay/api/web/reference/response-objects#PaymentAuthorizationResult}
-   * @returns Promise<{object}> Promise of PaymentAuthorizationResult object to acknowledge the payment authorization status.
-   */
-  function onPaymentAuthorized(paymentData) {
-    return new Promise(function(resolve, reject){
-      // handle the response
-      processPayment(paymentData)
-        .then(function() {
-          resolve({transactionState: 'SUCCESS'});
-        })
-        .catch(function() {
-          resolve({
-            transactionState: 'ERROR',
-            error: {
-              intent: 'PAYMENT_AUTHORIZATION',
-              message: 'Insufficient funds, try again. Next attempt should work.',
-              reason: 'PAYMENT_DATA_INVALID'
-            }
-          });
-        });
-    });
-  }
-  
-  /**
-   * Initialize Google PaymentsClient after Google-hosted JavaScript has loaded
-   *
-   * Display a Google Pay payment button after confirmation of the viewer's
-   * ability to pay.
-   */
-  function onGooglePayLoaded() {
-    const paymentsClient = getGooglePaymentsClient();
-    paymentsClient.isReadyToPay(getGoogleIsReadyToPayRequest())
-      .then(function(response) {
-        if (response.result) {
-          addGooglePayButton();
-        }
-      })
-      .catch(function(err) {
-        // show error in developer console for debugging
-        console.error(err);
-      });
-  }
-  
-  /**
-   * Add a Google Pay purchase button alongside an existing checkout button
-   *
-   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#ButtonOptions|Button options}
-   * @see {@link https://developers.google.com/pay/api/web/guides/brand-guidelines|Google Pay brand guidelines}
-   */
-  function addGooglePayButton() {
-    const paymentsClient = getGooglePaymentsClient();
-    const button =
-        paymentsClient.createButton({onClick: onGooglePaymentButtonClicked});
-    document.getElementById('orokiipay-google-pay').appendChild(button);
-  }
-  
-  /**
-   * Provide Google Pay API with a payment amount, currency, and amount status
-   *
-   * @see {@link https://developers.google.com/pay/api/web/reference/request-objects#TransactionInfo|TransactionInfo}
-   * @returns {object} transaction info, suitable for use as transactionInfo property of PaymentDataRequest
-   */
-  function getGoogleTransactionInfo() {
-    return {
-          displayItems: [
-          {
-            label: "Subtotal",
-            type: "SUBTOTAL",
-            price: "11.00",
-          },
-        {
-            label: "Tax",
-            type: "TAX",
-            price: "1.00",
-          }
-      ],
-      countryCode: 'US',
-      currencyCode: "USD",
-      totalPriceStatus: "FINAL",
-      totalPrice: "12.00",
-      totalPriceLabel: "Total"
-    };
-  }
-  
-  
-  /**
-   * Show Google Pay payment sheet when Google Pay payment button is clicked
-   */
-  function onGooglePaymentButtonClicked() {
-    const paymentDataRequest = getGooglePaymentDataRequest();
-    paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
-  
-    const paymentsClient = getGooglePaymentsClient();
-    paymentsClient.loadPaymentData(paymentDataRequest);
-  }
-  
-  let attempts = 0;
-  /**
-   * Process payment data returned by the Google Pay API
-   *
-   * @param {object} paymentData response from Google Pay API after user approves payment
-   * @see {@link https://developers.google.com/pay/api/web/reference/response-objects#PaymentData|PaymentData object reference}
-   */
-  function processPayment(paymentData) {
-    return new Promise(function(resolve, reject) {
-      setTimeout(function() {
-        // @todo pass payment token to your gateway to process payment
-        paymentToken = paymentData.paymentMethodData.tokenizationData.token;
-  
-        if (attempts++ % 2 == 0) {
-          reject(new Error('Every other attempt fails, next one should succeed'));      
-        } else {
-          resolve({});      
-        }
-      }, 500);
-    });
-  }
+
+
