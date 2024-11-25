@@ -5,7 +5,7 @@ export const widgetStyles = `
 
 .orokii-home {
  display: flex;
-    width: 70%;
+   
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -13,8 +13,8 @@ export const widgetStyles = `
 
 
 .orokii-card {
-    width: auto;
-    max-width: auto;
+    width: 50vw;
+    max-width: 80vw;
     background-color: white;
     border-radius: 2%;
     box-shadow: 0 4px 8px rgba(40, 41, 41, 0.1);
@@ -162,7 +162,11 @@ export const widgetStyles = `
     display: flex;
     align-items: center;
 }
-
+.orokii-payments-inner-icons {
+    display: flex;
+  margin-top: 20px
+    align-items: start;
+}
 .orokii-payments-image {
     width: 24px;
     height: 24px;

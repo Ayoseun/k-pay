@@ -152,6 +152,12 @@
     align-items: center;
 }
 
+.orokii-payments-inner-icons {
+    display: flex;
+  
+    align-items: start;
+}
+
 .orokii-payments-image {
     width: 24px;
     height: 24px;
