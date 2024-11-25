@@ -179,7 +179,7 @@ let orokiiAmount=paymentData["totalAmount"];
         cardHolderNameInput, cardNumberInput, spinner,
         summaryConfirmBtn, summaryBackBtn, cardDetails, summaryContainerCard,
         cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, successContainer, middleContainer, bottomContainer),
-      1: () => tokenizeCardSubmit(spinner,
+      1: () => tokenizeCardSubmit(orokiiAmount,spinner,
         summaryConfirmBtn, summaryBackBtn, cardDetails, summaryContainerCard,
         cardPayButtonText, emailInput, lastNameInput, firstNameInput, addressInput, successContainer, middleContainer, bottomContainer
       ),
@@ -669,8 +669,8 @@ let orokiiAmount=paymentData["totalAmount"];
         firstName: firstNameInput.value,
         lastName: lastNameInput.value,
         address: addressInput.value,
-        city: selectedCity,
-        country: selectedCountry,
+        city: orokiiSelectedCity,
+        country: orokiiSelectedCountry,
         email: emailInput.value,
       },
       deviceDetails: {
@@ -746,16 +746,16 @@ let orokiiAmount=paymentData["totalAmount"];
       currency: "EUR",
       amount: orokiiAmount,
       transactionType: "Sale",
-      userTokenId: "74f71adc-8dc5-420a-8609-e80c2e7e8858",
+      userTokenId: paymentData["userCardToken"]["userTokenId"],
       paymentOption: {
-        userPaymentOptionId: "130417918"
+        userPaymentOptionId:paymentData["userCardToken"]["userPaymentOptionId"],
       },
       billingAddress: {
         firstName: firstNameInput.value,
         lastName: lastNameInput.value,
         address: addressInput.value,
-        city: selectedCity,
-        country: selectedCountry,
+        city: orokiiSelectedCity,
+        country: orokiiSelectedCountry,
         email: emailInput.value,
       },
       deviceDetails: {
@@ -763,7 +763,7 @@ let orokiiAmount=paymentData["totalAmount"];
       }
     };
     console.log(formData)
-    fetch(baseURL + "/payment/tokenized-payment", {
+    fetch(orokiiBaseURL + "/payment/tokenized-payment", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

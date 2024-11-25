@@ -4,7 +4,7 @@ export const getSuccessSection = (amount) => `
                     Payment Completed
                 </h1>
                 <p>
-                    The payment of $45,000 has been received successfully
+                    The payment of $${amount} has been received successfully
                 </p>
                 <img src="./assets/success.svg" alt="Icon">
                 <button id="orokii-close-payment">Close</button>

@@ -99,13 +99,13 @@ export const getBottomSection = (amount) => `
                             <div class="orokii-form-field">
                                 <label for="firstName">First Name</label>
                                 <div class="orokii-input-wrapper">
-                                    <input type="text" id="orokii-firstName" placeholder="Enter your first name">
+                                    <input type="text" id="orokii-first-name" placeholder="Enter your first name">
                                 </div>
                             </div>
                             <div class="orokii-form-field">
                                 <label for="lastName">Last Name</label>
                                 <div class="orokii-input-wrapper">
-                                    <input type="text" id="orokii-lastName" placeholder="Enter your last name">
+                                    <input type="text" id="orokii-last-name" placeholder="Enter your last name">
                                 </div>
                             </div>
                             <div class="orokii-form-field">
