@@ -1,7 +1,4 @@
 export const cryptoStyles=`
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
 .orokii-crypto-container {
     background-color: white;
     font-family: 'Poppins', sans-serif;
@@ -106,7 +103,7 @@ export const cryptoStyles=`
     font-size: 12px;
     font-weight: 500;
   }
-.orokii-payment-details {
+.orokii-payments-details {
     width: 100%;
   margin-left: 10px;
    margin-right: 10px;
@@ -118,12 +115,12 @@ export const cryptoStyles=`
 
     color: #888;
 }
-.orokii-payment-details p {
+.orokii-payments-details p {
   font-weight: 300;
   font-size: 12px;
     color: #888;
 }
-.orokii-payment-details span {
+.orokii-payments-details span {
     font-weight: 300;
     font-size: 12px;
     color: #79747E;
@@ -280,7 +277,7 @@ export const cryptoStyles=`
         font-size: 0.4rem;;
         font-weight: 500;
       }
-    .orokii-payment-details {
+    .orokii-payments-details {
         width: 100%;
       margin-left: 10px;
        margin-right: 10px;
@@ -292,12 +289,12 @@ export const cryptoStyles=`
     
         color: #888;
     }
-    .orokii-payment-details p {
+    .orokii-payments-details p {
       font-weight: 300;
       font-size: 0.4rem;
         color: #888;
     }
-    .orokii-payment-details span {
+    .orokii-payments-details span {
         font-weight: 300;
         font-size: 0.4rem;
         color: #79747E;
@@ -349,4 +346,7 @@ export const cryptoStyles=`
     display: inline-block;
 }
 }
+
+
+
 `
