@@ -2,57 +2,59 @@
 
 // Bottom Section HTML
 export const getBottomSection = (amount) => `
-
-<div class="bottom-section" id="bottom-section">
-                <div class="dropdown" id="dropdown-1">
-                    <div class="dropdown-header">
-                        <input type="radio" id="payment-radio-card" class="payment-checkbox">
-                        <div class="dropdown-inner">
-                            <div class="dropdown-text">Pay with Cards</div>
-                            <img src="https://ayoseun.github.io/k-pay/assets/visa.svg" alt="Image 1"
-                                class="dropdown-image">
-                            <img src="https://ayoseun.github.io/k-pay/assets/mastercard.svg" alt="Image 1"
-                                class="dropdown-image">
-                            <img src="https://ayoseun.github.io/k-pay/assets/discover.svg" alt="Image 1"
-                                class="dropdown-image">
-                            <img src="https://ayoseun.github.io/k-pay/assets/maestro.svg" alt="Image 1"
-                                class="dropdown-image">
-                            <img src="https://ayoseun.github.io/k-pay/assets/americanExpress.svg" alt="Image 1"
-                                class="dropdown-image">
+ <div class="orokii-bottom-section" id="orokii-bottom-section">
+                <div class="orokii-payments" id="orokii-payments-1">
+                    <div class="orokii-payments-header">
+                        <input type="radio" class="orokii-payments-checkbox">
+                        <div class="orokii-payments-inner">
+                            <div class="orokii-payments-text">Pay with Cards</div>
+                            <div class="orokii-payments-inner-icons">
+                                <img src="https://ayoseun.github.io/k-pay/assets/visa.svg" alt="Image 1"
+                                    class="orokii-payments-image">
+                                <img src="https://ayoseun.github.io/k-pay/assets/mastercard.svg" alt="Image 1"
+                                    class="orokii-payments-image">
+                                <img src="https://ayoseun.github.io/k-pay/assets/discover.svg" alt="Image 1"
+                                    class="orokii-payments-image">
+                                <img src="https://ayoseun.github.io/k-pay/assets/maestro.svg" alt="Image 1"
+                                    class="orokii-payments-image">
+                                <img src="https://ayoseun.github.io/k-pay/assets/americanExpress.svg" alt="Image 1"
+                                    class="orokii-payments-image">
+                            </div>
                         </div>
-
                     </div>
-                    <div class="dropdown-content">
-                        <div class="card-details" id="card-details">
+                    <div class="orokii-payments-content">
+                        <div class="orokii-card-details" id="orokii-card-details">
                             <h2>Card Details</h2>
-                            <div id="isTokenized">
-                                <div class="form-field">
+                            <div id="orokii-isTokenized">
+                                <div class="orokii-form-field">
                                     <label for="cardholder-name">Cardholder's name</label>
-                                    <div class="input-wrapper">
-                                        <input type="text" id="cardholder-name" placeholder="As seen on your card">
+                                    <div class="orokii-input-wrapper">
+                                        <input type="text" id="orokii-cardholder-name"
+                                            placeholder="As seen on your card">
                                     </div>
                                 </div>
-                                <div class="form-field">
+                                <div class="orokii-form-field">
                                     <label for="card-number">Enter Card Number</label>
-                                    <div class="input-wrapper">
-                                        <input type="text" id="card-number" placeholder="5078 0000 0000 0000"
+                                    <div class="orokii-input-wrapper">
+                                        <input type="text" id="orokii-card-number" placeholder="5078 0000 0000 0000"
                                             maxlength="19" required>
                                         <img src="https://ayoseun.github.io/k-pay/assets/card.svg" alt="Card Logo"
-                                            class="card-logo" id="card-logo">
+                                            class="orokii-card-logo" id="orokii-card-logo">
                                     </div>
                                 </div>
-                                <div class="form-field-group">
-                                    <div class="form-field half">
+                                <div class="orokii-form-field-group">
+                                    <div class="orokii-form-field orokii-half">
                                         <label for="expiry-date">Expiry Date</label>
-                                        <div class="input-wrapper">
-                                            <input type="text" id="expiry-date" placeholder="MM/YY"
+                                        <div class="orokii-input-wrapper">
+                                            <input type="text" id="orokii-expiry-date" placeholder="MM/YY"
                                                 pattern="^(0[1-9]|1[0-2])\/(0[1-9]|[1-9][0-9])$" required>
                                         </div>
                                     </div>
-                                    <div class="form-field half">
+                                    <div class="orokii-form-field orokii-half">
                                         <label for="cvc">CVC</label>
-                                        <div class="input-wrapper">
-                                            <input type="number" id="cvc" placeholder="712" maxlength="3" required>
+                                        <div class="orokii-input-wrapper">
+                                            <input type="number" id="orokii-cvc" placeholder="712" maxlength="3"
+                                                required>
                                         </div>
                                     </div>
                                 </div>
@@ -60,291 +62,284 @@ export const getBottomSection = (amount) => `
 
 
                             <p style="margin: 0%; font-size: 0.7rem; font-weight: 400; color: #000;">Billing Address</p>
-                           
-                            <div class="form-field">
+                            <p>We only require this information once for this card</p>
+                            <div class="orokii-form-field">
                                 <label for="country">Country</label>
-                                <div class="input-wrapper">
-                                    <select id="country">
-                                 
+                                <div class="orokii-input-wrapper">
+                                    <select id="orokii-country">
+                                        <!-- Options will be populated dynamically -->
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-field-group">
-                                <div class="form-field half">
-                                    <label for="state">State</label>
-                                    <div class="input-wrapper">
-                                        <select id="state">
-                                     
+                            <div class="orokii-form-field-group">
+                                <div class="orokii-form-field orokii-half">
+                                    <label for="orokii-state">State</label>
+                                    <div class="orokii-input-wrapper">
+                                        <select id="orokii-state">
+                                            <!-- Options will be populated dynamically -->
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-field half">
+                                <div class="orokii-form-field orokii-half">
                                     <label for="city">City</label>
-                                    <div class="input-wrapper">
-                                        <select id="city">
+                                    <div class="orokii-input-wrapper">
+                                        <select id="orokii-city">
 
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="email">Email</label>
-                                <div class="input-wrapper">
-                                    <input type="email" id="email" placeholder="Enter your email">
+                                <div class="orokii-input-wrapper">
+                                    <input type="email" id="orokii-email" placeholder="Enter your email">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="firstName">First Name</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="first-name" placeholder="Enter your first name">
+                                <div class="orokii-input-wrapper">
+                                    <input type="text" id="orokii-firstName" placeholder="Enter your first name">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="lastName">Last Name</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="last-name" placeholder="Enter your last name">
+                                <div class="orokii-input-wrapper">
+                                    <input type="text" id="orokii-lastName" placeholder="Enter your last name">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="address1">Address</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="address" placeholder="Input address">
+                                <div class="orokii-input-wrapper">
+                                    <input type="text" id="orokii-address" placeholder="Input address">
                                 </div>
                             </div>
 
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="zip">Zip Code</label>
-                                <div class="input-wrapper">
-                                    <input type="number" id="zip" placeholder="Enter code here">
+                                <div class="orokii-input-wrapper">
+                                    <input type="number" id="orokii-zip" placeholder="Enter code here">
                                 </div>
                             </div>
 
-                            <button class="pay-button" id="card-pay-button">
+                            <button class="orokii-pay-button" id="orokii-card-pay-button">
                                 Pay $${amount}
 
                             </button>
                         </div>
-                        <div class="summary-container" id="summary-container-card">
+                        <div class="orokii-summary-container" id="orokii-summary-container-card">
                             <img src="https://ayoseun.github.io/k-pay/assets/checkout.svg" alt="Image 1"
                                 style="width: 48px;height: 48px;">
-                            <h4>Payment Summary</h4>
-                            <div class="amount-holder">
+                            <h4>payments Summary</h4>
+                            <div class="orokii-amount-holder">
                                 <p>Amount</p>
                                 <h1>$${amount}</h1>
                             </div>
-                            <div class="summary-details">
+                            <div class="orokii-summary-details">
 
-                                <div class="detail">
-                                    <p>Subtotal</p><span>$0.00</span>
+                                <div class="orokii-detail">
+                                    <p>Subtotal</p><span>$4105.00</span>
                                 </div>
-                                <div class="detail">
-                                    <p>Shipping Cost</p><span>$0.00</span>
+                                <div class="orokii-detail">
+                                    <p>Shipping Cost</p><span>$408.00</span>
                                 </div>
-                                <div class="detail">
-                                    <p>Discount (0%)</p><span>-$0.00</span>
+                                <div class="orokii-detail">
+                                    <p>Discount (10%)</p><span>-$13.00</span>
                                 </div>
-                                <hr class="summary-divider">
-                                <div class="detail total"><span>Total</span><span>$${amount}</span></div>
+                                <hr class="orokii-summary-divider">
+                                <div class="orokii-detail orokii-total"><span>Total</span><span>$${amount}</span></div>
                             </div>
-                            <div class="summary-buttons">
-                                <button class="summary-buttons-go-back" id="summary-buttons-go-back">Go Back</button>
-                                <button class="summary-buttons-confirm" id="summary-buttons-confirm">
-                                    <span id="card-pay-button-text">
+                            <div class="orokii-summary-buttons">
+                                <button class="orokii-summary-buttons-go-back" id="orokii-summary-buttons-go-back">Go
+                                    Back</button>
+                                <button class="orokii-summary-buttons-confirm" id="orokii-summary-buttons-confirm">
+                                    <span id="orokii-card-pay-button-text">
                                         Confirm
-                                        Payment</span>
+                                        payments</span>
 
-                                    <div id="loader"></div>
+                                    <div id="orokii-loader"></div>
                                 </button>
                             </div>
                         </div>
-                    
+                        <!-- <div class="pin-container" id="pin-container">
+                            <p>Please enter your 4-digit card pin to authorize this payments</p>
+                            <div class="pin-inputs">
+                                <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                                <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                                <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                                <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
+                            </div>
+                            <div class="pin-buttons">
+                                <button class="pin-back" id="pin-back">Go Back</button>
+                                <button class="pin-continue" id="pin-continue">Continue</button>
+                            </div>
+                        </div> -->
 
                     </div>
                 </div>
-                <div class="dropdown" id="dropdown-2">
-                    <div class="dropdown-header">
-                        <input type="radio" id="payment-radio-crypto" class="payment-checkbox">
-                        <div class="dropdown-inner">
-                            <div class="dropdown-text">Pay with Crypto</div>
-                            <img src="https://ayoseun.github.io/k-pay/assets/bitcoin.svg" alt="Bitcoin" class="payments-image-crypto">
-                            <img src="https://ayoseun.github.io/k-pay/assets/ethereum.svg" alt="Ethereum" class="payments-image-crypto">
-                            <img src="https://ayoseun.github.io/k-pay/assets/usdc.svg" alt="USDC" class="payments-image-crypto">
-                            <img src="https://ayoseun.github.io/k-pay/assets/usdt.svg" alt="USDT" class="payments-image-crypto">
-                            <img src="https://ayoseun.github.io/k-pay/assets/sol.png" alt="Solana" class="payments-image-crypto">
+                <div class="orokii-payments" id="orokii-payments-2">
+                    <div class="orokii-payments-header">
+                        <input type="radio" class="orokii-payments-checkbox">
+                        <div class="orokii-payments-inner">
+                            <div class="orokii-payments-text">Pay with Crypto</div>
+                            <div class="orokii-payments-inner-icons">
+                                <img src="./assets/bitcoin.svg" alt="Bitcoin" class="orokii-payments-image-crypto">
+                                <img src="./assets/ethereum.svg" alt="Ethereum" class="orokii-payments-image-crypto">
+                                <img src="./assets/usdc.svg" alt="USDC" class="orokii-payments-image-crypto">
+                                <img src="./assets/usdt.svg" alt="USDT" class="orokii-payments-image-crypto">
+                                <img src="./assets/sol.png" alt="Solana" class="orokii-payments-image-crypto">
+                            </div>
                         </div>
                     </div>
-                    <div class="dropdown-content">
-                        <div class="crypto-container" id="crypto-details">
+                    <div class="orokii-payments-content">
+                        <div class="orokii-crypto-container">
                             <h2>Select Cryptocurrency</h2>
-                            <div class="crypto-form-field">
+                            <div class="orokii-crypto-form-field">
                                 <label for="tokens">Pay with</label>
-                                <div class="crypto-input-wrapper">
-                                    <select style="color: #9499A1; font-size: 8px;" id="tokens">
+                                <div class="orokii-crypto-input-wrapper">
+                                    <select style="color: #9499A1; font-size: 8px;" id="orokii-tokens">
 
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="exchange-rate">
+                            <div class="orokii-exchange-rate">
                                 <p>Exchange rates:</p>
-                                <span> 1 = 0.00 USD</span>
+                                <span> 1 - = 0.00 USD</span>
                             </div>
-                            <div class="payment-details">
-                                <p class="amount">Amount to due:</p>
+                            <div class="orokii-payments-details">
+                                <p class="orokii-amount">Amount to due:</p>
                                 <span> 0.00</span>
                             </div>
-                            <div class="crypto-divider "></div>
-                           
+                            <div class="orokii-crypto-divider "></div>
+                            <div class="orokii-payments-details">
+                                <p>REF </p>
+                                <span>REF23456</span>
 
-
-
-                            <button class="pay-button" id="connect-wallet">Pay</button>
-
-                            <div class="crypto-divider "></div>
-                        </div>
-                        <div class="summary-container" id="summary-container-crypto">
-                            <img src="https://ayoseun.github.io/k-pay/assets/checkout.svg" alt="Image 1"
-                                style="width: 48px;height: 48px;">
-                            <h4>Payment Summary</h4>
-                            <div class="amount-holder">
-                                <p>Amount</p>
-                                <h1>$${amount}</h1>
                             </div>
-                            <div class="summary-details">
 
-                                <div class="detail">
-                                    <p>Subtotal</p><span>$0.00</span>
-                                </div>
-                                <div class="detail">
-                                    <p>Shipping Cost</p><span>$0.00</span>
-                                </div>
-                                <div class="detail">
-                                    <p>Discount (0%)</p><span>-$0.00</span>
-                                </div>
-                                <hr class="summary-divider">
-                                <div class="detail total"><span>Total</span><span>$${amount}</span></div>
-                            </div>
-                            <div class="summary-buttons">
-                                <button class="summary-buttons-go-back" id="crypto-summary-button-go-back">Go Back</button>
-                                <button class="summary-buttons-confirm" id="crypto-summary-button-confirm">
-                                    <span id="crypto-pay-button-text">
-                                        Confirm
-                                        Payment</span>
 
-                                    <div id="crypto-loader"></div>
-                                </button>
-                            </div>
+
+                            <button class="orokii-pay-button" id="orokii-connect-wallet">
+                                <span id="orokii-crypto-pay-button-text">
+
+                                    Pay</span>
+
+                                <div id="orokii-crypto-loader"></div>
+                            </button>
+
+                            <div class="orokii-crypto-divider"></div>
                         </div>
 
                     </div>
                 </div>
-                <div class="dropdown" id="dropdown-3">
-                    <div class="dropdown-header">
-                        <input type="radio" id="payment-radio-ach" class="payment-checkbox">
-
-                        <div class="dropdown-text">Pay with Bank Account</div>
-
+                <div class="orokii-payments" id="orokii-payments-3">
+                    <div class="orokii-payments-header">
+                        <input type="radio" class="orokii-payments-checkbox">
+                        <div class="orokii-payments-inner">
+                            <div class="orokii-payments-text">Pay with Bank Account</div>
+                        </div>
                     </div>
-                    <div class="dropdown-content">
-                        <div class="card-details" id="ach-details">
+                    <div class="orokii-payments-content">
+                        <div class="orokii-card-details" id="orokii-ach-details">
                             <h2>Banking Details</h2>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="cardholder-name">Account Number</label>
-                                <div class="input-wrapper">
+                                <div class="orokii-input-wrapper">
                                     <input type="number" id="account-number" placeholder="As seen on your cheque book">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="cardholder-name">Routing Number</label>
-                                <div class="input-wrapper">
+                                <div class="orokii-input-wrapper">
                                     <input type="number" id="routing-number" placeholder="As seen on your cheque book">
                                 </div>
                             </div>
 
 
                             <h2>User Details</h2>
-                           
-                            <div class="form-field">
+                            <p>We only require this information once for this card</p>
+                            <div class="orokii-form-field">
                                 <label for="country">Country</label>
-                                <div class="input-wrapper">
-                                    <select id="banking-country">
-                                 
+                                <div class="orokii-input-wrapper">
+                                    <select id="orokii-banking-country">
+                                        <!-- Options will be populated dynamically -->
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-field-group">
-                                <div class="form-field half">
+                            <div class="orokii-form-field-group">
+                                <div class="orokii-form-field half">
                                     <label for="state">State</label>
-                                    <div class="input-wrapper">
-                                        <select id="banking-state">
-                                     
+                                    <div class="orokii-input-wrapper">
+                                        <select id="orokii-banking-state">
+                                            <!-- Options will be populated dynamically -->
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-field half">
+                                <div class="orokii-form-field orokii-half">
                                     <label for="city">City</label>
-                                    <div class="input-wrapper">
-                                        <select id="banking-city">
+                                    <div class="orokii-input-wrapper">
+                                        <select id="orokii-banking-city">
 
                                         </select>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="firstName">First Name</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="banking-first-name" placeholder="Enter your first name">
+                                <div class="orokii-input-wrapper">
+                                    <input type="text" id="orokii-banking-first-name"
+                                        placeholder="Enter your first name">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="lastName">Last Name</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="banking-last-name" placeholder="Enter your last name">
+                                <div class="orokii-input-wrapper">
+                                    <input type="text" id="orokii-banking-last-name" placeholder="Enter your last name">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="lastName">Phone</label>
-                                <div class="input-wrapper">
-                                    <input type="number" id="banking-phone" placeholder="Enter your phone number">
+                                <div class="orokii-input-wrapper">
+                                    <input type="number" id="orokii-banking-phone" placeholder="Enter your last name">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="address2">Address</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="banking-address" placeholder="Input address">
+                                <div class="orokii-input-wrapper">
+                                    <input type="text" id="orokii-banking-address" placeholder="Input address">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="zip1">ZIP code</label>
-                                <div class="input-wrapper">
-                                    <input type="number" id="banking-zip" placeholder="Enter your ZIP code">
+                                <div class="orokii-input-wrapper">
+                                    <input type="number" id="orokii-banking-zip" placeholder="Input ZIP code">
                                 </div>
                             </div>
 
 
                             <h2>Billing Address</h2>
-                            
-                            <div class="form-field">
+                            <p>We only require this information once for this card</p>
+                            <div class="orokii-form-field">
                                 <label for="country">Country</label>
                                 <div class="input-wrapper">
-                                    <select id="user-country">
-                                 
+                                    <select id="orokii-user-country">
+                                        <!-- Options will be populated dynamically -->
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-field-group">
-                                <div class="form-field half">
+                            <div class="orokii-form-field-group">
+                                <div class="orokii-form-field orokii-half">
                                     <label for="state">State</label>
-                                    <div class="input-wrapper">
-                                        <select id="user-state">
-                                     
+                                    <div class="orokii-input-wrapper">
+                                        <select id="orokii-user-state">
+                                            <!-- Options will be populated dynamically -->
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-field half">
+                                <div class="orokii-form-field orokii-half">
                                     <label for="city">City</label>
-                                    <div class="input-wrapper">
+                                    <div class="orokii-input-wrapper">
                                         <select id="user-city">
 
                                         </select>
@@ -352,118 +347,130 @@ export const getBottomSection = (amount) => `
                                 </div>
                             </div>
 
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="firstName">First Name</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="user-first-name" placeholder="Enter your first name">
+                                <div class="orokii-input-wrapper">
+                                    <input type="text" id="orokii-user-first-name" placeholder="Enter your first name">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="lastName">Last Name</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="user-last-name" placeholder="Enter your last name">
+                                <div class="orokii-input-wrapper">
+                                    <input type="text" id="orokii-user-last-name" placeholder="Enter your last name">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="lastName">Phone</label>
-                                <div class="input-wrapper">
-                                    <input type="number" id="user-phone" placeholder="Enter your phone">
+                                <div class="orokii-input-wrapper">
+                                    <input type="number" id="orokii-user-phone" placeholder="Enter your phone">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="address2">Address</label>
-                                <div class="input-wrapper">
-                                    <input type="text" id="user-address" placeholder="Input address">
+                                <div class="orokii-input-wrapper">
+                                    <input type="text" id="orokii-user-address" placeholder="Input address">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="zip1">ZIP code</label>
-                                <div class="input-wrapper">
-                                    <input type="number" id="user-zip" placeholder="Input ZIP code">
+                                <div class="orokii-input-wrapper">
+                                    <input type="number" id="orokii-user-zip" placeholder="Input ZIP code">
                                 </div>
                             </div>
-                            <div class="form-field">
+                            <div class="orokii-form-field">
                                 <label for="zip1">Identification</label>
-                                <div class="input-wrapper">
-                                    <input type="number" id="identification" placeholder="Input Identification number">
+                                <div class="orokii-input-wrapper">
+                                    <input type="number" id="orokii-identification"
+                                        placeholder="Input Identification number">
                                 </div>
                             </div>
-                            <button class="pay-button" id="ach-pay-button">
+                            <button class="orokii-pay-button" id="orokii-ach-pay-button">
 
-                                pay $${amount}
+                                pay $5000
 
                             </button>
 
                         </div>
-                        <div class="summary-container" id="summary-container-ach">
+                        <div class="orokii-summary-container" id="orokii-summary-container-ach">
                             <img src="https://ayoseun.github.io/k-pay/assets/checkout.svg" alt="Image 1"
                                 style="width: 48px;height: 48px;">
-                            <h4>Payment Summary</h4>
-                            <div class="amount-holder">
+                            <h4>payments Summary</h4>
+                            <div class="orokii-amount-holder">
                                 <p>Amount</p>
                                 <h1>$${amount}</h1>
                             </div>
-                            <div class="summary-details">
+                            <div class="orokii-summary-details">
 
-                                <div class="detail">
-                                    <p>Subtotal</p><span>$0.00</span>
+                                <div class="orokii-detail">
+                                    <p>Subtotal</p><span>$4105.00</span>
                                 </div>
-                                <div class="detail">
-                                    <p>Shipping Cost</p><span>$0.00</span>
+                                <div class="orokii-detail">
+                                    <p>Shipping Cost</p><span>$408.00</span>
                                 </div>
-                                <div class="detail">
-                                    <p>Discount (0%)</p><span>-$0.00</span>
+                                <div class="orokii-detail">
+                                    <p>Discount (10%)</p><span>-$13.00</span>
                                 </div>
-                                <hr class="summary-divider">
-                                <div class="detail total"><span>Total</span><span>$${amount}</span></div>
+                                <hr class="orokii-summary-divider">
+                                <div class="orokii-detail orokii-total"><span>Total</span><span>$${amount}</span></div>
                             </div>
-                            <div class="summary-buttons">
-                                <button class="summary-buttons-go-back" id="ach-summary-buttons-go-back">Go
+                            <div class="orokii-summary-buttons">
+                                <button class="orokii-summary-buttons-go-back"
+                                    id="orokii-ach-summary-buttons-go-back">Go
                                     Back</button>
-                                <button class="summary-buttons-confirm" id="ach-summary-buttons-confirm">
-                                    <span id="ach-pay-button-text">
+                                <button class="orokii-summary-buttons-confirm" id="orokii-ach-summary-buttons-confirm">
+                                    <span id="orokii-ach-pay-button-text">
                                         Confirm
-                                        Payment</span>
+                                        payments</span>
 
-                                    <div id="ach-loader"></div>
+                                    <div id="orokii-ach-loader"></div>
                                 </button>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <div class="dropdown" id="dropdown-4">
-                    <div class="dropdown-header">
-                        <input type="radio" id="payment-radio-apm" class="payment-checkbox">
-                        <div class="dropdown-inner">
-                            <div class="dropdown-text">Pay with</div>
-                            <img src="https://ayoseun.github.io/k-pay/assets/applePay.svg" alt="Image 1"
-                                class="dropdown-image-others">
-                            <img src="https://ayoseun.github.io/k-pay/assets/googlePay.svg" alt="Image 1"
-                                class="dropdown-image-others">
-                            <img src="https://ayoseun.github.io/k-pay/assets/paypal.svg" alt="Image 1"
-                                class="dropdown-image-others">
+                <div class="orokii-payments" id="orokii-payments-4">
+                    <div class="orokii-payments-header">
+                        <input type="radio" class="orokii-payments-checkbox">
+                        <div class="orokii-payments-inner">
+                            <div class="orokii-payments-text">Pay with</div>
+                            <div class="orokii-payments-inner-icons">
+                                <img src="https://ayoseun.github.io/k-pay/assets/applePay.svg" alt="Image 1"
+                                    class="orokii-payments-image-others">
+                                <img src="https://ayoseun.github.io/k-pay/assets/googlePay.svg" alt="Image 1"
+                                    class="orokii-payments-image-others">
+                                <img src="https://ayoseun.github.io/k-pay/assets/paypal.svg" alt="Image 1"
+                                    class="orokii-payments-image-others">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="orokii-payments-content">
+                        <div class="orokiipay-apm-container">
+
+                            <apple-pay-button buttonstyle="black" type="plain" locale="en">Check out</apple-pay-button>
+
+                            <div class="orokiipay-google-pay" id="orokiipay-google-pay"></div>
+
 
                         </div>
 
 
-                        <img src="https://ayoseun.github.io/k-pay/assets/chev.svg" alt="Image 1"
-                            class="dropdown-chevron">
-                    </div>
-                    <div class="dropdown-content">
-                        <p class="todo">In progress</p>
                     </div>
                 </div>
             </div>
-
-
 `;
 
-export const getBanner=()=>`
- <div class="secure-payments-button">
-            <span class="text">Secure payments</span>
-            <span class="powered-by">Powered by</span>
-            <img src="https://ayoseun.github.io/k-pay/assets/logo-white.svg" alt="Orokiipay logo" class="secured-logo">
-            <span class="orokiipay">Orokiipay</span>
+export const getBanner = () => `
+  <div class="orokii-secure-payments-button">
+            <span class="orokii-text">Secure payments</span>
+            <span class="orokii-powered-by">Powered by</span>
+        
+        <div class="" style="display: flex;">
+            <img src="./assets/logo-white.svg" alt="Orokiipay logo" class="orokii-secured-logo">
+            <span class="orokii-orokiipay">OrokiiPay</span>
+        </div>
         </div>
 `

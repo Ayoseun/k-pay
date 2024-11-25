@@ -1,12 +1,12 @@
 export const getSuccessSection = (amount) => `
-<div class="success-container" id="success-container">
+<div class="orokii-success-container" id="orokii-success-container">
                 <h1>
                     Payment Completed
                 </h1>
                 <p>
-                    The payment of $${amount} has been received successfully
+                    The payment of $45,000 has been received successfully
                 </p>
-                <img src="https://ayoseun.github.io/k-pay/assets/success.svg" alt="Icon">
-                <button id="close-payment">Close</button>
+                <img src="./assets/success.svg" alt="Icon">
+                <button id="orokii-close-payment">Close</button>
             </div>
 `;

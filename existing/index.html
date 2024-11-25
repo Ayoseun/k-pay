@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Widget</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/card_form.css">
-    <link rel="stylesheet" href="css/pin_form.css">
-    <link rel="stylesheet" href="css/payment_summary.css">
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/summary.css">
     <link rel="stylesheet" href="css/success.css">
     <link rel="stylesheet" href="css/crypto.css">
-    <link rel="stylesheet" href="css/pop_up.css">
     <link rel="stylesheet" href="css/bank.css">
     <link rel="stylesheet" href="css/apm.css">
+    <link rel="stylesheet" href="css/ach.css">
     <link rel="stylesheet" href="css/poweredby.css">
     <!-- Include Inter Font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -28,14 +27,11 @@
 </head>
 
 <body>
-
     <div style="  display: flex;
     width: 75%;
     flex-direction: column;
     align-items: center;
     justify-content: center;">
-
-
         <div class="orokii-card">
             <!-- Top Section -->
             <div class="orokii-top-section">
@@ -54,29 +50,29 @@
             </div>
             <hr class="orokii-divider">
             <!-- Middle Section -->
-            <div class="orokii-middle-section" id="middle-section">Choose Payment Method</div>
+            <div class="orokii-middle-section" id="middle-section">Choose payments Method</div>
             <!-- Bottom Section -->
             <div class="orokii-bottom-section" id="orokii-bottom-section">
-                <div class="orokii-dropdown" id="orokii-dropdown-1">
-                    <div class="orokii-dropdown-header">
-                        <input type="radio" class="orokii-payment-checkbox">
-                        <div class="orokii-dropdown-inner">
-                            <div class="orokii-dropdown-text">Pay with Cards</div>
-                            <div class="orokii-dropdown-inner-icons">
+                <div class="orokii-payments" id="orokii-payments-1">
+                    <div class="orokii-payments-header">
+                        <input type="radio" class="orokii-payments-checkbox">
+                        <div class="orokii-payments-inner">
+                            <div class="orokii-payments-text">Pay with Cards</div>
+                            <div class="orokii-payments-inner-icons">
                                 <img src="https://ayoseun.github.io/k-pay/assets/visa.svg" alt="Image 1"
-                                    class="orokii-dropdown-image">
+                                    class="orokii-payments-image">
                                 <img src="https://ayoseun.github.io/k-pay/assets/mastercard.svg" alt="Image 1"
-                                    class="orokii-dropdown-image">
+                                    class="orokii-payments-image">
                                 <img src="https://ayoseun.github.io/k-pay/assets/discover.svg" alt="Image 1"
-                                    class="orokii-dropdown-image">
+                                    class="orokii-payments-image">
                                 <img src="https://ayoseun.github.io/k-pay/assets/maestro.svg" alt="Image 1"
-                                    class="orokii-dropdown-image">
+                                    class="orokii-payments-image">
                                 <img src="https://ayoseun.github.io/k-pay/assets/americanExpress.svg" alt="Image 1"
-                                    class="orokii-dropdown-image">
+                                    class="orokii-payments-image">
                             </div>
                         </div>
                     </div>
-                    <div class="orokii-dropdown-content">
+                    <div class="orokii-payments-content">
                         <div class="orokii-card-details" id="orokii-card-details">
                             <h2>Card Details</h2>
                             <div id="orokii-isTokenized">
@@ -183,7 +179,7 @@
                         <div class="orokii-summary-container" id="orokii-summary-container-card">
                             <img src="https://ayoseun.github.io/k-pay/assets/checkout.svg" alt="Image 1"
                                 style="width: 48px;height: 48px;">
-                            <h4>Payment Summary</h4>
+                            <h4>payments Summary</h4>
                             <div class="orokii-amount-holder">
                                 <p>Amount</p>
                                 <h1>$${amount}</h1>
@@ -208,14 +204,14 @@
                                 <button class="orokii-summary-buttons-confirm" id="orokii-summary-buttons-confirm">
                                     <span id="orokii-card-pay-button-text">
                                         Confirm
-                                        Payment</span>
+                                        payments</span>
 
                                     <div id="orokii-loader"></div>
                                 </button>
                             </div>
                         </div>
                         <!-- <div class="pin-container" id="pin-container">
-                            <p>Please enter your 4-digit card pin to authorize this payment</p>
+                            <p>Please enter your 4-digit card pin to authorize this payments</p>
                             <div class="pin-inputs">
                                 <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
                                 <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
@@ -230,12 +226,12 @@
 
                     </div>
                 </div>
-                <div class="orokii-dropdown" id="orokii-dropdown-2">
-                    <div class="orokii-dropdown-header">
-                        <input type="radio" class="orokii-payment-checkbox">
-                        <div class="orokii-dropdown-inner">
-                            <div class="orokii-dropdown-text">Pay with Crypto</div>
-                            <div class="orokii-dropdown-inner-icons">
+                <div class="orokii-payments" id="orokii-payments-2">
+                    <div class="orokii-payments-header">
+                        <input type="radio" class="orokii-payments-checkbox">
+                        <div class="orokii-payments-inner">
+                            <div class="orokii-payments-text">Pay with Crypto</div>
+                            <div class="orokii-payments-inner-icons">
                                 <img src="./assets/bitcoin.svg" alt="Bitcoin" class="orokii-payments-image-crypto">
                                 <img src="./assets/ethereum.svg" alt="Ethereum" class="orokii-payments-image-crypto">
                                 <img src="./assets/usdc.svg" alt="USDC" class="orokii-payments-image-crypto">
@@ -244,7 +240,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="orokii-dropdown-content">
+                    <div class="orokii-payments-content">
                         <div class="orokii-crypto-container">
                             <h2>Select Cryptocurrency</h2>
                             <div class="orokii-crypto-form-field">
@@ -260,12 +256,12 @@
                                 <p>Exchange rates:</p>
                                 <span> 1 - = 0.00 USD</span>
                             </div>
-                            <div class="orokii-payment-details">
+                            <div class="orokii-payments-details">
                                 <p class="orokii-amount">Amount to due:</p>
                                 <span> 0.00</span>
                             </div>
                             <div class="orokii-crypto-divider "></div>
-                            <div class="orokii-payment-details">
+                            <div class="orokii-payments-details">
                                 <p>REF </p>
                                 <span>REF23456</span>
 
@@ -286,14 +282,14 @@
 
                     </div>
                 </div>
-                <div class="orokii-dropdown" id="orokii-dropdown-3">
-                    <div class="orokii-dropdown-header">
-                        <input type="radio" class="orokii-payment-checkbox">
-                        <div class="orokii-dropdown-inner">
-                            <div class="orokii-dropdown-text">Pay with Bank Account</div>
+                <div class="orokii-payments" id="orokii-payments-3">
+                    <div class="orokii-payments-header">
+                        <input type="radio" class="orokii-payments-checkbox">
+                        <div class="orokii-payments-inner">
+                            <div class="orokii-payments-text">Pay with Bank Account</div>
                         </div>
                     </div>
-                    <div class="orokii-dropdown-content">
+                    <div class="orokii-payments-content">
                         <div class="orokii-card-details" id="orokii-ach-details">
                             <h2>Banking Details</h2>
                             <div class="orokii-form-field">
@@ -448,7 +444,7 @@
                         <div class="orokii-summary-container" id="orokii-summary-container-ach">
                             <img src="https://ayoseun.github.io/k-pay/assets/checkout.svg" alt="Image 1"
                                 style="width: 48px;height: 48px;">
-                            <h4>Payment Summary</h4>
+                            <h4>payments Summary</h4>
                             <div class="orokii-amount-holder">
                                 <p>Amount</p>
                                 <h1>$${amount}</h1>
@@ -474,7 +470,7 @@
                                 <button class="orokii-summary-buttons-confirm" id="orokii-ach-summary-buttons-confirm">
                                     <span id="orokii-ach-pay-button-text">
                                         Confirm
-                                        Payment</span>
+                                        payments</span>
 
                                     <div id="orokii-ach-loader"></div>
                                 </button>
@@ -483,25 +479,25 @@
                     </div>
 
                 </div>
-                <div class="orokii-dropdown" id="orokii-dropdown-4">
-                    <div class="orokii-dropdown-header">
-                        <input type="radio" class="orokii-payment-checkbox">
-                        <div class="orokii-dropdown-inner">
-                            <div class="orokii-dropdown-text">Pay with</div>
-                            <div class="orokii-dropdown-inner-icons">
+                <div class="orokii-payments" id="orokii-payments-4">
+                    <div class="orokii-payments-header">
+                        <input type="radio" class="orokii-payments-checkbox">
+                        <div class="orokii-payments-inner">
+                            <div class="orokii-payments-text">Pay with</div>
+                            <div class="orokii-payments-inner-icons">
                                 <img src="https://ayoseun.github.io/k-pay/assets/applePay.svg" alt="Image 1"
-                                    class="orokii-dropdown-image-others">
+                                    class="orokii-payments-image-others">
                                 <img src="https://ayoseun.github.io/k-pay/assets/googlePay.svg" alt="Image 1"
-                                    class="orokii-dropdown-image-others">
+                                    class="orokii-payments-image-others">
                                 <img src="https://ayoseun.github.io/k-pay/assets/paypal.svg" alt="Image 1"
-                                    class="orokii-dropdown-image-others">
+                                    class="orokii-payments-image-others">
 
                             </div>
                         </div>
 
 
                     </div>
-                    <div class="orokii-dropdown-content">
+                    <div class="orokii-payments-content">
                         <div class="orokiipay-apm-container">
 
                             <apple-pay-button buttonstyle="black" type="plain" locale="en">Check out</apple-pay-button>
@@ -518,10 +514,10 @@
 
             <div class="orokii-success-container" id="orokii-success-container">
                 <h1>
-                    Payment Completed
+                    payments Completed
                 </h1>
                 <p>
-                    The payment of $45,000 has been received successfully
+                    The payments of $45,000 has been received successfully
                 </p>
                 <img src="./assets/success.svg" alt="Icon">
                 <button id="orokii-close-payment">Close</button>
@@ -542,10 +538,13 @@
         </div>
 
         <div class="orokii-secure-payments-button">
-            <span class="orokii-text">Secure payments</span>
+            <span class="orokii-text">Secure paymentss</span>
             <span class="orokii-powered-by">Powered by</span>
-            <img src="./assets/logo-white.svg" alt="Orokiipay logo" class="orokii-secured-logo">
-            <span class="orokii-orokiipay">OrokiiPay</span>
+
+            <div class="" style="display: flex;">
+                <img src="./assets/logo-white.svg" alt="Orokiipay logo" class="orokii-secured-logo">
+                <span class="orokii-orokiipay">OrokiiPay</span>
+            </div>
         </div>
 
         <div id="orokii-myModal" class="orokii-modal">

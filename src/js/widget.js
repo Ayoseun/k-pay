@@ -1,16 +1,18 @@
 
-import { getBanner, getBottomSection } from '../components/ui/bottom.js';
-import { banner } from '../components/css/banner.js';
-import { cardFormStyles } from '../components/css/card.js';
+import { getBottomSection } from '../components/ui/bottom.js';
 import { cryptoStyles } from '../components/css/crypto.js';
-import { homeStyles } from '../components/css/home.js';
-import { pinStyles, popupStyles, todo } from '../components/css/others.js';
+import { cardsStyles } from '../components/css/cards.js';
 import { successStyles } from '../components/css/success.js';
-import { cardPaymentSummaryStyles } from '../components/css/summary.js';
+import { paymentsSummaryStyles } from '../components/css/summary.js';
 import { getMiddleSection } from '../components/ui/middle.js';
 import { getSuccessSection } from '../components/ui/success.js';
 import { getTopSection } from '../components/ui/top.js';
 import { initializeEventListeners } from './widgetListeners.js';
+import { widgetStyles } from '../components/css/widget.js';
+import { poweredByStyles } from '../components/css/poweredBy.js';
+import { getPoweredBy } from '../components/ui/poweredBy.js';
+import { achStyles } from '../components/css/ach.js';
+import { apmStyles } from '../components/css/apm.js';
 
 
 
@@ -23,16 +25,15 @@ export function createWidget(paymentData) {
 
     // Create and append styles
     const orokiiWidgetStyles = [
-        banner,
-        homeStyles,
+        cardsStyles,
+
+        widgetStyles,
         successStyles,
         cryptoStyles,
-        cardFormStyles,
-        cardPaymentSummaryStyles,
-        pinStyles,
-        todo,
-        popupStyles,
-
+        achStyles,
+        apmStyles,
+        paymentsSummaryStyles,
+        poweredByStyles
     ];
 
     orokiiWidgetStyles.forEach((orokiiWidgetStylesContent, index) => {
@@ -47,14 +48,17 @@ export function createWidget(paymentData) {
     }
     // Append each section to the widget container
     widget.innerHTML = `
-  
-    <div class="card">
+    <div class="orokii-home">
+    <div class="orokii-card">
     ${getTopSection(amount)}
     ${getMiddleSection()}
     ${getBottomSection(amount)}
+
     ${getSuccessSection(amount)}
+     
     </div>
-    ${getBanner()}
+    ${getPoweredBy()}
+    </div>
   `;
     // Append the widget to the body (or any other target container)
     document.body.appendChild(widget);

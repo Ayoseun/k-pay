@@ -1,15 +1,19 @@
-const ach =`
+export const achStyles =`
 
 
-.banking-form-field{
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+.orokii-banking-form-field{
     width: 92%;
     margin-bottom: 5px;
     margin-right: 10px;
     margin-left: 0px;
   
 }
-.banking-form-field label,
-.banking-form-field-group label {
+.orokii-banking-form-field label,
+.orokii-banking-form-field-group label {
     display: block;
     margin-bottom: 5px;
     font-size: 12px;
@@ -18,7 +22,7 @@ const ach =`
 }
 
 /* Wrapper for form inputs and selects */
-.banking-input-wrapper {
+.orokii-banking-input-wrapper {
     border: 0.8px solid #E0E5F2;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -28,9 +32,9 @@ const ach =`
     background-color: white;
 }
 
-.banking-input-wrapper input[type="text"],
-.banking-input-wrapper input[type="number"],
-.banking-input-wrapper select {
+.orokii-banking-input-wrapper input[type="text"],
+.orokii-banking-input-wrapper input[type="number"],
+.orokii-banking-input-wrapper select {
     width: 107%;
     border: none; /* Remove internal borders */
     font-family: 'Poppins', sans-serif;
@@ -40,14 +44,14 @@ const ach =`
     outline: none; /* Remove default focus outline */
 }
 
-.banking-input-wrapper input[type="text"]::placeholder,
-.banking-input-wrapper select option {
+.orokii-banking-input-wrapper input[type="text"]::placeholder,
+.orokii-banking-input-wrapper select option {
     font-size: 8px;
     font-weight: 100;
     color: #9A9AAA;
     width: 120%;
 }
-#ach-loader {
+#orokii-ach-loader {
     border: 1px solid #f3f3f3;
     /* Light grey */
     border-top: 1px solid #000000;

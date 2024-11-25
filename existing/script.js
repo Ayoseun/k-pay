@@ -487,7 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //CRYPTO
   const connectWalletButton = document.getElementById('orokii-connect-wallet');
   const exchangeRateSpan = document.querySelector('.orokii-exchange-rate span');
-  const cryptoAmountSpan = document.querySelector('.orokii-payment-details span');
+  const cryptoAmountSpan = document.querySelector('.orokii-payments-details span');
 
   //SUCCESS ELEMENT
   const successContainer = document.getElementById('orokii-success-container')
@@ -507,25 +507,25 @@ document.addEventListener('DOMContentLoaded', () => {
   getCrypto(orokiiTestnetNetworks, tokens, connectWalletButton)
 
   //--------EVENT----------
-  document.querySelectorAll('.orokii-dropdown-header').forEach(header => {
+  document.querySelectorAll('.orokii-payments-header').forEach(header => {
     header.addEventListener('click', function () {
       const dropdown = this.parentElement;
 
       // Close all other dropdowns
-      document.querySelectorAll('.orokii-dropdown').forEach(d => {
+      document.querySelectorAll('.orokii-payments').forEach(d => {
         if (d !== dropdown) {
           d.classList.remove('open');
-          d.querySelector('.orokii-payment-checkbox').checked = false;
+          d.querySelector('.orokii-payments-checkbox').checked = false;
         }
       });
 
-      if (y) {
+      if (!y) {
         isTokenized.style.display = 'none'
       }
 
       // Toggle the clicked dropdown
       dropdown.classList.toggle('open');
-      dropdown.querySelector('.orokii-payment-checkbox').checked = dropdown.classList.contains('open');
+      dropdown.querySelector('.orokii-payments-checkbox').checked = dropdown.classList.contains('open');
     });
   });
   // Handle the click event for the close button
@@ -738,7 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //   pinContainer.style.display = 'none';
   //   cardDetails.style.display = 'block';
   // })
-  const y = false;
+  const y = true;
   cardPayButton.addEventListener('click', (event) => {
     if (!y) {
       const isValid = validateForm(expiryDateInput, cvcInput,

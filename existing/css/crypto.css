@@ -102,7 +102,7 @@
     font-size: 12px;
     font-weight: 500;
   }
-.orokii-payment-details {
+.orokii-payments-details {
     width: 100%;
   margin-left: 10px;
    margin-right: 10px;
@@ -114,12 +114,12 @@
 
     color: #888;
 }
-.orokii-payment-details p {
+.orokii-payments-details p {
   font-weight: 300;
   font-size: 12px;
     color: #888;
 }
-.orokii-payment-details span {
+.orokii-payments-details span {
     font-weight: 300;
     font-size: 12px;
     color: #79747E;
@@ -276,7 +276,7 @@
         font-size: 0.4rem;;
         font-weight: 500;
       }
-    .orokii-payment-details {
+    .orokii-payments-details {
         width: 100%;
       margin-left: 10px;
        margin-right: 10px;
@@ -288,12 +288,12 @@
     
         color: #888;
     }
-    .orokii-payment-details p {
+    .orokii-payments-details p {
       font-weight: 300;
       font-size: 0.4rem;
         color: #888;
     }
-    .orokii-payment-details span {
+    .orokii-payments-details span {
         font-weight: 300;
         font-size: 0.4rem;
         color: #79747E;
