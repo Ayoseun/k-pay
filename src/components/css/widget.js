@@ -13,7 +13,7 @@ export const widgetStyles = `
 
 
 .orokii-card {
-    width: 70%;
+    width: auto;
     max-width: auto;
     background-color: white;
     border-radius: 2%;
