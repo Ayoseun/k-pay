@@ -5,7 +5,7 @@ export const widgetStyles = `
 
 .orokii-home {
  display: flex;
-    width: auto;
+    width: 70%;
     flex-direction: column;
     align-items: center;
     justify-content: center;

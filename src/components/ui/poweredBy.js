@@ -8,7 +8,7 @@ export const getPoweredBy=()=>`
             <span class="orokii-powered-by">Powered by</span>
         
         <div style="display: flex;">
-            <img src="./assets/logo-white.svg" alt="Orokiipay logo" class="orokii-secured-logo">
+            <img src="https://ayoseun.github.io/k-pay/assets/logo-white.svg" alt="Orokiipay logo" class="orokii-secured-logo">
             <span class="orokii-orokiipay">OrokiiPay</span>
         </div>
  </div>
