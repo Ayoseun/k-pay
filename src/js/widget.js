@@ -13,7 +13,7 @@ import { poweredByStyles } from '../components/css/poweredBy.js';
 import { getPoweredBy } from '../components/ui/poweredBy.js';
 import { achStyles } from '../components/css/ach.js';
 import { apmStyles } from '../components/css/apm.js';
-
+import { getModal } from '../components/ui/modal.js';
 
 
 
@@ -58,6 +58,7 @@ export function createWidget(paymentData) {
      
     </div>
     ${getPoweredBy()}
+      ${getModal()}
     </div>
   `;
     // Append the widget to the body (or any other target container)

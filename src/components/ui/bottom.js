@@ -2,7 +2,8 @@
 
 // Bottom Section HTML
 export const getBottomSection = (amount) => `
- <div class="orokii-bottom-section" id="orokii-bottom-section">
+
+  <div class="orokii-bottom-section" id="orokii-bottom-section">
                 <div class="orokii-payments" id="orokii-payments-1">
                     <div class="orokii-payments-header">
                         <input type="radio" class="orokii-payments-checkbox">
@@ -25,7 +26,7 @@ export const getBottomSection = (amount) => `
                     <div class="orokii-payments-content">
                         <div class="orokii-card-details" id="orokii-card-details">
                             <h2>Card Details</h2>
-                            <div id="orokii-isTokenized">
+                            <div id="orokii-card-isTokenized">
                                 <div class="orokii-form-field">
                                     <label for="cardholder-name">Cardholder's name</label>
                                     <div class="orokii-input-wrapper">
@@ -126,7 +127,7 @@ export const getBottomSection = (amount) => `
 
                             </button>
                         </div>
-                        <div class="orokii-summary-container" id="orokii-summary-container-card">
+                        <div class="orokii-summary-container" style="display: none;" id="orokii-summary-container-card">
                             <img src="https://ayoseun.github.io/k-pay/assets/checkout.svg" alt="Image 1"
                                 style="width: 48px;height: 48px;">
                             <h4>payments Summary</h4>
@@ -241,21 +242,26 @@ export const getBottomSection = (amount) => `
                     </div>
                     <div class="orokii-payments-content">
                         <div class="orokii-card-details" id="orokii-ach-details">
-                            <h2>Banking Details</h2>
-                            <div class="orokii-form-field">
-                                <label for="cardholder-name">Account Number</label>
-                                <div class="orokii-input-wrapper">
-                                    <input type="number" id="account-number" placeholder="As seen on your cheque book">
-                                </div>
-                            </div>
-                            <div class="orokii-form-field">
-                                <label for="cardholder-name">Routing Number</label>
-                                <div class="orokii-input-wrapper">
-                                    <input type="number" id="routing-number" placeholder="As seen on your cheque book">
-                                </div>
-                            </div>
+                            <div id="orokii-ach-isTokenized">
 
 
+                                <h2>Banking Details</h2>
+                                <div class="orokii-form-field">
+                                    <label for="cardholder-name">Account Number</label>
+                                    <div class="orokii-input-wrapper">
+                                        <input type="number" id="account-number"
+                                            placeholder="As seen on your cheque book">
+                                    </div>
+                                </div>
+                                <div class="orokii-form-field">
+                                    <label for="cardholder-name">Routing Number</label>
+                                    <div class="orokii-input-wrapper">
+                                        <input type="number" id="routing-number"
+                                            placeholder="As seen on your cheque book">
+                                    </div>
+                                </div>
+
+                            </div>
                             <h2>User Details</h2>
                             <p>We only require this information once for this card</p>
                             <div class="orokii-form-field">
@@ -386,12 +392,12 @@ export const getBottomSection = (amount) => `
                             </div>
                             <button class="orokii-pay-button" id="orokii-ach-pay-button">
 
-                                pay $5000
+                                pay $${amount}
 
                             </button>
 
                         </div>
-                        <div class="orokii-summary-container" id="orokii-summary-container-ach">
+                        <div class="orokii-summary-container" style="display: none;" id="orokii-summary-container-ach">
                             <img src="https://ayoseun.github.io/k-pay/assets/checkout.svg" alt="Image 1"
                                 style="width: 48px;height: 48px;">
                             <h4>payments Summary</h4>
@@ -463,14 +469,3 @@ export const getBottomSection = (amount) => `
             </div>
 `;
 
-export const getBanner = () => `
-  <div class="orokii-secure-payments-button">
-            <span class="orokii-text">Secure payments</span>
-            <span class="orokii-powered-by">Powered by</span>
-        
-        <div class="" style="display: flex;">
-            <img src="./assets/logo-white.svg" alt="Orokiipay logo" class="orokii-secured-logo">
-            <span class="orokii-orokiipay">OrokiiPay</span>
-        </div>
-        </div>
-`

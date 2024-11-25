@@ -75,7 +75,7 @@
                     <div class="orokii-payments-content">
                         <div class="orokii-card-details" id="orokii-card-details">
                             <h2>Card Details</h2>
-                            <div id="orokii-isTokenized">
+                            <div id="orokii-card-isTokenized">
                                 <div class="orokii-form-field">
                                     <label for="cardholder-name">Cardholder's name</label>
                                     <div class="orokii-input-wrapper">
@@ -176,7 +176,7 @@
 
                             </button>
                         </div>
-                        <div class="orokii-summary-container" id="orokii-summary-container-card">
+                        <div class="orokii-summary-container" style="display: none;" id="orokii-summary-container-card">
                             <img src="https://ayoseun.github.io/k-pay/assets/checkout.svg" alt="Image 1"
                                 style="width: 48px;height: 48px;">
                             <h4>payments Summary</h4>
@@ -291,21 +291,26 @@
                     </div>
                     <div class="orokii-payments-content">
                         <div class="orokii-card-details" id="orokii-ach-details">
-                            <h2>Banking Details</h2>
-                            <div class="orokii-form-field">
-                                <label for="cardholder-name">Account Number</label>
-                                <div class="orokii-input-wrapper">
-                                    <input type="number" id="account-number" placeholder="As seen on your cheque book">
-                                </div>
-                            </div>
-                            <div class="orokii-form-field">
-                                <label for="cardholder-name">Routing Number</label>
-                                <div class="orokii-input-wrapper">
-                                    <input type="number" id="routing-number" placeholder="As seen on your cheque book">
-                                </div>
-                            </div>
+                            <div id="orokii-ach-isTokenized">
 
 
+                                <h2>Banking Details</h2>
+                                <div class="orokii-form-field">
+                                    <label for="cardholder-name">Account Number</label>
+                                    <div class="orokii-input-wrapper">
+                                        <input type="number" id="account-number"
+                                            placeholder="As seen on your cheque book">
+                                    </div>
+                                </div>
+                                <div class="orokii-form-field">
+                                    <label for="cardholder-name">Routing Number</label>
+                                    <div class="orokii-input-wrapper">
+                                        <input type="number" id="routing-number"
+                                            placeholder="As seen on your cheque book">
+                                    </div>
+                                </div>
+
+                            </div>
                             <h2>User Details</h2>
                             <p>We only require this information once for this card</p>
                             <div class="orokii-form-field">
@@ -441,7 +446,7 @@
                             </button>
 
                         </div>
-                        <div class="orokii-summary-container" id="orokii-summary-container-ach">
+                        <div class="orokii-summary-container" style="display: none;" id="orokii-summary-container-ach">
                             <img src="https://ayoseun.github.io/k-pay/assets/checkout.svg" alt="Image 1"
                                 style="width: 48px;height: 48px;">
                             <h4>payments Summary</h4>

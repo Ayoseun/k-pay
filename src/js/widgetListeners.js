@@ -2,6 +2,8 @@
 import { contractABI } from "./abi";
 import { ethers } from 'ethers';
 import { orokiiTestnetNetworks } from "./resources";
+import {applePay} from 'https://applepay.cdn-apple.com/jsapi/1.latest/apple-pay-sdk.js'
+
 export function initializeEventListeners(paymentData) {
 
 let orokiiAmount=paymentData["totalAmount"];
@@ -52,7 +54,8 @@ let orokiiAmount=paymentData["totalAmount"];
     const cardPayButtonText = document.getElementById('orokii-card-pay-button-text');
     const cryptoPayButtonText = document.getElementById('orokii-crypto-pay-button-text');
     const achPayButtonText = document.getElementById('orokii-ach-pay-button-text');
-    const isTokenized = document.getElementById('orokii-isTokenized');
+    const isCardTokenized = document.getElementById('orokii-card-isTokenized');
+    const isACHTokenized = document.getElementById('orokii-ach-isTokenized');
     const country = document.getElementById('orokii-country');
     const state = document.getElementById('orokii-state');
     const city = document.getElementById('orokii-city')
@@ -125,9 +128,11 @@ let orokiiAmount=paymentData["totalAmount"];
         });
   
         if (orokiiUserCardToken) {
-          isTokenized.style.display = 'none'
+          isCardTokenized.style.display = 'none'
         }
-  
+        if (orokiiUserCardToken) {
+          isACHTokenized.style.display = 'none'
+        }
         // Toggle the clicked dropdown
         dropdown.classList.toggle('open');
         dropdown.querySelector('.orokii-payments-checkbox').checked = dropdown.classList.contains('open');
