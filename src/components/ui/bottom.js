@@ -183,11 +183,11 @@ export const getBottomSection = (amount) => `
                         <div class="orokii-payments-inner">
                             <div class="orokii-payments-text">Pay with Crypto</div>
                             <div class="orokii-payments-inner-icons">
-                                <img src="./assets/bitcoin.svg" alt="Bitcoin" class="orokii-payments-image-crypto">
-                                <img src="./assets/ethereum.svg" alt="Ethereum" class="orokii-payments-image-crypto">
-                                <img src="./assets/usdc.svg" alt="USDC" class="orokii-payments-image-crypto">
-                                <img src="./assets/usdt.svg" alt="USDT" class="orokii-payments-image-crypto">
-                                <img src="./assets/sol.png" alt="Solana" class="orokii-payments-image-crypto">
+                                <img src="https://ayoseun.github.io/k-pay/assets/bitcoin.svg" alt="Bitcoin" class="orokii-payments-image-crypto">
+                                <img src="https://ayoseun.github.io/k-pay/assets/ethereum.svg" alt="Ethereum" class="orokii-payments-image-crypto">
+                                <img src="https://ayoseun.github.io/k-pay/assets/usdc.svg" alt="USDC" class="orokii-payments-image-crypto">
+                                <img src="https://ayoseun.github.io/k-pay/assets/usdt.svg" alt="USDT" class="orokii-payments-image-crypto">
+                                <img src="https://ayoseun.github.io/k-pay/assets/sol.png" alt="Solana" class="orokii-payments-image-crypto">
                             </div>
                         </div>
                     </div>

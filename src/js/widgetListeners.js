@@ -696,9 +696,12 @@ let orokiiAmount=paymentData["totalAmount"];
           if (data.data.transactionStatus !== "APPROVED") {
             if (data.data.reason !== undefined) {
               alert(`Card Declined. Reason: ${data.reason}`);
-  
+              summaryContainer.style.display='none';
+              cardDetails.style.display='block';
             } else {
               alert(`Card Declined. Reason: ${data.transactionStatus}`);
+              summaryContainer.style.display='none';
+              cardDetails.style.display='block';
             }
   
   
@@ -781,9 +784,12 @@ let orokiiAmount=paymentData["totalAmount"];
           if (data.data.transactionStatus !== "APPROVED") {
             if (data.data.reason !== undefined) {
               alert(`Card Declined. Reason: ${data.reason}`);
-  
+       summaryContainer.style.display='none';
+       cardDetails.style.display='block';
             } else {
               alert(`Card Declined. Reason: ${data.transactionStatus}`);
+              summaryContainer.style.display='none';
+              cardDetails.style.display='block';
             }
   
   

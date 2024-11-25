@@ -41,23 +41,23 @@ export default {
       minimize: true,
     }),
     terser(),
-    // obfuscator({
-    //   globalOptions: {
-    //     compact: true,
-    //     controlFlowFlattening: true,
-    //     deadCodeInjection: true,
-    //     debugProtection: true,
-    //     disableConsoleOutput: true,
-    //     identifierNamesGenerator: 'hexadecimal',
-    //     rotateStringArray: true,
-    //     selfDefending: true,
-    //     stringArray: true,
-    //     stringArrayEncoding: ['base64'],
-    //     stringArrayThreshold: 0.8,
-    //     transformObjectKeys: true,
-    //     unicodeEscapeSequence: false
-    //   }
-    // }),
+    obfuscator({
+      globalOptions: {
+        compact: true,
+        controlFlowFlattening: true,
+        deadCodeInjection: true,
+        debugProtection: true,
+        disableConsoleOutput: true,
+        identifierNamesGenerator: 'hexadecimal',
+        rotateStringArray: true,
+        selfDefending: true,
+        stringArray: true,
+        stringArrayEncoding: ['base64'],
+        stringArrayThreshold: 0.8,
+        transformObjectKeys: true,
+        unicodeEscapeSequence: false
+      }
+    }),
   ],
   context: 'window'
 };
