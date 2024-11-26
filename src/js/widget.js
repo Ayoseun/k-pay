@@ -14,12 +14,14 @@ import { getPoweredBy } from '../components/ui/poweredBy.js';
 import { achStyles } from '../components/css/ach.js';
 import { apmStyles } from '../components/css/apm.js';
 import { getModal } from '../components/ui/modal.js';
+import { cleanNumber } from './util.js';
 
 
 
 // Main Widget Creation Function
 export function createWidget(paymentData) {
-    let amount = paymentData["totalAmount"]
+    let amount = cleanNumber( paymentData["totalAmount"])
+
     const widget = document.createElement('div');
     widget.classList.add('widget-container', 'holder');
 
