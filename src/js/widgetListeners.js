@@ -696,12 +696,21 @@ let orokiiAmount=paymentData["totalAmount"];
           if (data.data.transactionStatus !== "APPROVED") {
             if (data.data.reason !== undefined) {
               alert(`Card Declined. Reason: ${data.reason}`);
+              summaryConfirmBtn.disabled = false; // Re-enable the button
+              cardPayButtonText.style.display = 'inline'; // Show button text
+              spinner.style.display = 'none'; // Hide spinner
+              summaryConfirmBtn.style.backgroundColor = '#19624C';
               summaryContainer.style.display='none';
               cardDetails.style.display='block';
             } else {
               alert(`Card Declined. Reason: ${data.transactionStatus}`);
+              summaryConfirmBtn.disabled = false; // Re-enable the button
+              cardPayButtonText.style.display = 'inline'; // Show button text
+              spinner.style.display = 'none'; // Hide spinner
+              summaryConfirmBtn.style.backgroundColor = '#19624C';
               summaryContainer.style.display='none';
               cardDetails.style.display='block';
+
             }
   
   
