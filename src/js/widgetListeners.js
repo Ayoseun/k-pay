@@ -697,6 +697,7 @@ export function initializeEventListeners(paymentData) {
             if (data.data.reason !== undefined) {
               alert(`Card Declined. Reason: ${data.reason}`);
               summaryConfirmBtn.disabled = false; // Re-enable the button
+              summaryBackBtn.style.display = 'display';
               cardPayButtonText.style.display = 'inline'; // Show button text
               spinner.style.display = 'none'; // Hide spinner
               summaryConfirmBtn.style.backgroundColor = '#19624C';
@@ -705,6 +706,7 @@ export function initializeEventListeners(paymentData) {
             } else {
               alert(`Card Declined. Reason: ${data.transactionStatus}`);
               summaryConfirmBtn.disabled = false; // Re-enable the button
+              summaryBackBtn.style.display = 'display';
               cardPayButtonText.style.display = 'inline'; // Show button text
               spinner.style.display = 'none'; // Hide spinner
               summaryConfirmBtn.style.backgroundColor = '#19624C';
@@ -728,6 +730,11 @@ export function initializeEventListeners(paymentData) {
           }
         } else {
           alert(`Invalid card details`);
+          summaryConfirmBtn.disabled = false; // Re-enable the button
+          summaryBackBtn.style.display = 'display';
+          cardPayButtonText.style.display = 'inline'; // Show button text
+          spinner.style.display = 'none'; // Hide spinner
+          summaryConfirmBtn.style.backgroundColor = '#19624C';
           summaryContainer.style.display = 'none';
           cardDetails.style.display = 'block';
         }
@@ -735,7 +742,13 @@ export function initializeEventListeners(paymentData) {
       })
       .catch(error => {
         console.error('Error:', error);
-
+        summaryConfirmBtn.disabled = false; // Re-enable the button
+        summaryBackBtn.style.display = 'display';
+        cardPayButtonText.style.display = 'inline'; // Show button text
+        spinner.style.display = 'none'; // Hide spinner
+        summaryConfirmBtn.style.backgroundColor = '#19624C';
+        summaryContainer.style.display = 'none';
+        cardDetails.style.display = 'block';
       });
   };
 
@@ -799,9 +812,11 @@ export function initializeEventListeners(paymentData) {
               summaryConfirmBtn.style.backgroundColor = '#19624C';
               summaryContainer.style.display = 'none';
               cardDetails.style.display = 'block';
+              summaryBackBtn.style.display = 'display';
             } else {
               alert(`Card Declined. Reason: ${data.transactionStatus}`);
               summaryConfirmBtn.disabled = false; // Re-enable the button
+              summaryBackBtn.style.display = 'display';
               cardPayButtonText.style.display = 'inline'; // Show button text
               spinner.style.display = 'none'; // Hide spinner
               summaryConfirmBtn.style.backgroundColor = '#19624C';
@@ -824,6 +839,11 @@ export function initializeEventListeners(paymentData) {
           }
         } else {
           alert(`Invalid card details`);
+          summaryConfirmBtn.disabled = false; // Re-enable the button
+          summaryBackBtn.style.display = 'display';
+          cardPayButtonText.style.display = 'inline'; // Show button text
+          spinner.style.display = 'none'; // Hide spinner
+          summaryConfirmBtn.style.backgroundColor = '#19624C';
           summaryContainer.style.display = 'none';
           cardDetails.style.display = 'block';
         }
@@ -831,7 +851,13 @@ export function initializeEventListeners(paymentData) {
       })
       .catch(error => {
         console.error('Error:', error);
-
+        summaryConfirmBtn.disabled = false; // Re-enable the button
+        summaryBackBtn.style.display = 'display';
+        cardPayButtonText.style.display = 'inline'; // Show button text
+        spinner.style.display = 'none'; // Hide spinner
+        summaryConfirmBtn.style.backgroundColor = '#19624C';
+        summaryContainer.style.display = 'none';
+        cardDetails.style.display = 'block';
       });
   };
 
