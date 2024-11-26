@@ -720,7 +720,7 @@ export function initializeEventListeners(paymentData) {
           } else {
             if (data.transactionId !== null) {
               localStorage.setItem(orokiiPayPaymentResult, "true");
-              console.log(localStorage.getItem(orokiiPayPaymentResult))
+             
               successContainer.style.display = 'flex';
               middleContainer.style.display = 'none';
               bottomContainer.style.display = 'none';

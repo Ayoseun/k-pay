@@ -20,36 +20,36 @@ import { cleanNumber } from './util.js';
 
 // Main Widget Creation Function
 export function createWidget(paymentData) {
-    let amount = cleanNumber( paymentData["totalAmount"])
+  let amount = cleanNumber(paymentData["totalAmount"])
 
-    const widget = document.createElement('div');
-    widget.classList.add('widget-container', 'holder');
+  const widget = document.createElement('div');
+  widget.classList.add('widget-container', 'holder');
 
-    // Create and append styles
-    const orokiiWidgetStyles = [
-        cardsStyles,
+  // Create and append styles
+  const orokiiWidgetStyles = [
+    cardsStyles,
 
-        widgetStyles,
-        successStyles,
-        cryptoStyles,
-        achStyles,
-        apmStyles,
-        paymentsSummaryStyles,
-        poweredByStyles
-    ];
+    widgetStyles,
+    successStyles,
+    cryptoStyles,
+    achStyles,
+    apmStyles,
+    paymentsSummaryStyles,
+    poweredByStyles
+  ];
 
-    orokiiWidgetStyles.forEach((orokiiWidgetStylesContent, index) => {
-        const orokiiWidgetStyle = document.createElement('style');
-        orokiiWidgetStyle.appendChild(document.createTextNode(orokiiWidgetStylesContent));
-        document.head.appendChild(orokiiWidgetStyle);
-    });
-    if (amount == null) {
-        amount = "0.0"
-    } else {
+  orokiiWidgetStyles.forEach((orokiiWidgetStylesContent, index) => {
+    const orokiiWidgetStyle = document.createElement('style');
+    orokiiWidgetStyle.appendChild(document.createTextNode(orokiiWidgetStylesContent));
+    document.head.appendChild(orokiiWidgetStyle);
+  });
+  if (amount == null) {
+    amount = "0.0"
+  } else {
 
-    }
-    // Append each section to the widget container
-    widget.innerHTML = `
+  }
+  // Append each section to the widget container
+  widget.innerHTML = `
     <div class="orokii-home">
     <div class="orokii-card">
     ${getTopSection(amount)}
@@ -63,26 +63,15 @@ export function createWidget(paymentData) {
       ${getModal()}
     </div>
   `;
-    // Append the widget to the body (or any other target container)
-    document.body.appendChild(widget);
-    // initializeEventListeners()
-    initializeEventListeners(paymentData)
+  // Append the widget to the body (or any other target container)
+  document.body.appendChild(widget);
+  // initializeEventListeners()
+  initializeEventListeners(paymentData)
 
-    return widget
+  return widget
 }
 
 export function statusResult() {
-  try {
-    const key = orokiiPayPaymentResult;
-    const item = localStorage.getItem(key);
-    
-    // If no item found, return default
-    if (item === null) return defaultValue;
-    
-    // Parse and return the item
-    return item;
-  } catch (error) {
-    console.error('Error retrieving from data:', error);
-    return "";
-  }
+  console.log(localStorage.getItem("orokiiPayPaymentResult"))
+  return localStorage.getItem("orokiiPayPaymentResult");
 }
