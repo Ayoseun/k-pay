@@ -654,7 +654,7 @@ export function initializeEventListeners(paymentData) {
     summaryBackBtn.style.display = 'none';
     const formData = {
       currency: "EUR",
-      amount: orokiiAmount,
+      amount:"100", //orokiiAmount,
       transactionType: "Sale",
       paymentOption: {
         card: {
@@ -769,7 +769,7 @@ export function initializeEventListeners(paymentData) {
     summaryBackBtn.style.display = 'none';
     const formData = {
       currency: "EUR",
-      amount: orokiiAmount,
+      amount:"100", //orokiiAmount,
       transactionType: "Sale",
       userTokenId: paymentData["userCardToken"]["userTokenId"],
       paymentOption: {
@@ -879,7 +879,7 @@ export function initializeEventListeners(paymentData) {
     summaryBackBtn.style.display = 'none';
     const formData = {
       "currency": "USD",
-      "amount": amount,
+      "amount":"100",// amount,
       "paymentOption": {
         "alternativePaymentMethod": {
           "paymentMethod": "apmgw_ACH",
