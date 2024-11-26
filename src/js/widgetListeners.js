@@ -696,6 +696,7 @@ export function initializeEventListeners(paymentData) {
           summaryConfirmBtn.style.backgroundColor = '#19624C';
           if (data.data.transactionStatus !== "APPROVED") {
             if (data.data.reason !== undefined) {
+              notifyApp(false)
               alert(`Card Declined. Reason: ${data.reason}`);
               summaryConfirmBtn.disabled = false; // Re-enable the button
               summaryBackBtn.style.display = 'display';
@@ -705,6 +706,7 @@ export function initializeEventListeners(paymentData) {
               summaryContainer.style.display = 'none';
               cardDetails.style.display = 'block';
             } else {
+              notifyApp(false)
               alert(`Card Declined. Reason: ${data.transactionStatus}`);
               summaryConfirmBtn.disabled = false; // Re-enable the button
               summaryBackBtn.style.display = 'display';
@@ -719,8 +721,8 @@ export function initializeEventListeners(paymentData) {
 
           } else {
             if (data.transactionId !== null) {
-              localStorage.setItem(orokiiPayPaymentResult, "true");
-             
+              
+              notifyApp(true)
               successContainer.style.display = 'flex';
               middleContainer.style.display = 'none';
               bottomContainer.style.display = 'none';
@@ -733,6 +735,7 @@ export function initializeEventListeners(paymentData) {
             }
           }
         } else {
+          notifyApp(false)
           alert(`Invalid card details`);
           summaryConfirmBtn.disabled = false; // Re-enable the button
           summaryBackBtn.style.display = 'display';
@@ -1339,12 +1342,10 @@ export function initializeEventListeners(paymentData) {
       });
   }
 
-
-
-
-
-
-
-
-
+  function notifyApp(status) {
+    const event = new CustomEvent('orokii-widget-payment-status', {
+      detail: { value: status }
+    });
+    window.dispatchEvent(event);
+  }
 }
