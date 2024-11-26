@@ -1,5 +1,5 @@
 
-import { createWidget } from './js/widget.js';
+import { createWidget,statusResult } from './js/widget.js';
 
 
-export { createWidget};
+export { createWidget,statusResult};

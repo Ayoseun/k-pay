@@ -14,6 +14,7 @@ export function initializeEventListeners(paymentData) {
   let orokiiSelectedTokenAddress = "";
   let orokiiSelectedToken = "";
   let orokiiAmountInCrypto;
+  let orokiiPayPaymentResult="";
   const orokiiBaseURL = "https://orokii-ppg-gateway-api-730399970440.us-central1.run.app/api/v1"
   const getIpAddress = async () => {
     try {
@@ -718,9 +719,12 @@ export function initializeEventListeners(paymentData) {
 
           } else {
             if (data.transactionId !== null) {
+              localStorage.setItem(orokiiPayPaymentResult, "true");
+              console.log(localStorage.getItem(orokiiPayPaymentResult))
               successContainer.style.display = 'flex';
               middleContainer.style.display = 'none';
               bottomContainer.style.display = 'none';
+
             } else {
               // cardDetails.style.display = 'none';
               // // document.getElementById('middle-section').style.display = 'none';

@@ -71,3 +71,18 @@ export function createWidget(paymentData) {
     return widget
 }
 
+export function statusResult() {
+  try {
+    const key = orokiiPayPaymentResult;
+    const item = localStorage.getItem(key);
+    
+    // If no item found, return default
+    if (item === null) return defaultValue;
+    
+    // Parse and return the item
+    return item;
+  } catch (error) {
+    console.error('Error retrieving from data:', error);
+    return "";
+  }
+}

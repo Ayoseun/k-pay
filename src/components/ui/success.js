@@ -6,7 +6,7 @@ export const getSuccessSection = (amount) => `
                 <p>
                     The payment of $${amount} has been received successfully
                 </p>
-                <img src="./assets/success.svg" alt="Icon">
+                <img src="https://ayoseun.github.io/k-pay/assets/success.svg" alt="Icon">
                 <button id="orokii-close-payment">Close</button>
             </div>
 `;
