@@ -203,6 +203,16 @@ export const orokiiNetwork = [
       decimal: 0
     },
     {
+      chainId: "", // 5 in decimal
+      chain: "",
+      network: "Solana",
+      token: "SOL",
+      contract: null,
+      rpc: "",
+      symbol: "",
+      decimal: 0
+    },
+    {
       chainId: "0x18fe", // 5 in decimal
       chain: "6398",
       network: "Sepolia",
