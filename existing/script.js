@@ -429,6 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //PAYMENT OPTION ELEMENTS
 
   const spinner = document.getElementById('orokii-loader');
+  const cryptoSpinner = document.getElementById('orokii-crypto-loader');
   const achSpinner = document.getElementById('orokii-ach-loader');
   const closeBtn = document.getElementById('orokii-close-payment')
   //CARD-INPUT
@@ -790,7 +791,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } else {
       transferETH(
-        "0.005", window, connectWalletButton, spinner,
+        "0.005", window, connectWalletButton, cryptoSpinner,
         cryptoPayButtonText,
         successContainer, middleContainer, bottomContainer)
     }
@@ -1464,11 +1465,11 @@ async function addTokenToMetaMask(targetChain) {
 }
 
 async function transferETH(
-  amount, window, connectWalletButton, spinner,
+  amount, window, connectWalletButton, cryptospinner,
   cryptoPayButtonText,
   successContainer, middleContainer, bottomContainer) {
   cryptoPayButtonText.style.display = 'none'; // Hide button text
-  spinner.style.display = 'flex'; // Show spinner
+  cryptospinner.style.display = 'flex'; // Show spinner
   connectWalletButton.style.backgroundColor = '#000';
   connectWalletButton.disabled = true; // Disable the button
   try {

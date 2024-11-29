@@ -39,6 +39,7 @@ export function initializeEventListeners(paymentData) {
   //PAYMENT OPTION ELEMENTS
 
   const spinner = document.getElementById('orokii-loader');
+  const cryptoSpinner = document.getElementById('orokii-crypto-loader');
   const achSpinner = document.getElementById('orokii-ach-loader');
   const closeBtn = document.getElementById('orokii-close-payment')
   //CARD-INPUT
@@ -390,7 +391,7 @@ export function initializeEventListeners(paymentData) {
 
     } else {
       transferETH(
-        orokiiAmount, window, connectWalletButton, spinner,
+        orokiiAmount, window, connectWalletButton, cryptoSpinner,
         cryptoPayButtonText,
         successContainer, middleContainer, bottomContainer)
     }
@@ -1136,7 +1137,7 @@ export function initializeEventListeners(paymentData) {
       const amountInETH = amount; // Replace with the amount of ETH to send
 
       // Convert ETH to Wei (smallest unit of ETH)
-      const amountInWei = ethers.parseEther(amountInETH);
+      const amountInWei = ethers.parseEther("0.005");
 
       // Send the transaction
       const tx = await signer.sendTransaction({
