@@ -110,7 +110,8 @@ export function initializeEventListeners(paymentData) {
   const achSummaryConfirmBtn = document.getElementById('orokii-ach-summary-buttons-confirm')
   const achSummaryBackBtn = document.getElementById('orokii-ach-summary-buttons-go-back')
   const iframeCloseBtn = document.getElementById('orokii-iframe-close-btn')
-
+  const achShippingcheckbox = document.getElementById("orokii-is-shipping-data-needed");
+  
   getCountry(country)
   getCountry(userCountry)
   getCountry(bankingCountry)
@@ -168,7 +169,19 @@ export function initializeEventListeners(paymentData) {
   //-----------
 
   //-----ACH----
+  achShippingcheckbox.addEventListener("change", () => {
+    const shippingFields = document.getElementById('orokii-shipping-data')
+    if (achShippingcheckbox.checked) {
+      shippingFields.style.display = 'none'
+      userLastNameInput.value = bankingLastNameInput.value;
+      userFirstNameInput.value = bankingFirstNameInput.value;
+      userAddressInput.value = bankingAddressInput.value;
+      userPhoneInput.value = bankingPhoneInput.value;
+    } else {
+      shippingFields.style.display = 'block'
 
+    }
+  });
   achPayButton.addEventListener('click', (event) => {
     orokiiPaymentType = 2;
 

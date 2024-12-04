@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/summary.css">
     <link rel="stylesheet" href="css/success.css">
     <link rel="stylesheet" href="css/crypto.css">
-    <link rel="stylesheet" href="css/bank.css">
     <link rel="stylesheet" href="css/apm.css">
     <link rel="stylesheet" href="css/ach.css">
     <link rel="stylesheet" href="css/poweredby.css">
@@ -210,19 +209,6 @@
                                 </button>
                             </div>
                         </div>
-                        <!-- <div class="pin-container" id="pin-container">
-                            <p>Please enter your 4-digit card pin to authorize this payments</p>
-                            <div class="pin-inputs">
-                                <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                                <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                                <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                                <input maxlength="1" pattern="[0-9]*" inputmode="numeric">
-                            </div>
-                            <div class="pin-buttons">
-                                <button class="pin-back" id="pin-back">Go Back</button>
-                                <button class="pin-continue" id="pin-continue">Continue</button>
-                            </div>
-                        </div> -->
 
                     </div>
                 </div>
@@ -311,7 +297,7 @@
                                 </div>
 
                             </div>
-                            <h2>User Details</h2>
+                            <h2>Billing Details</h2>
                             <p>We only require this information once for this card</p>
                             <div class="orokii-form-field">
                                 <label for="country">Country</label>
@@ -371,67 +357,76 @@
                                     <input type="number" id="orokii-banking-zip" placeholder="Input ZIP code">
                                 </div>
                             </div>
-
-
-                            <h2>Billing Address</h2>
-                            <p>We only require this information once for this card</p>
-                            <div class="orokii-form-field">
-                                <label for="country">Country</label>
-                                <div class="input-wrapper">
-                                    <select id="orokii-user-country">
-                                        <!-- Options will be populated dynamically -->
-                                    </select>
-                                </div>
+                           
+                            <div style="display: flex; align-items: center; color: #000; gap: 10px; margin-bottom: 3%; margin-top: 3%;">
+                                <input type="checkbox" id="orokii-is-shipping-data-needed" class="orokii-payments-checkbox">
+                                <p style="color: #000; margin: 0;">Use the same information</p>
                             </div>
-                            <div class="orokii-form-field-group">
-                                <div class="orokii-form-field orokii-half">
-                                    <label for="state">State</label>
+                            
+                            <div id="orokii-shipping-data">
+                                <p style="color: #000;">Shipping Address</p>
+                             
+                                <div class="orokii-form-field">
+                                    <label for="country">Country</label>
                                     <div class="orokii-input-wrapper">
-                                        <select id="orokii-user-state">
+                                        <select id="orokii-user-country">
                                             <!-- Options will be populated dynamically -->
                                         </select>
                                     </div>
                                 </div>
-                                <div class="orokii-form-field orokii-half">
-                                    <label for="city">City</label>
-                                    <div class="orokii-input-wrapper">
-                                        <select id="user-city">
+                                <div class="orokii-form-field-group">
+                                    <div class="orokii-form-field orokii-half">
+                                        <label for="state">State</label>
+                                        <div class="orokii-input-wrapper">
+                                            <select id="orokii-user-state">
+                                                <!-- Options will be populated dynamically -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="orokii-form-field orokii-half">
+                                        <label for="city">City</label>
+                                        <div class="orokii-input-wrapper">
+                                            <select id="user-city">
 
-                                        </select>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="orokii-form-field">
+                                    <label for="firstName">First Name</label>
+                                    <div class="orokii-input-wrapper">
+                                        <input type="text" id="orokii-user-first-name"
+                                            placeholder="Enter your first name">
+                                    </div>
+                                </div>
+                                <div class="orokii-form-field">
+                                    <label for="lastName">Last Name</label>
+                                    <div class="orokii-input-wrapper">
+                                        <input type="text" id="orokii-user-last-name"
+                                            placeholder="Enter your last name">
+                                    </div>
+                                </div>
+                                <div class="orokii-form-field">
+                                    <label for="lastName">Phone</label>
+                                    <div class="orokii-input-wrapper">
+                                        <input type="number" id="orokii-user-phone" placeholder="Enter your phone">
+                                    </div>
+                                </div>
+                                <div class="orokii-form-field">
+                                    <label for="address2">Address</label>
+                                    <div class="orokii-input-wrapper">
+                                        <input type="text" id="orokii-user-address" placeholder="Input address">
+                                    </div>
+                                </div>
+                                <div class="orokii-form-field">
+                                    <label for="zip1">ZIP code</label>
+                                    <div class="orokii-input-wrapper">
+                                        <input type="number" id="orokii-user-zip" placeholder="Input ZIP code">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="orokii-form-field">
-                                <label for="firstName">First Name</label>
-                                <div class="orokii-input-wrapper">
-                                    <input type="text" id="orokii-user-first-name" placeholder="Enter your first name">
-                                </div>
-                            </div>
-                            <div class="orokii-form-field">
-                                <label for="lastName">Last Name</label>
-                                <div class="orokii-input-wrapper">
-                                    <input type="text" id="orokii-user-last-name" placeholder="Enter your last name">
-                                </div>
-                            </div>
-                            <div class="orokii-form-field">
-                                <label for="lastName">Phone</label>
-                                <div class="orokii-input-wrapper">
-                                    <input type="number" id="orokii-user-phone" placeholder="Enter your phone">
-                                </div>
-                            </div>
-                            <div class="orokii-form-field">
-                                <label for="address2">Address</label>
-                                <div class="orokii-input-wrapper">
-                                    <input type="text" id="orokii-user-address" placeholder="Input address">
-                                </div>
-                            </div>
-                            <div class="orokii-form-field">
-                                <label for="zip1">ZIP code</label>
-                                <div class="orokii-input-wrapper">
-                                    <input type="number" id="orokii-user-zip" placeholder="Input ZIP code">
-                                </div>
-                            </div>
                             <div class="orokii-form-field">
                                 <label for="zip1">Identification</label>
                                 <div class="orokii-input-wrapper">

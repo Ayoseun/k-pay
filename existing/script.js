@@ -2,7 +2,7 @@ import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethe
 
 let orokiiSelectedCountry = "";
 let orokiiSelectedCity = "";
-let orokiiBTCCheckoutLink="";
+let orokiiBTCCheckoutLink = "";
 let orokiiSelectedTokenAddress = "";
 let orokiiSelectedToken = "";
 let orokiiAmountInCrypto;
@@ -407,19 +407,6 @@ let orokiiPaymentType = 0;
 let TARGET_CHAIN_ID = "0x13882";
 let orokiiTokenPrice = "";
 document.addEventListener('DOMContentLoaded', () => {
-  // window.paypal
-  //   .Buttons({
-  //     style: {
-  //       shape: "rect",
-  //       layout: "vertical",
-  //       color: "gold",
-  //       label: "paypal",
-  //     },
-  //     message: {
-  //       amount: 100,
-  //     },
-  //   })
-  //   .render("#paypal-button-container");
 
 
   //HOME ELEMENTS
@@ -441,8 +428,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const pinContainer = document.getElementById('orokii-pin-container')
   const cardDetails = document.getElementById('orokii-card-details')
   const achDetails = document.getElementById('orokii-ach-details')
-  const pinBackBtn = document.getElementById('orokii-pin-back')
-  const pinBtnContinue = document.getElementById('orokii-pin-continue')
   const inputs = document.querySelectorAll('.orokii-pin-inputs input');
   const cardPayButton = document.getElementById('orokii-card-pay-button');
   const cardPayButtonText = document.getElementById('orokii-card-pay-button-text');
@@ -479,7 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const userCountry = document.getElementById('orokii-user-country');
   const userState = document.getElementById('orokii-user-state');
   const userCity = document.getElementById('orokii-user-city')
-
+  const achShippingcheckbox = document.getElementById("orokii-is-shipping-data-needed");
   const tokens = document.getElementById('orokii-tokens');
   const achPayButton = document.getElementById('orokii-ach-pay-button');
   const routingNumberInput = document.getElementById('orokii-routing-number');
@@ -528,6 +513,23 @@ document.addEventListener('DOMContentLoaded', () => {
       dropdown.classList.toggle('open');
       dropdown.querySelector('.orokii-payments-checkbox').checked = dropdown.classList.contains('open');
     });
+  });
+
+
+
+  // Add an event listener to monitor changes
+  achShippingcheckbox.addEventListener("change", () => {
+    const shippingFields = document.getElementById('orokii-shipping-data')
+    if (achShippingcheckbox.checked) {
+      shippingFields.style.display = 'none'
+      userLastNameInput.value = bankingLastNameInput.value;
+      userFirstNameInput.value = bankingFirstNameInput.value;
+      userAddressInput.value = bankingAddressInput.value;
+      userPhoneInput.value = bankingPhoneInput.value;
+    } else {
+      shippingFields.style.display = 'block'
+
+    }
   });
   // Handle the click event for the close button
   closeBtn.addEventListener('click', (event) => {
