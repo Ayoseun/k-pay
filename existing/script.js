@@ -223,6 +223,16 @@ const orokiiTestnetNetworks = [
     decimal: 0
   },
   {
+    chainId: "", // 5 in decimal
+    chain: "",
+    network: "Solana",
+    token: "SOL",
+    contract: null,
+    rpc: "",
+    symbol: "",
+    decimal: 0
+  },
+  {
     chainId: "0x18fe", // 5 in decimal
     chain: "6398",
     network: "Sepolia",
@@ -486,6 +496,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const achSummaryConfirmBtn = document.getElementById('orokii-ach-summary-buttons-confirm')
   const achSummaryBackBtn = document.getElementById('orokii-ach-summary-buttons-go-back')
   const iframeCloseBtn = document.getElementById('orokii-iframe-close-btn')
+  const orokiipayGooglePay = document.getElementById('orokiipay-google-pay')
+
 
   getCountry(country)
   getCountry(userCountry)
@@ -791,6 +803,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (orokiiSelectedToken == 'BTC') {
       btcPayments("0.006")
 
+    } else if (orokiiSelectedToken == 'SOL') {
+     // btcPayments("0.006")
+console.log("paying Solana")
     } else {
       transferETH(
         "0.005", window, connectWalletButton, cryptoSpinner,
@@ -1356,6 +1371,10 @@ const connectWallet = async (targetChain, exchangeRateSpan, cryptoAmountSpan, co
     if (targetChain.token == "BTC") {
       orokiiSelectedToken = "BTC"
       getCryptoPrice(targetChain.token, exchangeRateSpan, cryptoAmountSpan, connectWalletButton)
+    } else if(targetChain.token == "SOL"){
+      orokiiSelectedToken = "SOL";
+      connectSolanaWallet();
+      getCryptoPrice(targetChain.token, exchangeRateSpan, cryptoAmountSpan, connectWalletButton)
     } else {
 
       try {
@@ -1679,7 +1698,7 @@ function getCryptoPrice(token, exchangeRateSpan, cryptoAmountSpan, connectWallet
       console.log(USDPrice); // Correct variable name
       exchangeRateSpan.textContent = `1 ${token} = ${USDPrice.toFixed(3)} USD`; // Use toFixed for 3 decimal places
       orokiiAmountInCrypto = 4000 / USDPrice
-      cryptoAmountSpan.textContent = `${orokiiAmountInCrypto.toFixed(3)}`
+      cryptoAmountSpan.textContent = `${orokiiAmountInCrypto.toFixed(3)} ${token}`
     })
     .catch(error => {
       connectWalletButton.disabled = true;
@@ -1689,6 +1708,28 @@ function getCryptoPrice(token, exchangeRateSpan, cryptoAmountSpan, connectWallet
       console.error('Error:', error)
     });
 }
+
+const isPhantomInstalled = () => {
+  return window.solana && window.solana.isPhantom;
+};
+
+// Function to connect to the wallet
+const connectSolanaWallet = async () => {
+
+  try {
+    if (isPhantomInstalled()) {
+      // Request wallet connection
+      const response = await window.solana.connect();
+      const walletAddress = response.publicKey.toString();
+    console.log(walletAddress)
+    } else {
+
+    }
+  } catch (error) {
+    console.error('Error connecting to wallet:', error);
+
+  }
+};
 
 
 const contractABI =
@@ -2715,4 +2756,41 @@ const contractABI =
 
 
 
-
+  // Set your Google Pay API version and merchant ID
+  const baseRequest = {
+    apiVersion: 2,
+    apiVersionMinor: 0,
+    merchantInfo: {
+      merchantId: '427583496191624621',
+      merchantName: 'YOUR_MERCHANT_NAME',
+    },
+    allowedPaymentMethods: [
+      {
+        type: 'CARD',
+        parameters: {
+          allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+          allowedCardNetworks: ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
+        },
+        tokenizationSpecification: {
+          type: 'PAYMENT_GATEWAY',
+          parameters: {
+            gateway: 'example',
+          },
+        },
+      },
+    ],
+  };
+  
+  // Create a Google Pay client object
+  const googlePayClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
+  
+  // Add a click event listener to the button
+  orokiipayGooglePay.addEventListener('click', () => {
+    // Call the payment method to display the Google Pay payment sheet
+    googlePayClient.loadPaymentData(baseRequest).then(paymentData => {
+      // Send the payment token to your server to process the payment
+      console.log(paymentData);
+    }).catch(error => {
+      console.error(error);
+    });
+  });

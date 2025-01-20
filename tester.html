@@ -14,16 +14,18 @@
 
         const paymentData = {
             "totalAmount": "500",
-            "merchants": [{ "merchantId": "87766786", "amount": "60", "tax": "5" },
-            { "merchantId": "87766786", "amount": "60", "tax": "5" },
-            { "merchantId": "87766786", "amount": "60", "tax": "5" },],
+            "merchants": [
+                { "merchantId": "87766786", "amount": "60", "tax": "5", "notes": "" },
+                { "merchantId": "87766786", "amount": "60", "tax": "5", "notes": "" },
+                { "merchantId": "87766786", "amount": "60", "tax": "5", "notes": "" },
+            ],
             "userACHToken": { "userTokenId": "c3e453aa-c917-4ca0-ad0d-8a3d9492cc86", "userPaymentOptionId": "132005098", },
-           "userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678", }
+            "userCardToken": { "userTokenId": "78f6c3cd-d05e-40e6-8f3f-274031cc5135", "userPaymentOptionId": "132047678", }
         }
         const container = document.getElementById('widget-container');
         const widget = OrokiipayWidget.createWidget(paymentData);
         container.appendChild(widget);
-        
+
     </script>
 </body>
 
