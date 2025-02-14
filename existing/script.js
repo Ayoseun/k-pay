@@ -418,7 +418,7 @@ let TARGET_CHAIN_ID = "0x13882";
 let orokiiTokenPrice = "";
 document.addEventListener('DOMContentLoaded', () => {
 
-
+  paymentsClient
   //HOME ELEMENTS
   const middleContainer = document.getElementById('orokii-middle-section')
   const bottomContainer = document.getElementById('orokii-bottom-section')
@@ -804,8 +804,8 @@ document.addEventListener('DOMContentLoaded', () => {
       btcPayments("0.006")
 
     } else if (orokiiSelectedToken == 'SOL') {
-     // btcPayments("0.006")
-console.log("paying Solana")
+      // btcPayments("0.006")
+      console.log("paying Solana")
     } else {
       transferETH(
         "0.005", window, connectWalletButton, cryptoSpinner,
@@ -1371,7 +1371,7 @@ const connectWallet = async (targetChain, exchangeRateSpan, cryptoAmountSpan, co
     if (targetChain.token == "BTC") {
       orokiiSelectedToken = "BTC"
       getCryptoPrice(targetChain.token, exchangeRateSpan, cryptoAmountSpan, connectWalletButton)
-    } else if(targetChain.token == "SOL"){
+    } else if (targetChain.token == "SOL") {
       orokiiSelectedToken = "SOL";
       connectSolanaWallet();
       getCryptoPrice(targetChain.token, exchangeRateSpan, cryptoAmountSpan, connectWalletButton)
@@ -1721,7 +1721,7 @@ const connectSolanaWallet = async () => {
       // Request wallet connection
       const response = await window.solana.connect();
       const walletAddress = response.publicKey.toString();
-    console.log(walletAddress)
+      console.log(walletAddress)
     } else {
 
     }
@@ -2756,41 +2756,214 @@ const contractABI =
 
 
 
-  // Set your Google Pay API version and merchant ID
-  const baseRequest = {
+
+// Initialize Google Pay API client
+const paymentsClient = new google.payments.api.PaymentsClient({
+  environment: 'TEST'  // or 'PRODUCTION' for live environment
+});
+
+// Payment data request configuration
+const baseRequest = {
+  apiVersion: 2,
+  apiVersionMinor: 0
+};
+
+// Card payment method configuration
+const baseCardPaymentMethod = {
+  type: 'CARD',
+  parameters: {
+    allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+    allowedCardNetworks: [
+      'AMEX',
+      'DISCOVER',
+      'INTERAC',
+      'JCB',
+      'MASTERCARD',
+      'VISA'
+  ]
+  }
+};
+
+// Payment data configuration
+const paymentDataRequest = {
+  ...baseRequest,
+  allowedPaymentMethods: [baseCardPaymentMethod],
+  merchantInfo: {
+    merchantId: '427583496191624621', // Your merchant ID
+    merchantName: 'Your Store Name'
+  },
+  transactionInfo: {
+    totalPriceStatus: 'FINAL',
+    totalPrice: '10.00',
+    currencyCode: 'USD'
+  }
+};
+
+// Check if Google Pay is available
+function checkGooglePayAvailability() {
+  const isReadyToPayRequest = {
     apiVersion: 2,
     apiVersionMinor: 0,
-    merchantInfo: {
-      merchantId: '427583496191624621',
-      merchantName: 'YOUR_MERCHANT_NAME',
-    },
-    allowedPaymentMethods: [
-      {
-        type: 'CARD',
-        parameters: {
-          allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-          allowedCardNetworks: ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
-        },
-        tokenizationSpecification: {
-          type: 'PAYMENT_GATEWAY',
-          parameters: {
-            gateway: 'example',
-          },
-        },
-      },
-    ],
+    allowedPaymentMethods: [baseCardPaymentMethod]
   };
-  
-  // Create a Google Pay client object
-  const googlePayClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
-  
-  // Add a click event listener to the button
-  orokiipayGooglePay.addEventListener('click', () => {
-    // Call the payment method to display the Google Pay payment sheet
-    googlePayClient.loadPaymentData(baseRequest).then(paymentData => {
-      // Send the payment token to your server to process the payment
-      console.log(paymentData);
-    }).catch(error => {
-      console.error(error);
+
+  paymentsClient.isReadyToPay(isReadyToPayRequest)
+    .then(response => {
+      if (response.result) {
+        createAndAddButton();
+      }
+    })
+    .catch(error => {
+      console.error('Google Pay availability check failed:', error);
     });
+}
+
+// Create and display the Google Pay button
+function createAndAddButton() {
+  const button = paymentsClient.createButton({
+    buttonColor: 'black', // 'black' or 'white'
+    buttonType: 'pay',    // 'buy', 'plain', 'donate', etc.
+    onClick: onGooglePayButtonClicked
   });
+
+  document.getElementById('googlePayButton').appendChild(button);
+}
+
+// Handle button click
+function onGooglePayButtonClicked() {
+  console.log('Google Pay button clicked');
+  paymentsClient.loadPaymentData(paymentDataRequest)
+    .then(function (paymentData) {
+      // Handle the PaymentData response
+      processPayment(paymentData);
+    })
+    .catch(function (err) {
+      console.error('Payment data error:', err);
+    });
+}
+
+// Initialize when the page loads
+window.addEventListener('load', checkGooglePayAvailability);
+
+async function processPayment(paymentData) {
+  // Construct the API request
+  const apiRequest = {
+    sessionToken: "3993eb0c-5f64-4a6c-b16c-485818eb76ev",
+    merchantId: "427583496191624621",
+    merchantSiteId: "142033",
+    clientRequestId: "1C6CT7V1L",
+    amount: "10",
+    currency: "USD",
+    userTokenId: "230811147",
+    clientUniqueId: "12345",
+    paymentOption: {
+      card: {
+        externalTokenProvider: "GooglePay",
+        externalToken: JSON.stringify(paymentData)
+      }
+    },
+    billingAddress: {
+      firstName: "John",
+      lastName: "Smith",
+      email: "john.smith@email.com",
+      country: "US"
+    },
+    deviceDetails: {
+      ipAddress: await getIpAddress()
+    }
+  };
+
+  // Make the API call
+  fetch(baseURL + "/payment/google-pay", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(apiRequest)
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Payment processed:', data);
+    })
+    .catch(error => {
+      console.error('Error processing payment:', error);
+    });
+}
+
+paypal.Buttons({
+  // Customize the button style
+  style: {
+      layout: 'vertical',
+      color:  'blue',
+      shape:  'rect',
+      label:  'pay'
+  },
+
+  // Set up the transaction
+  createOrder: function(data, actions) {
+      return actions.order.create({
+          purchase_units: [{
+              amount: {
+                  value: '50.00',
+                  currency_code: 'EUR'
+              }
+          }]
+      });
+  },
+
+  // Handle the successful payment
+  onApprove:function(data, actions) {
+      return actions.order.capture().then(async function(orderData) {
+          // Construct the API request
+          const apiRequest = {
+              amount: "50",
+              currency: "EUR",
+              paymentOption: {
+                  alternativePaymentMethod: {
+                      paymentMethod: "apmgw_expresscheckout"
+                  }
+              },
+              deviceDetails: {
+                  ipAddress:await getIpAddress()
+              },
+              billingAddress: {
+                  firstName: "John",
+                  lastName: "Smith",
+                  country: "US",
+                  email: "john.smith@email.com"
+              },
+              userDetails: {
+                  firstName: "John",
+                  lastName: "Smith",
+                  country: "US",
+                  email: "john.smith@email.com"
+              }
+          };
+
+          // Make the API call
+          return   fetch(baseURL + "/payment/paypal", {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(apiRequest)
+          })
+          .then(response => response.json())
+          .then(data => {
+              // Show success message
+              alert('Transaction completed successfully!');
+              console.log('API response:', data);
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              alert('There was an error processing your payment.');
+          });
+      });
+  },
+
+  // Handle errors
+  onError: function(err) {
+      console.error('PayPal Error:', err);
+      alert('There was an error with your PayPal payment.');
+  }
+}).render('#paypal-button-container');

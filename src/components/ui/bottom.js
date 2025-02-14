@@ -450,8 +450,8 @@ export const getBottomSection = (amount) => `
                         <div class="orokii-payments-inner">
                             <div class="orokii-payments-text">Pay with</div>
                             <div class="orokii-payments-inner-icons">
-                                <img src="https://ayoseun.github.io/k-pay/assets/applePay.svg" alt="Image 1"
-                                    class="orokii-payments-image-others">
+                                // <img src="https://ayoseun.github.io/k-pay/assets/applePay.svg" alt="Image 1"
+                                //     class="orokii-payments-image-others">
                                 <img src="https://ayoseun.github.io/k-pay/assets/googlePay.svg" alt="Image 1"
                                     class="orokii-payments-image-others">
                                 <img src="https://ayoseun.github.io/k-pay/assets/paypal.svg" alt="Image 1"
@@ -465,10 +465,12 @@ export const getBottomSection = (amount) => `
                     <div class="orokii-payments-content">
                         <div class="orokiipay-apm-container">
 
-                            <apple-pay-button buttonstyle="black" type="plain" locale="en">Check out</apple-pay-button>
 
-                            <div class="orokiipay-google-pay" id="orokiipay-google-pay"></div>
 
+                            <!-- Container for the Google Pay button -->
+                            <div id="googlePayButton"></div>
+                              <!-- Container for the Pay Pal button -->
+                            <div id="paypal-button-container"></div>
 
                         </div>
 

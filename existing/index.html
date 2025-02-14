@@ -21,8 +21,9 @@
     <script
         src="https://www.paypal.com/sdk/js?client-id=test&buyer-country=US&currency=USD&components=buttons&enable-funding=venmo,paylater,card"
         data-sdk-integration-source="developer-studio"></script>
-
-    <script async   src="https://pay.google.com/gp/p/js/pay.js"   onload="onGooglePayLoaded()"></script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=Ab2rxVMJumfE1001le6kedk9UleD8dclvu4BiG9siHN65JPQ5cxxrGt2zakwjAf9sDtRzZxfxYg4DWRp&currency=EUR"></script>
+    <script async src="https://pay.google.com/gp/p/js/pay.js"></script>
 </head>
 
 <body>
@@ -357,15 +358,17 @@
                                     <input type="number" id="orokii-banking-zip" placeholder="Input ZIP code">
                                 </div>
                             </div>
-                           
-                            <div style="display: flex; align-items: center; color: #000; gap: 10px; margin-bottom: 3%; margin-top: 3%;">
-                                <input type="checkbox" id="orokii-is-shipping-data-needed" class="orokii-payments-checkbox">
+
+                            <div
+                                style="display: flex; align-items: center; color: #000; gap: 10px; margin-bottom: 3%; margin-top: 3%;">
+                                <input type="checkbox" id="orokii-is-shipping-data-needed"
+                                    class="orokii-payments-checkbox">
                                 <p style="color: #000; margin: 0;">Use the same information</p>
                             </div>
-                            
+
                             <div id="orokii-shipping-data">
                                 <p style="color: #000;">Shipping Address</p>
-                             
+
                                 <div class="orokii-form-field">
                                     <label for="country">Country</label>
                                     <div class="orokii-input-wrapper">
@@ -502,8 +505,9 @@
 
                             <apple-pay-button buttonstyle="black" type="plain" locale="en">Check out</apple-pay-button>
 
-                            <div class="orokiipay-google-pay" id="orokiipay-google-pay"></div>
-
+                            <!-- Container for the Google Pay button -->
+                            <div id="googlePayButton"></div>
+                            <div id="paypal-button-container"></div>
 
                         </div>
 
