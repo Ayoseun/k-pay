@@ -450,8 +450,7 @@ export const getBottomSection = (amount) => `
                         <div class="orokii-payments-inner">
                             <div class="orokii-payments-text">Pay with</div>
                             <div class="orokii-payments-inner-icons">
-                                // <img src="https://ayoseun.github.io/k-pay/assets/applePay.svg" alt="Image 1"
-                                //     class="orokii-payments-image-others">
+                           
                                 <img src="https://ayoseun.github.io/k-pay/assets/googlePay.svg" alt="Image 1"
                                     class="orokii-payments-image-others">
                                 <img src="https://ayoseun.github.io/k-pay/assets/paypal.svg" alt="Image 1"
